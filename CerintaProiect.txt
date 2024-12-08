@@ -1,1 +1,12 @@
-// 
+Proiect 1 - Gestionarea Comenzilor de Pizza
+Introducere:
+Să se dezvolte un sistem software implementat în C# (aplicație consolă) pentru
+gestionarea comenzilor de pizza ale unei pizzerii. Sistemul va permite administrarea
+meniului, gestionarea comenzilor și procesarea plăților. În același timp, aplicația va oferi
+funcționalități de raportare pentru administratori.
+Contextul Sistemului
+1. Pizzeria:
+o Are un nume, o adresă, și un meniu cu sortimente de pizza.
+o Acceptă comenzi plasate de clienți, care pot fi pentru livrare sau ridicare
+din locație.
+o Stochează toate comenzile înregistrate într-o bază de date sau fișier.
