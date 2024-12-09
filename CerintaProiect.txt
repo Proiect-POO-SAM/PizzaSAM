@@ -10,3 +10,4 @@ o Are un nume, o adresă, și un meniu cu sortimente de pizza.
 o Acceptă comenzi plasate de clienți, care pot fi pentru livrare sau ridicare
 din locație.
 o Stochează toate comenzile înregistrate într-o bază de date sau fișier.
+
