@@ -14,6 +14,7 @@ namespace ProiectPOoSAM
         private decimal price;
         private List<Ingredients> ingredients;
         private bool personalized;
+        public Orders Orders;
 
         public Pizza(string name, List<Ingredients> ingredients, bool personalized)
         {
@@ -36,9 +37,17 @@ namespace ProiectPOoSAM
             {
                 price = 20;
             }
+            if (personalized == true)
+            {
+                price = 30;
+            }
             foreach (var ingredient in ingredients)
             {
                 price += ingredient.getPrice();
+            }
+            if(Orders.deliveryMethod == Orders.delivery.toHome)
+            {
+                price += 10;
             }
             return price;
         }

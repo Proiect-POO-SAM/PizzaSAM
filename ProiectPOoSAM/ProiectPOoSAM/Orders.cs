@@ -8,25 +8,30 @@ namespace ProiectPOoSAM
 {
     public class Orders
     {
-        // User (TREBUIE ADAUGAT OBIECT)
+        //public User User (TREBUIE ADAUGAT OBIECT)
         private int deliveredPizza { get; }
-        private bool isDelivered { get; }
+        public enum delivery { toHome , toRestaurant };
+        public delivery deliveryMethod;
         private decimal totalPrice { get; }
 
-        public Orders(int deliveredPizza, bool isDelivered, decimal totalPrice)
+        public Orders(int deliveredPizza, delivery deliveryMethod, decimal totalPrice)
         {
             this.deliveredPizza = deliveredPizza;
-            this.isDelivered = isDelivered;
+            this.deliveryMethod = deliveryMethod;
             this.totalPrice = totalPrice;
         }
 
 
         public void ViewCommands()
         {
-            if (isDelivered == true)
-            Console.WriteLine($"Your command: {deliveredPizza} ordered with the price {totalPrice} has been delivered");
-            if (isDelivered == false)
-                Console.WriteLine($"Your command: {deliveredPizza} ordered with the price {totalPrice} has been not delivered");
+            if(deliveryMethod == delivery.toHome)
+            {
+                Console.WriteLine($"Pizza {deliveredPizza} will be delivered to your home and it will cost {totalPrice}");
+            }
+            if(deliveryMethod == delivery.toRestaurant)
+            {
+                Console.WriteLine($"Pizza {deliveredPizza} will await you at the restaurant and it will cost {totalPrice}");
+            }
         }
 
 
