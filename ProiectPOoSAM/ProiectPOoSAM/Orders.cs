@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProiectPOOSAM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace ProiectPOoSAM
 {
     public class Orders
     {
-        //public User User (TREBUIE ADAUGAT OBIECT)
+        public USER USER;
         private int deliveredPizza { get; }
         public enum delivery { toHome , toRestaurant };
         public delivery deliveryMethod;

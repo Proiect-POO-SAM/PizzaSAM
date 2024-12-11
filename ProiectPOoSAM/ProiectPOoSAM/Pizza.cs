@@ -23,6 +23,7 @@ namespace ProiectPOoSAM
             this.personalized = personalized;
         }
 
+        // Calculate the final price of the pizza
         public decimal calculatePrice()
         {
             if (dimensiuneCurenta == dimensiune.small)
@@ -52,6 +53,15 @@ namespace ProiectPOoSAM
             return price;
         }
 
+        // View the specific pizza
+        public void ViewPizza()
+        {
+            Console.WriteLine($"Pizza: {name} with price {price}");
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.ViewIngredients();
+            }
+        }
 
 
     }

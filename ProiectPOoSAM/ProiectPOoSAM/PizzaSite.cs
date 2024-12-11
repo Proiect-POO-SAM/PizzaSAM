@@ -10,7 +10,6 @@ namespace ProiectPOoSAM
     {
         private string pizzaSiteName;
         private string pizzaSiteLocation;
-        private List<Pizza> menu;
         private List<Orders> orders;
 
 
@@ -18,7 +17,6 @@ namespace ProiectPOoSAM
         {
             this.pizzaSiteName = pizzaSiteName;
             this.pizzaSiteLocation = pizzaSiteLocation;
-            menu = new List<Pizza>();
         }
 
         // The orders needs to be stocked in a file, Sebi your turn there :D 
