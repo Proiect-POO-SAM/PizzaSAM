@@ -1,0 +1,15 @@
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.AssemblyInfoInputs.cache
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.AssemblyInfo.cs
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.csproj.CoreCompileInputs.cache
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.sourcelink.json
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\ProiectPOoSAM.exe
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\ProiectPOoSAM.deps.json
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\ProiectPOoSAM.runtimeconfig.json
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\ProiectPOoSAM.dll
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\ProiectPOoSAM.pdb
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.dll
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\refint\ProiectPOoSAM.dll
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.pdb
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.genruntimeconfig.cache
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ref\ProiectPOoSAM.dll
