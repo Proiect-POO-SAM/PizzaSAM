@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\pizzasite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\pizzasite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\pizzasite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\pizzasite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,17 +42,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 185,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "PizzaSite.cs",
+              "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\PizzaSite.cs",
+              "RelativeDocumentMoniker": "ProiectPOoSAM\\PizzaSite.cs",
+              "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\PizzaSite.cs",
+              "RelativeToolTip": "ProiectPOoSAM\\PizzaSite.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAgwBMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T20:58:34.306Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Constants.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Constants.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Constants.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Constants.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Constants.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-11T21:28:49.552Z",
               "EditorCaption": ""
@@ -67,12 +81,11 @@
               "RelativeToolTip": "ProiectPOoSAM\\Project.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAA1wBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T21:28:08.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T21:28:08.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Menu.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Menu.cs",
@@ -85,19 +98,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PizzaSite.cs",
-              "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\PizzaSite.cs",
-              "RelativeDocumentMoniker": "ProiectPOoSAM\\PizzaSite.cs",
-              "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\PizzaSite.cs",
-              "RelativeToolTip": "ProiectPOoSAM\\PizzaSite.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAgwBMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T20:58:34.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Ingredients.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Ingredients.cs",
@@ -106,18 +106,17 @@
               "RelativeToolTip": "ProiectPOoSAM\\Ingredients.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAA9wBsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T19:15:47.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T19:15:47.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Pizza.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Pizza.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Pizza.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Pizza.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Pizza.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAA5wCgAAAAAAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAwwAgAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-11T18:58:07.86Z",
               "EditorCaption": ""
@@ -132,8 +131,7 @@
               "RelativeToolTip": "ProiectPOoSAM\\Orders.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAAiwAsAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T18:56:53.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T18:56:53.428Z"
             },
             {
               "$type": "Document",
@@ -145,8 +143,7 @@
               "RelativeToolTip": "ProiectPOoSAM\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T18:54:52.634Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T18:54:52.634Z"
             }
           ]
         }

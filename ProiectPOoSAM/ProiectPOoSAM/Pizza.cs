@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProiectPOoSAM
 {
-    public class Pizza
+    public class Pizza : Constants
     {
         private string name;
         private enum dimensiune { small, medium, large };
@@ -50,7 +50,7 @@ namespace ProiectPOoSAM
             {
                 price += 10;
             }
-            return price;
+            return price+price*TVA;
         }
 
         // View the specific pizza
