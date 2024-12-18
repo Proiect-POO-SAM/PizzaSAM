@@ -1,4 +1,4 @@
-using ProiectPOoSAM;
+using ProiectPOoSAM.Alex;
 
 namespace ProiectPOOSAM
 {
@@ -7,6 +7,7 @@ namespace ProiectPOOSAM
         protected string username;
         protected string password;
         protected Role role;
+        List<Orders> listOrders;
 
         public enum Role
         {
@@ -21,13 +22,15 @@ namespace ProiectPOOSAM
             this.username = username;
             this.password = password;
             this.role = Role.Client;
+            this.listOrders = null;
         }
 
         public string GetUsername() => username;
         public string GetRole() => role.ToString();
 
         public string GetPassword() => password;
-
+        
+        public int GetOrdersCount() => listOrders==null ? 0 : listOrders.Count;
 
 
 
