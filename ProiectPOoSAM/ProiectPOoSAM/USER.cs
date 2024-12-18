@@ -1,42 +1,48 @@
-namespace ProiectPOOSAM;
+using ProiectPOoSAM;
 
-public class USER
+namespace ProiectPOOSAM
 {
-    protected string username;
-    protected string password;
-    protected Role role;
-
-
-    public enum Role
+    public class USER
     {
-        Admin,
-        Client,
-        User
-    }
-    
+        protected string username;
+        protected string password;
+        protected Role role;
 
-    public USER(string username, string password, Role role)
-    {
-        this.username = username;
-        this.password = password;
-        this.role = Role.Client;
-    }
-
-    public string GetUsername() => username;
-    public string GetRole() => role.ToString();
-    
-    
-    // schimbarea parolei unui utilizator de catre admin
-    public void SetPassword(USER user, string parolaNoua, Role role)
-    {
-        if(this.role == Role.Admin)
+        public enum Role
         {
-            user.password = parolaNoua;
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Parola pentru utilizatorul {user.GetUsername()} a fost schimbata.");
-            Console.ResetColor();
+            Admin,
+            Client,
+            User
         }
-        else
-            Console.WriteLine("Nu aveti drepturi de administrator");
+
+
+        public USER(string username, string password, Role role)
+        {
+            this.username = username;
+            this.password = password;
+            this.role = Role.Client;
+        }
+
+        public string GetUsername() => username;
+        public string GetRole() => role.ToString();
+
+        public string GetPassword() => password;
+
+
+
+
+        // schimbarea parolei unui utilizator de catre admin
+        public void SetPassword(USER user, string parolaNoua, Role role)
+        {
+            if (this.role == Role.Admin)
+            {
+                user.password = parolaNoua;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Parola pentru utilizatorul {user.GetUsername()} a fost schimbata.");
+                Console.ResetColor();
+            }
+            else
+                Console.WriteLine("Nu aveti drepturi de administrator");
+        }
     }
 }

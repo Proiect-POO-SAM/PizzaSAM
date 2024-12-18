@@ -23,6 +23,14 @@ namespace ProiectPOoSAM
         {
             return price;
         }
+        public string getName()
+        {
+            return name;
+        }
+        public int getQuantity()
+        {
+            return quantity;
+        }
 
         public void ViewIngredients()
         {

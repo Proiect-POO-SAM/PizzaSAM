@@ -9,32 +9,52 @@ namespace ProiectPOoSAM
     public class Pizza : Constants
     {
         private string name;
-        private enum dimensiune { small, medium, large };
-        private dimensiune dimensiuneCurenta;
+        public enum Dimensiune { small, medium, large };
+        public Dimensiune dimensiuneCurenta;
         private decimal price;
         private List<Ingredients> ingredients;
         private bool personalized;
         public Orders Orders;
 
-        public Pizza(string name, List<Ingredients> ingredients, bool personalized)
+        public Pizza(string name,int price, List<Ingredients> ingredients, bool personalized)
         {
             this.name = name;
+            this.price = price;
             ingredients = new List<Ingredients>();
             this.personalized = personalized;
         }
 
+        public string getName()
+        {
+            return name;
+        }
+        public decimal getPrice()
+        {
+            return price;
+        }
+        public List<Ingredients> getIngredients()
+        {
+            return ingredients;
+        }
+        public bool getPersonalized()
+        {
+            return personalized;
+        }
+
+
+
         // Calculate the final price of the pizza
         public decimal calculatePrice()
         {
-            if (dimensiuneCurenta == dimensiune.small)
+            if (dimensiuneCurenta == Dimensiune.small)
             {
                 price = 10;
             }
-            if (dimensiuneCurenta == dimensiune.medium)
+            if (dimensiuneCurenta == Dimensiune.medium)
             {
                 price = 15;
             }
-            if (dimensiuneCurenta == dimensiune.large)
+            if (dimensiuneCurenta == Dimensiune.large)
             {
                 price = 20;
             }
