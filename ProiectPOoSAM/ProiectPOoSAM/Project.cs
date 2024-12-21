@@ -11,7 +11,7 @@ public class Project : Constants
         Console.WriteLine("Se initializeaza programul ...");
         
         //partea de admin
-        Admin admin = new Admin(adminUsername, adminPassword, USER.Role.Admin);
+        USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
         
             
         //partea de citire Meniu

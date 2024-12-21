@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Reflection;
 
 Console.WriteLine("Daca vezi asta ruleaza programul");
-USER u1 = new USER("USER", "1234", USER.Role.Client);
+USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Client);
 Ingredients ingredients = new Ingredients("Mozzarella", 100, 10);
 Ingredients ingredients1 = new Ingredients("Sunca", 100, 10);
 Ingredients ingredients2 = new Ingredients("Ciuperci", 100, 10);

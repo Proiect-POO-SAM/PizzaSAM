@@ -27,7 +27,7 @@ namespace ProiectPOoSAM.Alex
         {
             this.pizzas = pizzas;
             this.deliveryMethod = deliveryMethod;
-            this.discount = discount / 100;
+            this.discount = 10 / 100;
             this.user = user;
             this.totalPrice = calculateTotalPrice();
         }
@@ -67,7 +67,7 @@ namespace ProiectPOoSAM.Alex
             {
                 pricing += 10;
             }
-            if (discount != 0)
+            if (discount != null)
             {
                 pricing -= pricing * discount;
             }
