@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProiectPOoSAM
+namespace ProiectPOoSAM.Alex
 {
     public class Menu
-    { 
-     public List<Pizza> menu;
+    {
+        public List<Pizza> menu;
 
         public Menu()
         {
@@ -59,13 +59,13 @@ namespace ProiectPOoSAM
             }
             return "Menu unloaded";
         }
-        public string UpdateMenu(Menu menu,string filePath)
+        public string UpdateMenu(Menu menu, string filePath)
         {
             using (StreamWriter saver = new StreamWriter(filePath))
             {
                 try
                 {
-                    
+
                 }
                 catch (Exception ex)
                 {

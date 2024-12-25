@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProiectPOoSAM
+namespace ProiectPOoSAM.Alex
 {
     public class Pizza : Constants
     {
@@ -14,14 +14,24 @@ namespace ProiectPOoSAM
         private decimal price;
         private List<Ingredients> ingredients;
         private bool personalized;
-        public Orders Orders;
 
-        public Pizza(string name,int price, List<Ingredients> ingredients, bool personalized)
+        // 2 constructori pentru pizza personalizat | nepersonalizat
+
+        public Pizza(string name, List<Ingredients> ingredients, bool personalized)
         {
             this.name = name;
-            this.price = price;
-            ingredients = new List<Ingredients>();
+            this.ingredients = ingredients;
             this.personalized = personalized;
+            dimensiuneCurenta = Dimensiune.medium;
+            price = calculatePrice();
+        }
+        public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized)
+        {
+            this.name = name;
+            this.dimensiuneCurenta = dimensiuneCurenta;
+            this.ingredients = ingredients;
+            this.personalized = personalized;
+            price = calculatePrice();
         }
 
         public string getName()
@@ -43,7 +53,7 @@ namespace ProiectPOoSAM
 
 
 
-        // Calculate the final price of the pizza
+        // Calculate price pizza
         public decimal calculatePrice()
         {
             if (dimensiuneCurenta == Dimensiune.small)
@@ -60,17 +70,13 @@ namespace ProiectPOoSAM
             }
             if (personalized == true)
             {
-                price = 30;
+                price += 30;
             }
             foreach (var ingredient in ingredients)
             {
                 price += ingredient.getPrice();
             }
-            if(Orders.deliveryMethod == Orders.delivery.toHome)
-            {
-                price += 10;
-            }
-            return price+price*TVA;
+            return price + price * TVA;
         }
 
         // View the specific pizza
@@ -82,7 +88,6 @@ namespace ProiectPOoSAM
                 ingredient.ViewIngredients();
             }
         }
-
 
     }
 }

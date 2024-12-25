@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProiectPOoSAM
+namespace ProiectPOoSAM.Alex
 {
     public class PizzaSite
     {

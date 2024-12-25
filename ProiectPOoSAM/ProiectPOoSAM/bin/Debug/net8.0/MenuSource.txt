@@ -1,6 +1,16 @@
-USER,System.Func`1[System.String],System.Func`1[System.String],System.Func`1[System.String]ORDER,ProiectPOOSAM.USER,1,toHome,100
+ORDER,USER,2,Home,95
 INGREDIENT,Mozzarella,100,10
 INGREDIENT,Sunca,100,10
 INGREDIENT,Ciuperci,100,10
+PIZZA,Quattro Stagioni,medium,45,False,Mozzarella,Sunca,Ciuperci
+PIZZA,Margherita,small,40,False,Mozzarella,Sunca,Ciuperci
 MENU,Quattro Stagioni,
-USER,USER,1234,Client
+USER,USER,1234,Client,0
+ORDER,USER,2,Home,95
+INGREDIENT,Mozzarella,100,10
+INGREDIENT,Sunca,100,10
+INGREDIENT,Ciuperci,100,10
+PIZZA,Quattro Stagioni,medium,45,False,Mozzarella,Sunca,Ciuperci
+PIZZA,Margherita,small,40,False,Mozzarella,Sunca,Ciuperci
+MENU,Quattro Stagioni,
+USER,USER,1234,Client,0
