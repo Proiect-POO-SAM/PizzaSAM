@@ -8,10 +8,8 @@ namespace ProiectPOoSAM.Alex
 {
     public class PizzaSite
     {
-        private string pizzaSiteName;
-        private string pizzaSiteLocation;
-        private List<Orders> orders;
-
+        public string pizzaSiteName;
+        public string pizzaSiteLocation;
 
         public PizzaSite(string pizzaSiteName, string pizzaSiteLocation)
         {
@@ -19,6 +17,5 @@ namespace ProiectPOoSAM.Alex
             this.pizzaSiteLocation = pizzaSiteLocation;
         }
 
-        // The orders needs to be stocked in a file, Sebi your turn there :D 
     }
 }

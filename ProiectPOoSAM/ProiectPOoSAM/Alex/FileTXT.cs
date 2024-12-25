@@ -9,6 +9,7 @@ namespace ProiectPOoSAM.Alex
 {
     public class FileTXT : Constants
     {
+        public PizzaSite SITE;
         // Scriere fisier
         // sintaxa File.addCommandToFile("breakToPieces--obiect--");
         public void addCommandToFile(string content)
@@ -80,6 +81,11 @@ namespace ProiectPOoSAM.Alex
             return $"USER,{user.GetUsername()},{user.GetPassword()},{user.GetRole()},{user.GetOrdersCount()}";
         }
 
+        public string breakToPiecesPizzaSite(PizzaSite SITE)
+        {
+            return $"PizzaSite,{SITE.pizzaSiteName},{SITE.pizzaSiteLocation}";
+        }
+
 
 
         // Citire fisier
@@ -131,6 +137,11 @@ namespace ProiectPOoSAM.Alex
                             {
                                 Console.WriteLine($"- {ingredient}");
                             }
+                            break;
+                        case "SITE":
+                            Console.WriteLine("Pizza Site Details:");
+                            Console.WriteLine($"Name: {elements[1]}");
+                            Console.WriteLine($"Location: {elements[2]}");
                             break;
                         default:
                             break;
