@@ -13,11 +13,6 @@ public class Project : Constants, ILogger
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
         
-        //partea de admin
-<<<<<<< HEAD
-        //USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
-        
-            
         //partea de citire Meniu
         try
         {
@@ -98,5 +93,5 @@ public class Project : Constants, ILogger
     public void WriteLogger()
     {
         throw new NotImplementedException();
-    }
+    }
 }

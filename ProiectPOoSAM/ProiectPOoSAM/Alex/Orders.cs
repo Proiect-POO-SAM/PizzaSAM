@@ -30,6 +30,7 @@ namespace ProiectPOoSAM.Alex
             this.user = user;
             this.totalPrice = calculateTotalPrice();
         }
+        public Orders(List<Pizza> pizzas, delivery deliveryMethod, USER user)
         {
             this.pizzas = pizzas;
             this.deliveryMethod = deliveryMethod;
@@ -124,34 +125,42 @@ namespace ProiectPOoSAM.Alex
             isFeedback = true;
             Console.WriteLine(rating + " " + feedback);
         }
-
-
-            try
-            {
-                // Create an SmtpClient object for Gmail
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
-                {
-                    Port = 587,
-                    Credentials = new NetworkCredential(senderEmail, senderPassword),
-                    EnableSsl = true
-                };
-
-                // Create a MailMessage object for the email
-                MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail)
-                {
-                    Subject = subject,
-                    Body = body
-                };
-
-                // Send the email
-                smtpClient.Send(mailMessage);
-
-                Console.WriteLine("Email sent successfully!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error sending email: {ex.Message}");
-            }
-        }
     }
 }
+
+
+
+//public void sendEmail(string recipientEmail, string subject, string body)
+//{
+//    string senderEmai="pizzasam2004@gmail.com";
+//    string senderPassword="pizzasam";
+//            try
+//            {
+//                // Create an SmtpClient object for Gmail
+//                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+//                {
+//                    Port = 587,
+//                    Credentials = new NetworkCredential(senderEmail, senderPassword),
+//                    EnableSsl = true
+//                };
+
+//                // Create a MailMessage object for the email
+//                MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail)
+//                {
+//                    Subject = subject,
+//                    Body = body
+//                };
+
+//                // Send the email
+//                smtpClient.Send(mailMessage);
+
+//                Console.WriteLine("Email sent successfully!");
+//            }
+//            catch (Exception ex)
+//            {
+//                Console.WriteLine($"Error sending email: {ex.Message}");
+//            }
+//        }
+//    }
+//}
+//}

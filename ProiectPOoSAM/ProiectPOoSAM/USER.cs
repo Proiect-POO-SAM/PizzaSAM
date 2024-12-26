@@ -39,9 +39,6 @@ namespace ProiectPOOSAM
 
         
         public int GetOrdersCount() => listOrders==null ? 0 : listOrders.Count;
-
-        
-<<<<<<< HEAD
         
         // vf valabilitatea unui username (pt functia register)
         public bool Exists(string username)
@@ -53,7 +50,7 @@ namespace ProiectPOOSAM
         
         
         // schimbarea parolei unui utilizator de catre admin
-        
+
         public void DeleteAccount(string username, string parola)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -64,20 +61,6 @@ namespace ProiectPOOSAM
 
         public string SaveFormat()
         {
-=======
-        // schimbarea parolei unui utilizator de catre admin
-        
-        public void DeleteAccount(string username, string parola)
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            AllUsers.Remove(username);
-            Console.WriteLine("Process Finalized.");
-            Console.ResetColor();
-        }
-
-        public string SaveFormat()
-        {
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
             return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole() ;
         }
     }
