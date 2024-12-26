@@ -3,6 +3,8 @@ using ProiectPOoSAM.Alex;
 using ProiectPOOSAM;
 using System.ComponentModel;
 using System.Reflection;
+using ProiectPOoSAM;
+
 
 Console.WriteLine("Daca vezi asta ruleaza programul");
 USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Client);
@@ -39,3 +41,15 @@ file.gettingInformation("ORDER");
 file.gettingInformation("PIZZA");
 o1.ViewMyCommands("USER");
 file.deleteFile();
+
+
+
+/// o clasa "partial" este o clasa care are definitia impartita pe mai multe clase.
+/// practic sunt bucati de puzzle pt o clasa mai mare 
+public partial class Program : Project
+{
+    static void Main(string[] args)
+    {
+        INIT();
+    }
+}

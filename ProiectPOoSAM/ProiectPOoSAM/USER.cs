@@ -41,6 +41,16 @@ namespace ProiectPOOSAM
         public int GetOrdersCount() => listOrders==null ? 0 : listOrders.Count;
 
         
+        
+        // vf valabilitatea unui username (pt functia register)
+        public bool Exists(string username)
+        {
+            return AllUsers.ContainsKey(username);
+        }
+
+
+        
+        
         // schimbarea parolei unui utilizator de catre admin
         
         public void DeleteAccount(string username, string parola)

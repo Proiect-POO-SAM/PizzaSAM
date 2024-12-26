@@ -3,15 +3,18 @@ using ProiectPOOSAM;
 
 namespace ProiectPOoSAM;
 
-public class Project : Constants
+public class Project : Constants, ILogger
 {
+    protected List<string> oldLogs = new List<string>();
+    
+    
     public static string INIT()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
         
         //partea de admin
-        USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
+        //USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
         
             
         //partea de citire Meniu
@@ -37,9 +40,27 @@ public class Project : Constants
             return "Failed reading file";
             Console.ResetColor();
         }
+
+
+        string logger = "INIT-PROJECT";
+        try
+        {
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            logger = logger + " " + e.Message;
+        }
+        
+        
+        
+        
+        
         Console.WriteLine("Initializare finalizata.");
         Console.ResetColor();
-        return "INIT COMPLETE";
+        
+        return logger;
     }
 
 
@@ -66,5 +87,15 @@ public class Project : Constants
             
             
         Console.WriteLine("Se inchide programul ...");
+    }
+
+    public void AddToLogger(List<string> oldLogs, string message)
+    {
+        oldLogs.Add(message);
+    }
+
+    public void WriteLogger()
+    {
+        throw new NotImplementedException();
     }
 }
