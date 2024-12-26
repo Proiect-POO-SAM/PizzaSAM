@@ -92,6 +92,6 @@ public class Project : Constants, ILogger
 
     public void WriteLogger()
     {
-        throw new NotImplementedException();
-    }
+        throw new NotImplementedException(); 
+    }
 }
