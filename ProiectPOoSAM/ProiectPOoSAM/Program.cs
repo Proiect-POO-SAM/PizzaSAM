@@ -3,7 +3,11 @@ using ProiectPOoSAM.Alex;
 using ProiectPOOSAM;
 using System.ComponentModel;
 using System.Reflection;
+<<<<<<< HEAD
 using ProiectPOoSAM;
+=======
+Console.OutputEncoding = System.Text.Encoding.UTF8; //Encoding to show the stars from feedback
+>>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
 
 
 Console.WriteLine("Daca vezi asta ruleaza programul");
@@ -21,6 +25,10 @@ List<Pizza> pizzas = new List<Pizza>();
 pizzas.Add(p1);
 pizzas.Add(p2);
 Orders o1 = new Orders(pizzas, Orders.delivery.Home, 100, u1);
+<<<<<<< HEAD
+=======
+//o1.SendEmail("crisanalexflorin@gmail.com", "Confirmare comandă", "Comanda dumneavoastră a fost procesată și confirmată."); // nu merge bag pula in ma-sa
+>>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
 Menu menu = new Menu();
 menu.AddPizza(p1);
 FileTXT file = new FileTXT();
@@ -40,6 +48,7 @@ file.gettingInformation("USER");
 file.gettingInformation("ORDER");
 file.gettingInformation("PIZZA");
 o1.ViewMyCommands("USER");
+<<<<<<< HEAD
 file.deleteFile();
 
 
@@ -53,3 +62,7 @@ public partial class Program : Project
         INIT();
     }
 }
+=======
+o1.feedbackOrder();
+//file.deleteFile();
+>>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84

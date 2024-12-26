@@ -14,7 +14,11 @@ public class Project : Constants, ILogger
         Console.WriteLine("Se initializeaza programul ...");
         
         //partea de admin
+<<<<<<< HEAD
         //USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
+=======
+        USER admin = new USER(adminUsername, adminPassword, "+40700000000", USER.Role.Admin);
+>>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
         
             
         //partea de citire Meniu

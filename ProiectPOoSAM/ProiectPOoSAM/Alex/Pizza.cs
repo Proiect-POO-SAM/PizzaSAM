@@ -14,7 +14,6 @@ namespace ProiectPOoSAM.Alex
         private decimal price;
         private List<Ingredients> ingredients;
         private bool personalized;
-        public Orders Orders;
 
         // 2 constructori pentru pizza personalizat | nepersonalizat
 
