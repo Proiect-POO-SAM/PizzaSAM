@@ -10,7 +10,8 @@ namespace ProiectPOOSAM
         private string phoneNumber;
         protected Role role;
         protected bool accesToken;
-        
+        private bool fidelityCard;
+
         Dictionary<string, string> AllUsers = new Dictionary<string, string>();
         List<Orders> listOrders;
 
@@ -28,9 +29,20 @@ namespace ProiectPOOSAM
             this.phoneNumber = phone;
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
+            this.fidelityCard = false;
         }
-        
-        
+        public USER(string username, string password, string phone, Role role, bool fidelityCard)
+        {
+            this.username = username;
+            this.password = password;
+            this.role = Role.Client;
+            this.phoneNumber = phone;
+            this.accesToken = role == Role.Admin ? true : false;
+            this.listOrders = null;
+            this.fidelityCard = fidelityCard;
+        }
+
+
         public string GetUsername() => username;
         public string GetPassword() => password;
         public string GetPhoneNumber() => phoneNumber;
@@ -46,9 +58,20 @@ namespace ProiectPOOSAM
             return AllUsers.ContainsKey(username);
         }
 
+        public bool GetFidelityCard()
+        {
+            return fidelityCard;
+        }
 
-        
-        
+        public bool SetFidelityCard(bool FidelityCard)
+        {
+            this.fidelityCard = FidelityCard;
+            return FidelityCard;
+        }
+
+
+
+
         // schimbarea parolei unui utilizator de catre admin
 
         public void DeleteAccount(string username, string parola)

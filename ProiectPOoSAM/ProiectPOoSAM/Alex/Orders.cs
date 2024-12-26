@@ -78,6 +78,10 @@ namespace ProiectPOoSAM.Alex
             {
                 pricing -= pricing * discount;
             }
+            if(user.GetRole() == "Client" && user.GetFidelityCard() == true)
+            {
+                pricing -= pricing * 10 / 100;
+            }
             return pricing;
         }
 
@@ -125,8 +129,19 @@ namespace ProiectPOoSAM.Alex
             isFeedback = true;
             Console.WriteLine(rating + " " + feedback);
         }
+
+        public bool FidelityCard()
+        {
+            if (user.GetOrdersCount() > 5)
+            {
+                user.SetFidelityCard(true);
+            }
+            return false;
+        }
+
     }
 }
+
 
 
 
