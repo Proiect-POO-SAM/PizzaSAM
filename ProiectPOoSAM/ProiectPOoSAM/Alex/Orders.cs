@@ -5,8 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // For sending emails
-using System.Net;
-using System.Net.Mail;
+//using System.Net;
+//using System.Net.Mail;
+using Twilio;
+using Twilio.Exceptions;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 
 namespace ProiectPOoSAM.Alex
@@ -139,8 +144,31 @@ namespace ProiectPOoSAM.Alex
             return false;
         }
 
+        public void SendSMS(string CustomerNumber)
+        {
+            string PizzaNumber = "+12345678901"; // TREBUIE ACHIZITIONAT NUMAR DE PE TWILIO
+
+            try
+            {
+                var message = MessageResource.Create(
+                    body: "Your order has been processed!",
+                    from: new Twilio.Types.PhoneNumber(PizzaNumber),
+                    to: new Twilio.Types.PhoneNumber(CustomerNumber)
+                );
+
+                Console.WriteLine($"Mesaj trimis cu SID: {message.Sid}");
+            }
+            catch (TwilioException ex)
+            {
+                Console.WriteLine($"Eroare la trimiterea mesajului: {ex.Message}");
+            }
+        }
+
     }
 }
+
+
+    
 
 
 

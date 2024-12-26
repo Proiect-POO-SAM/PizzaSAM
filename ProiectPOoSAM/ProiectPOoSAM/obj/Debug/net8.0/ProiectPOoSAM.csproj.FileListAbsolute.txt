@@ -304,3 +304,5 @@ C:\Users\sebia\Desktop\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ref
 C:\Users\sebia\Desktop\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.pdb
 C:\Users\sebia\Desktop\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ProiectPOoSAM.genruntimeconfig.cache
 C:\Users\sebia\Desktop\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\obj\Debug\net8.0\ref\ProiectPOoSAM.dll
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\crisa\PizzaSAM\ProiectPOoSAM\ProiectPOoSAM\bin\Debug\net8.0\Twilio.dll
