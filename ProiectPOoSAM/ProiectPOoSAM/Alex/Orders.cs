@@ -4,13 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-=======
 // For sending emails
 using System.Net;
 using System.Net.Mail;
 
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
 
 namespace ProiectPOoSAM.Alex
 {
@@ -22,12 +19,9 @@ namespace ProiectPOoSAM.Alex
         public delivery deliveryMethod;
         private decimal totalPrice;
         private decimal discount;
-<<<<<<< HEAD
-=======
         private bool isFeedback; // implementare feedback (WORK IN PROGRESS)
         private string feedback;
         private string rating;
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
 
         public Orders(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, USER user)
         {
@@ -36,11 +30,6 @@ namespace ProiectPOoSAM.Alex
             this.user = user;
             this.totalPrice = calculateTotalPrice();
         }
-<<<<<<< HEAD
-        public Orders(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice,USER user, decimal discount)
-=======
-        public Orders(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, USER user, decimal discount)
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
         {
             this.pizzas = pizzas;
             this.deliveryMethod = deliveryMethod;
@@ -57,11 +46,8 @@ namespace ProiectPOoSAM.Alex
 
         public decimal getTotalPrice() => totalPrice;
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
         public void ViewCommand()
         {
             Console.WriteLine("Comanda dumneavoastra:");
@@ -71,17 +57,11 @@ namespace ProiectPOoSAM.Alex
             }
             Console.WriteLine($"Metoda de livrare: {deliveryMethod}");
             Console.WriteLine($"Pret total: {totalPrice}");
-<<<<<<< HEAD
 
         }
 
         // Calculare pret comanda
 
-=======
-        }
-
-        // Calculare pret comanda
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
         public decimal calculateTotalPrice()
         {
             decimal pricing = 0;
@@ -133,15 +113,6 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-=======
         public void feedbackOrder()
         {
             Console.WriteLine("---- FEEDBACK -------");
@@ -154,10 +125,6 @@ namespace ProiectPOoSAM.Alex
             Console.WriteLine(rating + " " + feedback);
         }
 
-        public void SendEmail(string recipientEmail, string subject, string body)
-        {
-            string senderEmail = "pizzasam2004@gmail.com";
-            string senderPassword = "pizzasam"; 
 
             try
             {
@@ -186,6 +153,5 @@ namespace ProiectPOoSAM.Alex
                 Console.WriteLine($"Error sending email: {ex.Message}");
             }
         }
->>>>>>> 6c145ccf58c2bbfc5daa414438318e6c4a910c84
     }
 }
