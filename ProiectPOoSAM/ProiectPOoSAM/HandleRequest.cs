@@ -50,7 +50,7 @@ public abstract class HandleRequest : Wrapper
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("V-ati loggat cu numele de utilizator ");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write($"{username}.");
+                Console.Write($"{username}");
                 Console.ResetColor();
                 return new RequestResult { user = user, Message = $"User {username} is logged in" };
             }
@@ -74,6 +74,7 @@ public abstract class HandleRequest : Wrapper
         // Verificăm dacă username-ul există deja
         if (AllUsers.Any(u => u.GetUsername() == username))
         {
+            Console.WriteLine("Username deja existent!");
             return new RequestResult { user = null, Message = "Registration failed: Username already exists." };
         }
         

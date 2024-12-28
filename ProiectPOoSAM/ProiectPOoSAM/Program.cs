@@ -44,12 +44,14 @@ public partial class Program
 {
     public static void Main(string[] args)
     {
+        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
+
         var initResult = Project.INIT();
-            
+        
         if (initResult.user != null)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Bun venit, {initResult.user.GetUsername()}!");
+            Console.WriteLine($". Bun venit, {initResult.user.GetUsername()}!");
             Console.ResetColor();
         }
         else

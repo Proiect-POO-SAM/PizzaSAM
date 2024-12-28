@@ -29,12 +29,15 @@ public partial class Project : Constants
         Console.WriteLine("Se initializeaza programul ...");
         Console.ResetColor();
         
+        //asta trebe schimbat cumva ca sa mearga la logger
+        string message_ilogger = USER.LoadUsers();
+        
+        
         //-----------------------------------
-
+        // asta e pt citire meniu
         try
         {
-            USER.LoadUsers();
-            USER.show();
+            
         }
         catch (Exception e)
         {
@@ -150,8 +153,9 @@ public partial class Project : Constants
     public static void UNLOAD()
     {
         Console.ForegroundColor = ConsoleColor.Green;
+
+        string message = USER.SaveUsers();
         
-            
         // salvare in fisier
         try
         {

@@ -166,7 +166,7 @@ public abstract class Wrapper
             return e.Message;
         }
     }
-    public string SaveUsers()
+    public static string SaveUsers()
     {
         try
         {
@@ -184,12 +184,13 @@ public abstract class Wrapper
         catch (Exception e)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(e.Message);
-            Console.WriteLine();
-            return e.Message;                                   // dau return la messaje pt a putea implemente ILogger mai trz
+            Console.WriteLine("Error while saving users: " + e.Message);
+            Console.WriteLine(e.StackTrace);
+            Console.ResetColor();
+            return "Error: " + e.Message;
         }
     }
-
+    
 
     public static void show()
     {
