@@ -24,7 +24,7 @@ public partial class Project : Constants
         Message += "\nINIT-PROJECT";
         try
         {
-            Console.Write("PIZZA "); 
+            Console.Write("\n      PIZZA ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("S");
             Console.ForegroundColor = ConsoleColor.White;
@@ -36,9 +36,11 @@ public partial class Project : Constants
             
             Console.WriteLine("\n----------------------");
             Console.WriteLine(" Log-in  ||  Register ");
+            Console.WriteLine(" ------  ||   ------ ");
+            Console.WriteLine("  Menu   ||    Quit ");
             Console.WriteLine("----------------------");
             
-            Console.WriteLine("->");
+            Console.Write("->");
             string option = Console.ReadLine();
             
             // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
