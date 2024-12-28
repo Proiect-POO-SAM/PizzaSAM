@@ -1,8 +1,1 @@
-ORDER,USER,0,Home,10
-INGREDIENT,Mozzarella,100,10
-INGREDIENT,Sunca,100,10
-INGREDIENT,Ciuperci,100,10
-PIZZA,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,Quattro Formaggi,medium,45,False,Mozzarella,Sunca,Ciuperci
-MENU,Quattro Stagioni,
-USER,USER,1234,Client,0
+ 

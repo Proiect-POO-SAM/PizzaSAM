@@ -93,8 +93,8 @@ namespace ProiectPOOSAM
 public abstract class Wrapper
 { 
     private readonly string SourceFile = "AllUsers.txt";
-    protected List <USER> AllUsers = new List <USER>();
-    
+    protected static List<USER> AllUsers { get; set; } = new List<USER>();
+
     public bool IsPhoneNumber(string input)
     {
         return input.StartsWith("+40") && input.Length == 12 && input.Substring(3).All(char.IsDigit);

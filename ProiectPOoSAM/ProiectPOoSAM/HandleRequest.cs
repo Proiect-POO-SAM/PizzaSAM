@@ -9,39 +9,39 @@ public abstract class HandleRequest : Wrapper
 {
     private string username;
     private string password;
-        
-    
+
+
     /// <summary>
     ///
     /// - mesajele pt logger sunt in engleza in mare parte.
     ///
     /// - functia Handle_Login -> primeste username si parola (stringuri)
-    ///                        -> returneaza un tuplu (bool, string)
+    ///                        -> returneaza un tuplu (USER, string)
+    ///                        -> daca USER == null inseama ca operatia a esuat
     ///
     /// - funcitia Handle_Register -> primeste username, parola si numarul de telefon (stringuri)
-    ///                            -> returneaza un tuplu (bool, string)
+    ///                            -> returneaza un tuplu (USER, string)
     /// 
     /// </summary>
     /// name= SEBASTIAN.ADELIN
     
     
-    
     // nu cred ca ii critic ca astea sa fie private
     public class RequestResult
     {
-        public bool IsSuccessful { get; set; }
+        public USER user { get; set; }
         public string Message { get; set; }
     }
     
     
 
-    public RequestResult Handle_Login(string username, string password)
+    public static RequestResult Handle_Login(string username, string password)
     {
         try
         {
             if (AllUsers == null)
             {
-                return new RequestResult { IsSuccessful = false, Message = "User list is not initialized." };
+                return new RequestResult { user = null, Message = "User list is not initialized." };
             }
 
             USER user = AllUsers.FirstOrDefault(u => u.GetUsername() == username && u.GetPassword() == password);
@@ -52,34 +52,45 @@ public abstract class HandleRequest : Wrapper
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write($"{username}.");
                 Console.ResetColor();
-                return new RequestResult { IsSuccessful = true, Message = $"User {username} is logged in" };
+                return new RequestResult { user = user, Message = $"User {username} is logged in" };
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Loggare esuata. Username/Parola incorecta!");
             Console.ResetColor();
-            return new RequestResult { IsSuccessful = false, Message = "Invalid username or password. Login failed" };
+            return new RequestResult { user = null, Message = "Invalid username or password. Login failed" };
         }
         catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Loggare esuata. Eroare: " + ex.Message);
             Console.ResetColor();
-            return new RequestResult { IsSuccessful = false, Message = $"Error: {ex.Message}" };
+            return new RequestResult { user = null, Message = $"Error: {ex.Message}" };
         }
     }
     
 
-    public RequestResult Handle_Register(string username, string password, string phone)
+    public static RequestResult Handle_Register(string username, string password, string phone)
     {
         // Verificăm dacă username-ul există deja
         if (AllUsers.Any(u => u.GetUsername() == username))
         {
-            return new RequestResult { IsSuccessful = false, Message = "Registration failed: Username already exists." };
+            return new RequestResult { user = null, Message = "Registration failed: Username already exists." };
         }
         
         string iloggerMessage = "";
         try
-        {            
+        {    
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(phone))
+            {
+                //af msg consola
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Campurile username si numar de telefon sunt obligatorii!");
+                Console.ResetColor();
+                
+                // ilogger
+                return new RequestResult { user = null, Message = "Username or phone cannot be empty." };
+            }
+
             if(PhoneFORMAT(phone))
             {
                 USER user = new USER(username, password, phone,USER.Role.Client);
@@ -90,27 +101,26 @@ public abstract class HandleRequest : Wrapper
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Clientul {username} este intregistrat.");
                 Console.ResetColor();
-                return new RequestResult { IsSuccessful = true, Message = iloggerMessage };
+                return new RequestResult { user = user, Message = iloggerMessage };
             }
-            else 
-            {
-                iloggerMessage = "Invalid Phone Number Format";
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Format numar de telefon invalid");
-                return new RequestResult { IsSuccessful = false, Message = iloggerMessage };
-            }
+            
+            iloggerMessage = "Invalid Phone Number Format";
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Formatul numarului de telefon este invalid");
+            return new RequestResult { user = null, Message = iloggerMessage };
         }
         catch(Exception ex)
         {
-            iloggerMessage = iloggerMessage + " " + ex.Message;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Eroare in cadrul inregistrarii in aplicatie: " + ex.Message);
+            Console.ResetColor();
+            return new RequestResult { user = null, Message = iloggerMessage + "\nERROR: " +ex.Message };
         }
-        
-        return new RequestResult { IsSuccessful = false, Message = iloggerMessage };
     }
 
 
     // funtii utile
-    public bool PhoneFORMAT(string phone)
+    public static bool PhoneFORMAT(string phone)
     {
         if (phone.Length == 11)
         {

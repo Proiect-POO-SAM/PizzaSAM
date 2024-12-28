@@ -3,7 +3,7 @@ using ProiectPOOSAM;
 
 namespace ProiectPOoSAM;
 
-public class Project : Constants
+public partial class Project : Constants
 {
     protected List<string> oldLogs = new List<string>();
     
@@ -17,13 +17,13 @@ public class Project : Constants
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
+        Console.ResetColor();
         USER user = null;
         string Message = "";
 
         Message += "\nINIT-PROJECT";
         try
         {
-            Console.CursorSize = Console.CursorSize + 5;
             Console.Write("PIZZA "); 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("S");
@@ -31,10 +31,10 @@ public class Project : Constants
             Console.Write("A");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("M");
-            Console.ResetColor(); Console.CursorSize = Console.CursorSize - 5;
+            Console.ResetColor();
             
             
-            Console.WriteLine("----------------------");
+            Console.WriteLine("\n----------------------");
             Console.WriteLine(" Log-in  ||  Register ");
             Console.WriteLine("----------------------");
             
@@ -42,15 +42,25 @@ public class Project : Constants
             string option = Console.ReadLine();
             
             // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
-            option = option.ToUpper();  
-            
-            
+            option = option.ToUpper();
+
+            if (option == "REGISTER")
+            {
+                Console.Write("username: ");
+                string username = Console.ReadLine();
+                Console.Write("password: ");
+                string password = Console.ReadLine();
+                
+                retrunBack retrunBack = new retrunBack();
+                HandleRequest.Handle_Login(username, password);
+            }
             
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
             Message = Message + " " + e.Message;
+            Console.WriteLine("\n" + Message);
         }
         
         
