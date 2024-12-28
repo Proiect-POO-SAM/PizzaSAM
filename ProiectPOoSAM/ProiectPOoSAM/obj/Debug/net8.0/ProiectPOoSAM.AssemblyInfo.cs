@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProiectPOoSAM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+847b687f56e385b6e7e418ec2c108e5f383ad5e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e12492d8dd8914d6ee3a02c87e5ff0a2cf091d37")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProiectPOoSAM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProiectPOoSAM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

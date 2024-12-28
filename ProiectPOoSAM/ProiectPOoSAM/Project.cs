@@ -3,50 +3,54 @@ using ProiectPOOSAM;
 
 namespace ProiectPOoSAM;
 
-public class Project : Constants, ILogger
+public class Project : Constants
 {
     protected List<string> oldLogs = new List<string>();
     
+    public class retrunBack
+    {
+        public USER user_back { get; set; }
+        public string Message { get; set; }
+    } 
     
-    public static string INIT()
+    public static retrunBack INIT()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
-        
-        //partea de citire Meniu
+        USER user = null;
+        string Message = "";
+
+        Message += "\nINIT-PROJECT";
         try
         {
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    var elements = line.Split(',');
-                    // incompleta pana se creaza meniul
-                }
-            }
-
-        }
-        catch (Exception ex)
-        {
+            Console.CursorSize = Console.CursorSize + 5;
+            Console.Write("PIZZA "); 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("S");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("A");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(ex.Message);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Programul se inchide ...");
-            return "Failed reading file";
-            Console.ResetColor();
-        }
-
-
-        string logger = "INIT-PROJECT";
-        try
-        {
-
+            Console.Write("M");
+            Console.ResetColor(); Console.CursorSize = Console.CursorSize - 5;
+            
+            
+            Console.WriteLine("----------------------");
+            Console.WriteLine(" Log-in  ||  Register ");
+            Console.WriteLine("----------------------");
+            
+            Console.WriteLine("->");
+            string option = Console.ReadLine();
+            
+            // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
+            option = option.ToUpper();  
+            
+            
+            
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
-            logger = logger + " " + e.Message;
+            Message = Message + " " + e.Message;
         }
         
         
@@ -56,11 +60,11 @@ public class Project : Constants, ILogger
         Console.WriteLine("Initializare finalizata.");
         Console.ResetColor();
         
-        return logger;
+        return new retrunBack { user_back = user, Message = Message };
     }
 
 
-    public static void UNLOAD() // <- obiect de tipul meniu
+    public static void UNLOAD()
     {
         Console.ForegroundColor = ConsoleColor.Green;
             
@@ -83,15 +87,5 @@ public class Project : Constants, ILogger
             
             
         Console.WriteLine("Se inchide programul ...");
-    }
-
-    public void AddToLogger(List<string> oldLogs, string message)
-    {
-        oldLogs.Add(message);
-    }
-
-    public void WriteLogger()
-    {
-        throw new NotImplementedException(); 
     }
 }
