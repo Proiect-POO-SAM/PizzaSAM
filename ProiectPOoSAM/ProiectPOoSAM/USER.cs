@@ -92,15 +92,15 @@ namespace ProiectPOOSAM
 
 public abstract class Wrapper
 { 
-    private readonly string SourceFile = "AllUsers.txt";
+    private static readonly string SourceFile = "AllUsers.txt";
     protected static List<USER> AllUsers { get; set; } = new List<USER>();
 
-    public bool IsPhoneNumber(string input)
+    public static bool IsPhoneNumber(string input)
     {
         return input.StartsWith("+40") && input.Length == 12 && input.Substring(3).All(char.IsDigit);
     }
     
-    public string LoadUsers()
+    public static string LoadUsers()
     {
         try
         {
@@ -187,6 +187,15 @@ public abstract class Wrapper
             Console.WriteLine(e.Message);
             Console.WriteLine();
             return e.Message;                                   // dau return la messaje pt a putea implemente ILogger mai trz
+        }
+    }
+
+
+    public static void show()
+    {
+        foreach (USER X in AllUsers)
+        {
+            Console.WriteLine(X.SaveFormat());
         }
     }
 }

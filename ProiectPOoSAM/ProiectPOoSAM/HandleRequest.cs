@@ -122,7 +122,7 @@ public abstract class HandleRequest : Wrapper
     // funtii utile
     public static bool PhoneFORMAT(string phone)
     {
-        if (phone.Length == 11)
+        if (phone.Length == 12)
         {
             if (phone.StartsWith("+40"))
             {

@@ -46,15 +46,16 @@ public partial class Program
     {
         var initResult = Project.INIT();
             
-        if (initResult.user_back != null)
+        if (initResult.user != null)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Welcome, {initResult.user_back.GetUsername()}!");
+            Console.WriteLine($"Bun venit, {initResult.user.GetUsername()}!");
+            Console.ResetColor();
         }
         else
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Initializarea proiectului a esuat: " + initResult.Message);
+            Console.WriteLine("Request failed.");
         }
         Console.ResetColor();
         

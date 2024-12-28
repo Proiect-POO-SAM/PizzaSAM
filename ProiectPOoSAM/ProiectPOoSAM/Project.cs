@@ -7,17 +7,50 @@ public partial class Project : Constants
 {
     protected List<string> oldLogs = new List<string>();
     
-    public class retrunBack
-    {
-        public USER user_back { get; set; }
-        public string Message { get; set; }
-    } 
     
-    public static retrunBack INIT()
+    /// <summary>
+    ///
+    ///  functia INIT() -> porneste proiectul -> citeste toate datele din fisiere
+    ///                 -> returneaza un tip de data RequestResult (USER,string) ; daca user e null inseamna ca a esuat login / register
+    ///  functia UNLOAD() -> inchide proiectul -> pretty much the opposite
+    /// 
+    /// 
+    /// </summary>
+    /// name: SEBASTIAN.ADELIN
+    
+    
+    
+    
+    
+    
+    public static HandleRequest.RequestResult INIT()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
         Console.ResetColor();
+        
+        //-----------------------------------
+
+        try
+        {
+            USER.LoadUsers();
+            USER.show();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+        
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Initializare finalizata."); 
+        Console.ResetColor();
+        
+        
+        //------------------------------------
+        
+        
         USER user = null;
         string Message = "";
 
@@ -46,17 +79,61 @@ public partial class Project : Constants
             // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
             option = option.ToUpper();
 
-            if (option == "REGISTER")
+            USER conditie_user = null;
+            while (conditie_user == null)
             {
-                Console.Write("username: ");
-                string username = Console.ReadLine();
-                Console.Write("password: ");
-                string password = Console.ReadLine();
+                switch (option)
+            {
+                case "REGISTER":
+                    Console.Write("username: ");
+                    string username_register = Console.ReadLine();
+                    Console.Write("password: ");
+                    string password_register = Console.ReadLine();
+                    Console.Write("Telefon: ");
+                    string phone = Console.ReadLine();
+                    
+                    // register
+                    HandleRequest.RequestResult retrunResultRegister = HandleRequest.Handle_Register(username_register, password_register,phone);
+                    conditie_user = retrunResultRegister.user;
+                    return retrunResultRegister;
+                    
+                case "LOGIN":
+                    Console.Write("username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("password: ");
+                    string password = Console.ReadLine();
+                    
+                    // login
+                    HandleRequest.RequestResult retrunResultLogin = HandleRequest.Handle_Login(username, password);
+                    conditie_user = retrunResultLogin.user;
+                    return retrunResultLogin;
                 
-                retrunBack retrunBack = new retrunBack();
-                HandleRequest.Handle_Login(username, password);
+                case "LOG-IN":
+                    Console.Write("username: ");
+                    string username2 = Console.ReadLine();
+                    Console.Write("password: ");
+                    string password2 = Console.ReadLine();
+                    
+                    // login
+                    HandleRequest.RequestResult retrunResultLogin2 = HandleRequest.Handle_Login(username2, password2);
+                    conditie_user = retrunResultLogin2.user;
+                    return retrunResultLogin2;
+                    
+                
+                case "MENIU":
+                    break;
+                
+                case "QUIT":
+                    Environment.Exit(0);
+                    break;
+                
+                default:
+                    Console.WriteLine("Optiune invalida.");
+                    Console.Write("-> ");
+                    option = Console.ReadLine();
+                    break;
             }
-            
+            }
         }
         catch (Exception e)
         {
@@ -65,21 +142,15 @@ public partial class Project : Constants
             Console.WriteLine("\n" + Message);
         }
         
-        
-        
-        
-        
-        Console.WriteLine("Initializare finalizata.");
         Console.ResetColor();
-        
-        return new retrunBack { user_back = user, Message = Message };
+        return new HandleRequest.RequestResult { user = user, Message = Message };
     }
 
 
     public static void UNLOAD()
     {
         Console.ForegroundColor = ConsoleColor.Green;
-            
+        
             
         // salvare in fisier
         try
@@ -96,8 +167,9 @@ public partial class Project : Constants
             Console.WriteLine(ex.Message);
             Console.ResetColor();
         }
-            
-            
+        
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("Se inchide programul ...");
+        Console.ResetColor();
     }
 }
