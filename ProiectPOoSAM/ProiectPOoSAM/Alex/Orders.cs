@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProiectPOoSAM.Alex;
 // For sending emails
 //using System.Net;
 //using System.Net.Mail;
@@ -18,8 +19,8 @@ namespace ProiectPOoSAM.Alex
 {
     public class Orders : FileTXT
     {
-        USER user;
-        private List<Pizza> pizzas;
+        protected USER user;
+        protected List<Pizza> pizzas { get; set; }
         public enum delivery { Home, Restaurant };
         public delivery deliveryMethod;
         private decimal totalPrice;
@@ -27,6 +28,8 @@ namespace ProiectPOoSAM.Alex
         private bool isFeedback; // implementare feedback (WORK IN PROGRESS)
         private string feedback;
         private string rating;
+        public DateTime date;
+        static List<Orders> AllOrders = new List<Orders>();//Mihai si aici
 
         public Orders(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, USER user)
         {
@@ -43,7 +46,14 @@ namespace ProiectPOoSAM.Alex
             this.user = user;
             this.totalPrice = calculateTotalPrice();
         }
-
+        public Orders(List<Pizza> pizzas, DateTime dateTime,  decimal totalPrice, USER user)//Mihai
+        {
+            this.pizzas = pizzas;
+            this.date = dateTime;
+            this.user = user;
+            this.totalPrice = calculateTotalPrice();
+            
+        }
         public string getUsername() => user.GetUsername();
 
         public List<Pizza> getPizzas() => pizzas;
@@ -90,6 +100,24 @@ namespace ProiectPOoSAM.Alex
             return pricing;
         }
 
+        //Mihai in
+        public void AddOrder(Orders order)
+        {
+            AllOrders.Add(order);
+        }
+        public decimal AllOrdersPrice()
+        {
+            
+            decimal totalPrice = 0;
+
+            foreach (Orders ord in AllOrders)
+            {
+                totalPrice+=calculateTotalPrice();
+            }
+            
+            return totalPrice;
+        }
+        //Mihai out
         public void ViewMyCommands(string USERNAME)
         {
             string PathFile = filePath;
