@@ -1,0 +1,20 @@
+# Excludează folderele obj și bin
+obj/
+bin/
+
+# Excludează fișierele de configurare generate automat
+*.user
+*.suo
+
+# Excludează fișierele de debug
+*.pdb
+
+# Excludează alte fișiere temporare
+*.cache
+*.log
+*.tmp
+
+# Excludează fișierele de build pentru platforme specifice
+*.exe
+*.dll
+*.json
