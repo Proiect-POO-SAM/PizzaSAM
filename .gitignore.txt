@@ -20,3 +20,7 @@ bin/
 *.exe
 *.dll
 *.json
+
+node_modules/
+Thumbs.db
+.DS_Store
