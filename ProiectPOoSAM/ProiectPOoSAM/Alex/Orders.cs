@@ -25,35 +25,29 @@ namespace ProiectPOoSAM.Alex
         public delivery deliveryMethod;
         private decimal totalPrice;
         private decimal discount;
-        private bool isFeedback; // implementare feedback (WORK IN PROGRESS)
+        private bool isFeedback; 
         private string feedback;
         private string rating;
         public DateTime date;
         static List<Orders> AllOrders = new List<Orders>();//Mihai si aici
 
-        public Orders(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, USER user)
-        {
-            this.pizzas = pizzas;
-            this.deliveryMethod = deliveryMethod;
-            this.user = user;
-            this.totalPrice = calculateTotalPrice();
-        }
-        public Orders(List<Pizza> pizzas, delivery deliveryMethod, USER user)
-        {
-            this.pizzas = pizzas;
-            this.deliveryMethod = deliveryMethod;
-            this.discount = 10 / 100;
-            this.user = user;
-            this.totalPrice = calculateTotalPrice();
-        }
-        public Orders(List<Pizza> pizzas, DateTime dateTime,  decimal totalPrice, USER user)//Mihai
+        public Orders(List<Pizza> pizzas, DateTime dateTime, delivery deliveryMethod, USER user)//Mihai
         {
             this.pizzas = pizzas;
             this.date = dateTime;
+            this.deliveryMethod = deliveryMethod;
             this.user = user;
             this.totalPrice = calculateTotalPrice();
             
         }
+
+        public Orders(List<Pizza> pizzas, delivery deliveryMethod, USER user)
+        {
+            this.pizzas = pizzas;
+            this.deliveryMethod = deliveryMethod;
+            this.user = user;
+        }
+
         public string getUsername() => user.GetUsername();
 
         public List<Pizza> getPizzas() => pizzas;
@@ -78,7 +72,7 @@ namespace ProiectPOoSAM.Alex
 
         // Calculare pret comanda
 
-        public decimal calculateTotalPrice()
+        protected decimal calculateTotalPrice()
         {
             decimal pricing = 0;
             foreach (Pizza pizza in pizzas)
@@ -99,25 +93,6 @@ namespace ProiectPOoSAM.Alex
             }
             return pricing;
         }
-
-        //Mihai in
-        public void AddOrder(Orders order)
-        {
-            AllOrders.Add(order);
-        }
-        public decimal AllOrdersPrice()
-        {
-            
-            decimal totalPrice = 0;
-
-            foreach (Orders ord in AllOrders)
-            {
-                totalPrice+=calculateTotalPrice();
-            }
-            
-            return totalPrice;
-        }
-        //Mihai out
         public void ViewMyCommands(string USERNAME)
         {
             string PathFile = filePath;
@@ -153,6 +128,7 @@ namespace ProiectPOoSAM.Alex
 
         public void feedbackOrder()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("---- FEEDBACK -------");
             Console.WriteLine("Your rating (1-5):");
             var ratingNumber = Convert.ToInt32(Console.ReadLine());
@@ -163,7 +139,7 @@ namespace ProiectPOoSAM.Alex
             Console.WriteLine(rating + " " + feedback);
         }
 
-        public bool FidelityCard()
+        private bool FidelityCard()
         {
             if (user.GetOrdersCount() > 5)
             {
@@ -192,6 +168,43 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
+
+        //Mihai in
+        public void AddOrder(Orders order)
+        {
+            AllOrders.Add(order);
+        }
+        public decimal AllOrdersPrice()
+        {
+
+            decimal totalPrice = 0;
+
+            foreach (Orders ord in AllOrders)
+            {
+                totalPrice += calculateTotalPrice();
+            }
+
+            return totalPrice;
+        }
+        //Mihai out
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Order Details:");
+            sb.AppendLine($"User: {user.GetUsername()}");
+            sb.AppendLine("Pizzas:");
+            foreach (Pizza pizza in pizzas)
+            {
+                sb.AppendLine($"- {pizza.getName()}");
+            }
+            sb.AppendLine($"Delivery Method: {deliveryMethod}");
+            sb.AppendLine($"Total Price: {totalPrice}");
+            sb.AppendLine($"Feedback: {(isFeedback ? $"{rating} {feedback}" : "No feedback")}");
+            sb.AppendLine($"Date: {date}");
+            return sb.ToString();
+        }
     }
 }
 

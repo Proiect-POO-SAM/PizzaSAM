@@ -5,24 +5,25 @@ using ProiectPOoSAM.Alex;
 
 namespace ProiectPOoSAM.Mihai;
 
-public abstract class RaportPizzaPopulare : Orders
+public class RaportPizzaPopulare : Orders
 {
     private USER user;
     USER.Role role;
     private Dictionary<string, int> PizzaPopularity;
 
-    protected RaportPizzaPopulare(List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, USER user) : base(pizzas, deliveryMethod, totalPrice, user)
+    public RaportPizzaPopulare(List<Pizza> pizzas, delivery deliveryMethod, USER user) : base(pizzas, deliveryMethod, user)
     {
         this.user = user ?? throw new ArgumentNullException(nameof(user));
+        PizzaPopularity = new Dictionary<string, int>();
     }
 
     public string getPizzaPopularity()
     {
-        if (role != USER.Role.Admin)
-        {
-            Console.WriteLine("Nu aveti permisiunea necesara.");
-            return "Access denied.Not administrator.";
-        }
+        //if (user.GetRole()=="Client")
+        //{
+        //    Console.WriteLine("Nu aveti permisiunea necesara.");     // DEBUG ============================================================================
+        //    return "Access denied.Not administrator.";
+        //}
 
         PizzaPopularity = new Dictionary<string, int>();
 

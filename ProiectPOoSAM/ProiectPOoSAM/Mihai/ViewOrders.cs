@@ -6,31 +6,42 @@ using ProiectPOoSAM.Alex;
 
 namespace ProiectPOoSAM.Mihai;
 
-public class VizualizareComenzi
+public class ViewOrders
 {
     USER user;
     USER.Role Role;
     private DateTime Data;
 
+
     private List<Orders> FilterOrdersByDate(List<Orders> orders, DateTime date)
     {
-        return orders.Where(order => order.date == date.Date).ToList();
+        List<Orders> filteredOrders = new List<Orders>();
+        foreach (var order in orders)
+        {
+            if (order.date.Date == date.Date)
+            {
+                filteredOrders.Add(order);
+            }
+        }
+        return filteredOrders;
     }
 
-    public VizualizareComenzi(USER user, USER.Role role, List<Orders> orders, DateTime data)
+
+
+    public ViewOrders(USER user, USER.Role role, List<Orders> orders, DateTime data)
     {
         this.user = user ?? throw new ArgumentNullException(nameof(user));
         this.Role = role;
         this.Data = data;
 
 
-        if (role != USER.Role.Admin)
+        if (Role != USER.Role.Admin)
         {
             Console.WriteLine("Nu aveti permisiunea sa vizualizati comenzile.");
             return;
         }
 
-        var filteredOrders = FilterOrdersByDate(orders, data);
+        var filteredOrders = FilterOrdersByDate(orders, Data);
 
         if (filteredOrders.Any())
         {

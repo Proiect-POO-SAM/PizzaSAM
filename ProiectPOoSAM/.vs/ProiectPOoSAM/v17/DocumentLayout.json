@@ -3,32 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\ingredients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\ingredients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\filetxt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\filetxt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\mihai\\raporttotalvenituri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\mihai\\raporttotalvenituri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\mihai\\raportpizzapopulare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\mihai\\raportpizzapopulare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\mihai\\vieworders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\mihai\\vieworders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\ingredients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\ingredients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\alex\\filetxt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\alex\\filetxt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|c:\\users\\crisa\\pizzasam\\proiectpoosam\\proiectpoosam\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AEEBF18-3B66-4316-BCF6-D8ACAC2D1410}|ProiectPOoSAM\\ProiectPOoSAM.csproj|solutionrelative:proiectpoosam\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 185,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Program.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Program.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Program.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Program.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAiwCQAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-11T18:54:52.634Z",
               "IsPinned": true,
@@ -56,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Orders.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\Orders.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Alex\\Orders.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\Orders.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Alex\\Orders.cs",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAiwJkAAAA5AAAA",
+              "ViewState": "AQIAALQAAAAAAAAAAAAhwMcAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-11T18:56:53.428Z",
               "IsPinned": true,
@@ -70,13 +82,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "FileTXT.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\FileTXT.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Alex\\FileTXT.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\FileTXT.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Alex\\FileTXT.cs",
-              "ViewState": "AQIAAIwAAAAAAAAAAAD4vyAAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-18T08:09:34.794Z",
               "IsPinned": true,
@@ -100,7 +112,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RaportPizzaPopulare.cs",
+              "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\RaportPizzaPopulare.cs",
+              "RelativeDocumentMoniker": "ProiectPOoSAM\\Mihai\\RaportPizzaPopulare.cs",
+              "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\RaportPizzaPopulare.cs",
+              "RelativeToolTip": "ProiectPOoSAM\\Mihai\\RaportPizzaPopulare.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBcAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T11:50:47.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "RaportTotalVenituri.cs",
+              "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\RaportTotalVenituri.cs",
+              "RelativeDocumentMoniker": "ProiectPOoSAM\\Mihai\\RaportTotalVenituri.cs",
+              "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\RaportTotalVenituri.cs",
+              "RelativeToolTip": "ProiectPOoSAM\\Mihai\\RaportTotalVenituri.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T11:40:47.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ViewOrders.cs",
+              "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\ViewOrders.cs",
+              "RelativeDocumentMoniker": "ProiectPOoSAM\\Mihai\\ViewOrders.cs",
+              "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Mihai\\ViewOrders.cs",
+              "RelativeToolTip": "ProiectPOoSAM\\Mihai\\ViewOrders.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAgwA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T11:32:59.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Ingredients.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\Ingredients.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Alex\\Ingredients.cs",
@@ -113,39 +164,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Pizza.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\Pizza.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\Alex\\Pizza.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\Alex\\Pizza.cs",
               "RelativeToolTip": "ProiectPOoSAM\\Alex\\Pizza.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAIBJwBgAAAAMAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-11T18:58:07.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "USER.cs",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\USER.cs",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\USER.cs",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\USER.cs",
               "RelativeToolTip": "ProiectPOoSAM\\USER.cs",
-              "ViewState": "AQIAAHQAAAAAAAAAAAD4vz8AAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-18T07:23:32.885Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MenuSource.txt",
               "DocumentMoniker": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt",
               "RelativeDocumentMoniker": "ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt",
               "ToolTip": "C:\\Users\\crisa\\PizzaSAM\\ProiectPOoSAM\\ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt",
               "RelativeToolTip": "ProiectPOoSAM\\bin\\Debug\\net8.0\\MenuSource.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2024-12-18T16:43:23.224Z",
               "EditorCaption": ""
