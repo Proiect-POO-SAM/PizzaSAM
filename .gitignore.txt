@@ -1,6 +1,8 @@
 # Excludează folderele obj și bin
 obj/
 bin/
+.vs/
+
 
 # Excludează fișierele de configurare generate automat
 *.user

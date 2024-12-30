@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProiectPOoSAM.Alex;
-// For sending emails
-//using System.Net;
-//using System.Net.Mail;
-using Twilio;
 using Twilio.Exceptions;
 using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
+
 
 
 
@@ -207,44 +203,3 @@ namespace ProiectPOoSAM.Alex
         }
     }
 }
-
-
-    
-
-
-
-
-//public void sendEmail(string recipientEmail, string subject, string body)
-//{
-//    string senderEmai="pizzasam2004@gmail.com";
-//    string senderPassword="pizzasam";
-//            try
-//            {
-//                // Create an SmtpClient object for Gmail
-//                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
-//                {
-//                    Port = 587,
-//                    Credentials = new NetworkCredential(senderEmail, senderPassword),
-//                    EnableSsl = true
-//                };
-
-//                // Create a MailMessage object for the email
-//                MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail)
-//                {
-//                    Subject = subject,
-//                    Body = body
-//                };
-
-//                // Send the email
-//                smtpClient.Send(mailMessage);
-
-//                Console.WriteLine("Email sent successfully!");
-//            }
-//            catch (Exception ex)
-//            {
-//                Console.WriteLine($"Error sending email: {ex.Message}");
-//            }
-//        }
-//    }
-//}
-//}
