@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProiectPOOSAM;
+using static ProiectPOoSAM.Alex.Pizza;
 
 namespace ProiectPOoSAM.Alex
 {
@@ -163,5 +164,74 @@ namespace ProiectPOoSAM.Alex
             File.Delete(filePath);
             Console.WriteLine("Fisierul a fost sters!");
         }
+
+        // WORK IN PROGRESSS
+
+        //public Pizza CreatePizza(string pizzaString)
+        //{
+        //    // Împarte string-ul primit în elemente pe baza separatorului ','
+        //    var elements = pizzaString.Split(',');
+
+        //    // Verifică dacă string-ul conține suficiente elemente
+        //    if (elements.Length < 5)
+        //    {
+        //        throw new ArgumentException("String-ul pizzaString nu conține suficiente elemente pentru a crea o Pizza.");
+        //    }
+
+        //    // Extrage numele pizzei
+        //    var name = elements[1];
+
+        //    // Determină dimensiunea pizzei pe baza valorii string-ului
+        //    Dimensiune size;
+        //    if (elements[2].ToLower() == "small")
+        //    {
+        //        size = Dimensiune.small;
+        //    }
+        //    else if (elements[2].ToLower() == "medium")
+        //    {
+        //        size = Dimensiune.medium;
+        //    }
+        //    else if (elements[2].ToLower() == "large")
+        //    {
+        //        size = Dimensiune.large;
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException($"Dimensiunea specificată '{elements[2]}' nu este validă.");
+        //    }
+
+        //    // Conversie sigură pentru preț
+        //    if (!decimal.TryParse(elements[3], out var price))
+        //    {
+        //        throw new FormatException($"Valoarea '{elements[3]}' nu este un preț valid.");
+        //    }
+
+        //    // Conversie sigură pentru flag-ul personalized
+        //    if (!bool.TryParse(elements[4], out var personalized))
+        //    {
+        //        throw new FormatException($"Valoarea '{elements[4]}' nu este un boolean valid.");
+        //    }
+
+        //    // Obține lista de ingrediente (dacă există)
+        //    var ingredients = elements.Length > 5 ? elements.Skip(5).ToList() : new List<string> { "DefaultIngredient" };
+
+        //    // Creează obiectul Pizza
+        //    var pizza = new Pizza(name, size, ingredients, personalized, price);
+
+        //    return pizza;
+        //}
+
+        ////public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized)
+
+
+        //public Ingredients CreateIngredient(string ingredientString)
+        //{
+        //    var elements = ingredientString.Split(',');
+        //    var name = elements[1];
+        //    var quantity = int.Parse(elements[2]);
+        //    var price = decimal.Parse(elements[3]);
+
+        //    return new Ingredients(name, quantity, price);
+        //}
     }
 }

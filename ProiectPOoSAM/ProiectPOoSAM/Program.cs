@@ -18,7 +18,7 @@ ingredientsList.Add(ingredients);
 ingredientsList.Add(ingredients1);
 ingredientsList.Add(ingredients2);
 Pizza p1 = new Pizza("Quattro Stagioni", 0, ingredientsList, false);
-Pizza p2 = new Pizza("Patrocle", ingredientsList, false);
+Pizza p2 = new Pizza("Patrocle", 0, ingredientsList, false);
 Pizza p3 = new Pizza("Quattro Stagioni", 0, ingredientsList, false);
 Pizza p4 = new Pizza("Dominic", ingredientsList, false);
 Pizza p5 = new Pizza("Diavola", ingredientsList, false);
@@ -65,23 +65,23 @@ ViewOrders ord = new ViewOrders(u1, USER.Role.Admin, new List<Orders> { o1, o2, 
 
 
 FileTXT file = new FileTXT();
-//file.addCommandToFile(file.breakToPiecesOrders(o1));
-//file.addCommandToFile(file.breakToPiecesOrders(o2));
-//file.addCommandToFile(file.breakToPiecesOrders(o3));
-//file.addCommandToFile(file.breakToPiecesOrders(o4));
-//file.addCommandToFile(file.breakToPiecesIngredients(ingredients));
-//file.addCommandToFile(file.breakToPiecesIngredients(ingredients1));
-//file.addCommandToFile(file.breakToPiecesIngredients(ingredients2));
-//file.addCommandToFile(file.breakToPiecesPizza(p1));
-//file.addCommandToFile(file.breakToPiecesPizza(p2));
-//file.addCommandToFile(file.breakToPiecesMenu(menu));
-//file.addCommandToFile(file.breakToPiecesUser(u1));
+file.addCommandToFile(file.breakToPiecesOrders(o1));
+file.addCommandToFile(file.breakToPiecesOrders(o2));
+file.addCommandToFile(file.breakToPiecesOrders(o3));
+file.addCommandToFile(file.breakToPiecesOrders(o4));
+file.addCommandToFile(file.breakToPiecesIngredients(ingredients));
+file.addCommandToFile(file.breakToPiecesIngredients(ingredients1));
+file.addCommandToFile(file.breakToPiecesIngredients(ingredients2));
+file.addCommandToFile(file.breakToPiecesPizza(p1));
+file.addCommandToFile(file.breakToPiecesPizza(p2));
+file.addCommandToFile(file.breakToPiecesMenu(menu));
+file.addCommandToFile(file.breakToPiecesUser(u1));
 
-//file.gettingInformation("ORDER");
-//file.gettingInformation("PIZZA");
-//file.gettingInformation("INGREDIENT");
-//file.gettingInformation("MENU");
-//file.gettingInformation("USER");
+file.gettingInformation("ORDER");
+file.gettingInformation("PIZZA");
+file.gettingInformation("INGREDIENT");
+file.gettingInformation("MENU");
+file.gettingInformation("USER");
 
 
 

@@ -34,6 +34,15 @@ namespace ProiectPOoSAM.Alex
             price = calculatePrice();
         }
 
+        public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized ,decimal price)
+        {
+            this.name = name;
+            this.dimensiuneCurenta = dimensiuneCurenta;
+            this.price = price;
+            this.ingredients = ingredients;
+            this.personalized = personalized;
+        }
+
         public string getName()
         {
             return name;
