@@ -122,17 +122,26 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
-        public void feedbackOrder()
+        //public void feedbackOrder()
+        //{
+        //    Console.OutputEncoding = System.Text.Encoding.UTF8;
+        //    Console.WriteLine("---- FEEDBACK -------");
+        //    Console.WriteLine("Your rating (1-5):");
+        //    var ratingNumber = Convert.ToInt32(Console.ReadLine());
+        //    rating = new string('★', ratingNumber);
+        //    Console.WriteLine("Your feedback:");
+        //    feedback = Console.ReadLine();
+        //    isFeedback = true;
+        //    Console.WriteLine(rating + " " + feedback);
+        //}
+
+        public void feedbackOrder(string message, string rating)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine("---- FEEDBACK -------");
-            Console.WriteLine("Your rating (1-5):");
-            var ratingNumber = Convert.ToInt32(Console.ReadLine());
-            rating = new string('★', ratingNumber);
-            Console.WriteLine("Your feedback:");
-            feedback = Console.ReadLine();
-            isFeedback = true;
-            Console.WriteLine(rating + " " + feedback);
+            this.feedback = message;
+            this.rating = new string(string.IsNullOrEmpty(rating) ? '★' : rating[0], 5);
+            this.isFeedback = true;
+
         }
 
         private bool FidelityCard()
@@ -165,7 +174,6 @@ namespace ProiectPOoSAM.Alex
         }
 
 
-        //Mihai in
         public void AddOrder(Orders order)
         {
             AllOrders.Add(order);
@@ -182,8 +190,41 @@ namespace ProiectPOoSAM.Alex
 
             return totalPrice;
         }
-        //Mihai out
 
+        public void ViewAllOrders()
+        {
+            foreach (Orders ord in AllOrders)
+            {
+                Console.WriteLine(ord);
+            }
+        }
+
+        // Comenzi modificare order
+        public void modifyCommand(List<Pizza> pizzas, delivery deliveryMethod, USER user)
+        {
+            this.pizzas = pizzas;
+            this.deliveryMethod = deliveryMethod;
+            this.user = user;
+        }
+
+        public void modifyDeliveryMethod(delivery deliveryMethod)
+        {
+            this.deliveryMethod = deliveryMethod;
+        }
+        public void modifyTotalPrice(decimal totalPrice)
+        {
+            this.totalPrice = totalPrice;
+        }
+        public void modifyDiscount(decimal discount)
+        {
+            this.discount = discount;
+        }
+
+        public void modifyDate(DateTime date)
+        {
+            this.date = date;
+        }
+        // ========================
 
         public override string ToString()
         {

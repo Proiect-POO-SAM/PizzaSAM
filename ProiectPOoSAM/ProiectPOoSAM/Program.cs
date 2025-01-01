@@ -52,6 +52,7 @@ Orders o1 = new Orders(new List<Pizza> { p1, p2, p2, p2 ,p2 ,p1,p3,p3,p4 }, Date
 Orders o2 = new Orders(new List<Pizza> { p3, p4 }, DateTime.Now, 0, u1);
 Orders o3 = new Orders(new List<Pizza> { p5 }, DateTime.Now, 0, u1);
 Orders o4 = new Orders(new List<Pizza> { p1, p2 }, DateTime.Now, 0, u1);
+o1.feedbackOrder("Buna", "5");
 RaportPizzaPopulare pop = new RaportPizzaPopulare(pizzas, 0, u1);
 RaportPizzaPopulare pop1 = new RaportPizzaPopulare(pizzas1, 0, u1);
 RaportPizzaPopulare pop2 = new RaportPizzaPopulare(pizzas2, 0, u1);
@@ -83,7 +84,7 @@ file.gettingInformation("INGREDIENT");
 file.gettingInformation("MENU");
 file.gettingInformation("USER");
 
-
+file.deleteFile();
 
 
 

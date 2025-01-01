@@ -61,7 +61,6 @@ namespace ProiectPOoSAM.Alex
         }
 
 
-
         // Calculate price pizza
         public decimal calculatePrice()
         {
@@ -94,9 +93,25 @@ namespace ProiectPOoSAM.Alex
             Console.WriteLine($"Pizza: {name} with price {price}");
             foreach (var ingredient in ingredients)
             {
-                ingredient.ViewIngredients();
+                ingredient.ViewIngredient();
             }
         }
+
+        // Modify the pizza
+
+        public void modifyName(string name)
+        {
+            this.name = name;
+        }
+        public void modifyIngredients(List<Ingredients> ingredients)
+        {
+            this.ingredients = ingredients;
+        }
+        public void modifyPersonalized(bool personalized)
+        {
+            this.personalized = personalized;
+        }
+        // ========================
 
     }
 }
