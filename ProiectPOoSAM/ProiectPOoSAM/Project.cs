@@ -75,16 +75,17 @@ public partial class Project : Constants
             Console.WriteLine(" ------  ||   ------ ");
             Console.WriteLine("  Menu   ||    Quit ");
             Console.WriteLine("----------------------");
-            
-            Console.Write("->");
-            string option = Console.ReadLine();
-            
-            // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
-            option = option.ToUpper();
 
-            USER conditie_user = null;
-            while (conditie_user == null)
+            USER this_user = null;
+            bool blockPurposeCompleted = false;
+            while (this_user == null && blockPurposeCompleted == false)
             {
+                Console.Write("->");
+                string option = Console.ReadLine();
+            
+                // in felul asta poti scrie fie cum si programul va recunoaste decizia   EX:  rEgIsTer --> REGISTER
+                option = option.ToUpper();
+                
                 switch (option)
             {
                 case "REGISTER":
@@ -97,7 +98,8 @@ public partial class Project : Constants
                     
                     // register
                     HandleRequest.RequestResult retrunResultRegister = HandleRequest.Handle_Register(username_register, password_register,phone);
-                    conditie_user = retrunResultRegister.user;
+                    this_user = retrunResultRegister.user;
+                    blockPurposeCompleted = true;
                     return retrunResultRegister;
                     
                 case "LOGIN":
@@ -108,7 +110,8 @@ public partial class Project : Constants
                     
                     // login
                     HandleRequest.RequestResult retrunResultLogin = HandleRequest.Handle_Login(username, password);
-                    conditie_user = retrunResultLogin.user;
+                    this_user = retrunResultLogin.user;
+                    blockPurposeCompleted = true;
                     return retrunResultLogin;
                 
                 case "LOG-IN":
@@ -119,11 +122,13 @@ public partial class Project : Constants
                     
                     // login
                     HandleRequest.RequestResult retrunResultLogin2 = HandleRequest.Handle_Login(username2, password2);
-                    conditie_user = retrunResultLogin2.user;
+                    this_user = retrunResultLogin2.user;
+                    blockPurposeCompleted = true;
                     return retrunResultLogin2;
                     
                 
                 case "MENIU":
+                    
                     break;
                 
                 case "QUIT":
@@ -131,9 +136,9 @@ public partial class Project : Constants
                     break;
                 
                 default:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Optiune invalida.");
-                    Console.Write("-> ");
-                    option = Console.ReadLine();
+                    Console.ResetColor();
                     break;
             }
             }
