@@ -89,12 +89,18 @@ file.deleteFile();
 
 /*
 namespace ProiectPOoSAM;
-public partial class Program
+public partial class Program : ProjectWrap
 {
     public static void Main(string[] args)
     {
         Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
 
+        DateTime today = DateTime.Today;
+        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+        
+        string initStamp = today.ToString() + " " + now.ToString();
+        WriteIntoLogger(initStamp);
+        
         var initResult = Project.INIT();
 
         if (initResult.user != null)
@@ -110,8 +116,23 @@ public partial class Program
         }
         Console.ResetColor();
 
+        WriteIntoLogger(initResult.Message);
 
-        Project.UNLOAD();
+        var unloadResult = Project.UNLOAD();
+        WriteIntoLogger(unloadResult.Message);
+    }
+}
+
+public class ProjectWrap 
+{
+    public static void WriteIntoLogger(string message)
+    {
+        const string path = "Logger.txt";
+
+        using (var Writer = File.AppendText(path))
+        {
+            Writer.WriteLine(message);
+        }
     }
 }
 */

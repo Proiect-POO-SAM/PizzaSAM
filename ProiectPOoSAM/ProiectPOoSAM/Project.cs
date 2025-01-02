@@ -155,7 +155,7 @@ public partial class Project : Constants
     }
 
 
-    public static void UNLOAD()
+    public static HandleRequest.RequestResult UNLOAD()
     {
         Console.ForegroundColor = ConsoleColor.Green;
 
@@ -174,11 +174,14 @@ public partial class Project : Constants
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(ex.Message);
+            string log = "Error: " + ex.Message;
             Console.ResetColor();
+            return new HandleRequest.RequestResult { user = null, Message = log };
         }
         
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("Se inchide programul ...");
         Console.ResetColor();
+        return new HandleRequest.RequestResult { user = null, Message = "Unload succesful." };
     }
 }

@@ -1,3 +1,4 @@
 opel,astra,0745148103,Client
 admin,admin,+407000000000,Admin
 Nea Ion Miliardarul,admin,0712121212,Admin
+sebastian.test,test,0712345678,Client
