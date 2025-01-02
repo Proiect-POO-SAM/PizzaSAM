@@ -51,6 +51,12 @@ public abstract class HandleRequest : Wrapper
                 Console.Write("V-ati loggat cu numele de utilizator ");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write($"{username}");
+
+                if (user.GetRole() == "Admin")
+                {
+                    Console.Write(" cu drepturi de administrator.");
+                }
+                
                 Console.ResetColor();
                 return new RequestResult { user = user, Message = $"User {username} is logged in" };
             }

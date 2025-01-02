@@ -17,15 +17,15 @@ namespace ProiectPOOSAM
 
         public enum Role  // <-- mai mult pt a eticheta 
         {
-            Admin,
-            Client
+            Client,   // (prima e default pt Enum)
+            Admin
         }
         
         public USER(string username, string password, string phone, Role role)
         {
             this.username = username;
             this.password = password;
-            this.role = Role.Client;
+            this.role = role;
             this.phoneNumber = phone;
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
@@ -84,7 +84,7 @@ namespace ProiectPOOSAM
 
         public string SaveFormat()
         {
-            return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole() ;
+            return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole().ToString();
         }
     }
 }

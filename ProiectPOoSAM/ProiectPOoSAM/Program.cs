@@ -7,6 +7,7 @@ using ProiectPOoSAM;
 using ProiectPOoSAM.Mihai;
 
 
+
 Console.WriteLine("Daca vezi asta ruleaza programul");
 USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
 Ingredients ingredients = new Ingredients("Mozzarella", 100, 10);
@@ -86,7 +87,6 @@ file.gettingInformation("USER");
 file.deleteFile();
 
 
-
 /*
 namespace ProiectPOoSAM;
 public partial class Program
@@ -100,7 +100,7 @@ public partial class Program
         if (initResult.user != null)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($". Bun venit, {initResult.user.GetUsername()}!");
+            Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
             Console.ResetColor();
         }
         else
