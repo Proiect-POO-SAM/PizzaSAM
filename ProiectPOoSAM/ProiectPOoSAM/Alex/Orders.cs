@@ -16,6 +16,7 @@ namespace ProiectPOoSAM.Alex
     public class Orders : FileTXT
     {
         protected USER user;
+        USER.Role role;
         protected List<Pizza> pizzas { get; set; }
         public enum delivery { Home, Restaurant };
         public delivery deliveryMethod;
@@ -25,6 +26,8 @@ namespace ProiectPOoSAM.Alex
         private string feedback;
         private string rating;
         public DateTime date;
+        public DateTime StartDate { get; private set; }
+        public DateTime EndDate { get; private set; }
         static List<Orders> AllOrders = new List<Orders>();//Mihai si aici
 
         public Orders(List<Pizza> pizzas, DateTime dateTime, delivery deliveryMethod, USER user)//Mihai
@@ -34,6 +37,7 @@ namespace ProiectPOoSAM.Alex
             this.deliveryMethod = deliveryMethod;
             this.user = user;
             this.totalPrice = calculateTotalPrice();
+            
             
         }
 
@@ -173,19 +177,57 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
+        public void GetTotalIncome(USER user, DateTime startDate, DateTime endDate)
+        {
+            decimal VenitTotal = 0;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+           
+            if (user == null) 
+                throw new ArgumentNullException(nameof(user), "User cannot be null.");
+    
+            if (startDate > endDate)
+                throw new ArgumentException("Start date cannot be later than the end date.");
+            
+            if (user.GetRole() is "Client")
+            {
+                Console.WriteLine("You do not have permission to view the orders.");
+                return;
+            }
 
+            try
+            {
+                VenitTotal = AllOrdersPrice();
+                Console.WriteLine($"The total income for the specified period is: {VenitTotal}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            
+        }
         public void AddOrder(Orders order)
         {
             AllOrders.Add(order);
         }
+
         public decimal AllOrdersPrice()
         {
 
+            if (AllOrders == null)
+                throw new InvalidOperationException("The order list is not initialized.");
+
             decimal totalPrice = 0;
 
-            foreach (Orders ord in AllOrders)
+            foreach (Orders order in AllOrders)
             {
-                totalPrice += calculateTotalPrice();
+
+                if (order.date >= StartDate && order.date <= EndDate)
+                {
+                    decimal orderPrice = order.calculateTotalPrice();
+                    totalPrice += orderPrice;
+                }
             }
 
             return totalPrice;

@@ -10,6 +10,7 @@ using ProiectPOoSAM.Mihai;
 
 Console.WriteLine("Daca vezi asta ruleaza programul");
 USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
+USER u2 = new USER("USER2", "12345", "+407222222232", USER.Role.Client);
 Ingredients ingredients = new Ingredients("Mozzarella", 100, 10);
 Ingredients ingredients1 = new Ingredients("Sunca", 100, 10);
 Ingredients ingredients2 = new Ingredients("Ciuperci", 100, 10);
@@ -64,7 +65,7 @@ Console.WriteLine("\n");
 pop2.getPizzaPopularity();
 ViewOrders ord = new ViewOrders(u1, USER.Role.Admin, new List<Orders> { o1, o2, o3, o4 }, DateTime.Now);
 
-
+o1.GetTotalIncome(u1,DateTime.Now,DateTime.Now);
 FileTXT file = new FileTXT();
 file.addCommandToFile(file.breakToPiecesOrders(o1));
 file.addCommandToFile(file.breakToPiecesOrders(o2));

@@ -19,11 +19,11 @@ public class RaportPizzaPopulare : Orders
 
     public string getPizzaPopularity()
     {
-        //if (user.GetRole()=="Client")
-        //{
-        //    Console.WriteLine("Nu aveti permisiunea necesara.");     // DEBUG ============================================================================
-        //    return "Access denied.Not administrator.";
-        //}
+        if (user.GetRole() is "Client")
+        {
+            Console.WriteLine("You do not have permission to view the orders.");
+            
+        }
 
         PizzaPopularity = new Dictionary<string, int>();
 
