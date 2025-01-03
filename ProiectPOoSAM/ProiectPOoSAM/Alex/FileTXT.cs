@@ -157,6 +157,49 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
+        public void ReadingInformation()
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            bool hasCommands = false;
+
+            foreach (string line in lines)
+            {
+                var elements = line.Split(',');
+                if (elements.Length > 1) // Verificăm dacă linia conține comanda dorită
+                {
+                    hasCommands = true;
+                    switch (elements[0])
+                    {
+                        case "ORDER":
+                            
+                            break;
+                        case "INGREDIENT":
+                            
+                            break;
+                        case "USER":
+                            
+                            break;
+                        case "PIZZA":
+                           
+                            var ingredients = elements.Skip(5);
+                            foreach (var ingredient in ingredients)
+                            {
+                                Console.WriteLine($"- {ingredient}");
+                            }
+                            break;
+                        case "SITE":
+                            Console.WriteLine("Pizza Site Details:");
+                            Console.WriteLine($"Name: {elements[1]}");
+                            Console.WriteLine($"Location: {elements[2]}");
+                            break;
+                        default:
+                            break;
+                    }
+                    Console.WriteLine(Environment.NewLine);
+                }
+            }
+
+        }
 
         // Stergere fisier
         public void deleteFile()

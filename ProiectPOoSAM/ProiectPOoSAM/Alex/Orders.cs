@@ -28,12 +28,12 @@ namespace ProiectPOoSAM.Alex
         public DateTime date;
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
-        static List<Orders> AllOrders = new List<Orders>();//Mihai si aici
+ 
 
         public Orders(List<Pizza> pizzas, DateTime dateTime, delivery deliveryMethod, USER user)//Mihai
         {
             this.pizzas = pizzas;
-            this.date = dateTime;
+            DateTime date = DateTime.Now;
             this.deliveryMethod = deliveryMethod;
             this.user = user;
             this.totalPrice = calculateTotalPrice();
@@ -56,19 +56,6 @@ namespace ProiectPOoSAM.Alex
 
         public decimal getTotalPrice() => totalPrice;
 
-
-
-        public void ViewCommand()
-        {
-            Console.WriteLine("Comanda dumneavoastra:");
-            foreach (Pizza pizza in pizzas)
-            {
-                pizza.ViewPizza();
-            }
-            Console.WriteLine($"Metoda de livrare: {deliveryMethod}");
-            Console.WriteLine($"Pret total: {totalPrice}");
-
-        }
 
         // Calculare pret comanda
 
@@ -93,51 +80,51 @@ namespace ProiectPOoSAM.Alex
             }
             return pricing;
         }
-        public void ViewMyCommands(string USERNAME)
-        {
-            string PathFile = filePath;
-
-            if (!File.Exists(PathFile))
-            {
-                Console.WriteLine("There are no orders!");
-                return;
-            }
-
-            string[] lines = File.ReadAllLines(PathFile);
-            bool hasCommands = false;
-
-            foreach (string line in lines)
-            {
-                var elements = line.Split(',');
-                if (elements.Length > 1 && elements[1] == USERNAME && elements[0] == "ORDER")
-                {
-                    hasCommands = true;
-                    Console.WriteLine($"Order for {USERNAME}:");
-                    Console.WriteLine($" - Pizza: {elements[2]}");
-                    Console.WriteLine($" - Delivery: {elements[3]}");
-                    Console.WriteLine($" - Price: {elements[4]} RON");
-                    Console.WriteLine("------------------------");
-                }
-            }
-
-            if (!hasCommands)
-            {
-                Console.WriteLine($"The user {USERNAME} does not have any orders.");
-            }
-        }
-
-        //public void feedbackOrder()
+        //public void ViewMyCommands(string USERNAME)
         //{
-        //    Console.OutputEncoding = System.Text.Encoding.UTF8;
-        //    Console.WriteLine("---- FEEDBACK -------");
-        //    Console.WriteLine("Your rating (1-5):");
-        //    var ratingNumber = Convert.ToInt32(Console.ReadLine());
-        //    rating = new string('★', ratingNumber);
-        //    Console.WriteLine("Your feedback:");
-        //    feedback = Console.ReadLine();
-        //    isFeedback = true;
-        //    Console.WriteLine(rating + " " + feedback);
+        //    string PathFile = filePath;
+
+        //    if (!File.Exists(PathFile))
+        //    {
+        //        Console.WriteLine("There are no orders!");
+        //        return;
+        //    }
+
+        //    string[] lines = File.ReadAllLines(PathFile);
+        //    bool hasCommands = false;
+
+        //    foreach (string line in lines)
+        //    {
+        //        var elements = line.Split(',');
+        //        if (elements.Length > 1 && elements[1] == USERNAME && elements[0] == "ORDER")
+        //        {
+        //            hasCommands = true;
+        //            Console.WriteLine($"Order for {USERNAME}:");
+        //            Console.WriteLine($" - Pizza: {elements[2]}");
+        //            Console.WriteLine($" - Delivery: {elements[3]}");
+        //            Console.WriteLine($" - Price: {elements[4]} RON");
+        //            Console.WriteLine("------------------------");
+        //        }
+        //    }
+
+        //    if (!hasCommands)
+        //    {
+        //        Console.WriteLine($"The user {USERNAME} does not have any orders.");
+        //    }
         //}
+
+        public void feedbackOrder()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("---- FEEDBACK -------");
+            Console.WriteLine("Your rating (1-5):");
+            var ratingNumber = Convert.ToInt32(Console.ReadLine());
+            rating = new string('★', ratingNumber);
+            Console.WriteLine("Your feedback:");
+            feedback = Console.ReadLine();
+            isFeedback = true;
+            Console.WriteLine(rating + " " + feedback);
+        }
 
         public void feedbackOrder(string message, string rating)
         {
@@ -177,18 +164,37 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
-        public void GetTotalIncome(USER user, DateTime startDate, DateTime endDate)
+
+        public decimal AllOrdersPrice(List<Orders> ORDERSLIST)
+        {
+
+            if (ORDERSLIST == null)
+                throw new InvalidOperationException("The order list is not initialized.");
+
+            decimal totalPrice = 0;
+
+            foreach (Orders order in ORDERSLIST)
+            {
+
+                if (order.date >= StartDate && order.date <= EndDate)
+                {
+                    totalPrice += order.totalPrice;
+                }
+            }
+
+            return totalPrice;
+        }
+
+        public void GetTotalIncome(USER user, DateTime startDate, DateTime endDate, List<Orders> ORDERSLIST)
         {
             decimal VenitTotal = 0;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-           
-            if (user == null) 
+
+            if (user == null)
                 throw new ArgumentNullException(nameof(user), "User cannot be null.");
-    
+
             if (startDate > endDate)
                 throw new ArgumentException("Start date cannot be later than the end date.");
-            
+
             if (user.GetRole() is "Client")
             {
                 Console.WriteLine("You do not have permission to view the orders.");
@@ -197,49 +203,16 @@ namespace ProiectPOoSAM.Alex
 
             try
             {
-                VenitTotal = AllOrdersPrice();
+                VenitTotal = AllOrdersPrice(ORDERSLIST);
                 Console.WriteLine($"The total income for the specified period is: {VenitTotal}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
-            
-        }
-        public void AddOrder(Orders order)
-        {
-            AllOrders.Add(order);
+
         }
 
-        public decimal AllOrdersPrice()
-        {
-
-            if (AllOrders == null)
-                throw new InvalidOperationException("The order list is not initialized.");
-
-            decimal totalPrice = 0;
-
-            foreach (Orders order in AllOrders)
-            {
-
-                if (order.date >= StartDate && order.date <= EndDate)
-                {
-                    decimal orderPrice = order.calculateTotalPrice();
-                    totalPrice += orderPrice;
-                }
-            }
-
-            return totalPrice;
-        }
-
-        public void ViewAllOrders()
-        {
-            foreach (Orders ord in AllOrders)
-            {
-                Console.WriteLine(ord);
-            }
-        }
 
         // Comenzi modificare order
         public void modifyCommand(List<Pizza> pizzas, delivery deliveryMethod, USER user)
