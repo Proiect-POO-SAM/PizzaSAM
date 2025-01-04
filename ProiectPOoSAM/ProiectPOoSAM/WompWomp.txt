@@ -1,0 +1,9 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sebi: Initial am vrut sa folosesc clasa MD5CryptoServiceProvider din .NET sugerata si pe siteul Microsoft pentru generarea și compararea hash-urilor. 
+      Totuși, dupa un mic research am aflat ca MD5 nu mai este considerat sigur pentru scopuri criptografice.  
+      Microsoft recomandă utilizarea algoritmilor mai moderni și mai siguri, precum SHA-256 (SHA256Managed sau SHA256.Create()), 
+      pentru a evita riscul de coliziuni.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+

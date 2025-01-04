@@ -14,6 +14,7 @@ namespace ProiectPOOSAM
         protected Role role;
         protected bool accesToken;
         private bool fidelityCard;
+        private string salt;
 
         Dictionary<string, string> AllUsers = new Dictionary<string, string>();
         List<Orders> listOrders;
@@ -35,6 +36,19 @@ namespace ProiectPOOSAM
             this.fidelityCard = false;
             ProiectPOoSAM.Constants.userCount += 1;
             this.userID = ProiectPOoSAM.Constants.userCount;
+        }
+        public USER(string username, string password, string phone, Role role, string salt)
+        {
+            this.username = username;
+            this.password = password;
+            this.role = role;
+            this.phoneNumber = phone;
+            this.accesToken = role == Role.Admin ? true : false;
+            this.listOrders = null;
+            this.fidelityCard = false;
+            ProiectPOoSAM.Constants.userCount += 1;
+            this.userID = ProiectPOoSAM.Constants.userCount;
+            this.salt = salt;
         }
         public USER(string username, string password, string phone, Role role, bool fidelityCard)
         {
@@ -86,6 +100,7 @@ namespace ProiectPOOSAM
             listOrders.Add(order);
         }
 
+        public string GetSalt() => salt;
 
 
         // schimbarea parolei unui utilizator de catre admin
@@ -100,7 +115,7 @@ namespace ProiectPOOSAM
 
         public string SaveFormat()
         {
-            return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole().ToString();
+            return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole().ToString() + "," + GetSalt();
         }
 
         public void showUserDetails()
@@ -141,7 +156,7 @@ public abstract class Wrapper
                 {
                     string[] lines = line.Split(',');
 
-                    if(lines.Length != 4)
+                    if(lines.Length != 5)
                     {
                         additionalMessage += $" Skipped Line '{line}' for wrong format //";
                         continue;
@@ -167,7 +182,7 @@ public abstract class Wrapper
                     }
                     try
                     {
-                        USER user = new USER(lines[0], lines[1], lines[2], role);
+                        USER user = new USER(lines[0], lines[1], lines[2], role, lines[4]);
                         AllUsers.Add(user);
                     }
                     catch (Exception ex)

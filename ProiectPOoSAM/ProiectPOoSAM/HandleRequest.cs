@@ -2,6 +2,9 @@ using System.Diagnostics;
 using Azure.Identity;
 using ProiectPOOSAM;
 using Twilio.TwiML.Messaging;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ProiectPOoSAM;
 
@@ -43,9 +46,26 @@ public abstract class HandleRequest : Wrapper
             {
                 return new RequestResult { user = null, Message = "User list is not initialized." };
             }
-
-            USER user = AllUsers.FirstOrDefault(u => u.GetUsername() == username && u.GetPassword() == password);
-            if (user != null)
+            
+            // cautare dupa username
+            USER user = AllUsers.FirstOrDefault(u => u.GetUsername() == username);
+            if (user == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Username/Parola nu exista sau sunt introduse gresit!");
+                Console.ResetColor();
+                return new RequestResult { user = null, Message = "Invalid username or password. Login failed" };
+            }
+            
+            
+            // ia saltul specific utilizatorului
+            string storedSALT = user.GetSalt();
+            
+            // construieste o parola hashuita cu el
+            string hasedINPUT = VerifyHashedPassword.HashVerifyHandle(password,storedSALT);
+            
+            // vf parola construita cu cea stocata
+            if (user.GetPassword() != hasedINPUT)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("V-ati loggat cu numele de utilizator ");
@@ -100,7 +120,10 @@ public abstract class HandleRequest : Wrapper
 
             if(PhoneFORMAT(phone))
             {
-                USER user = new USER(username, password, phone,USER.Role.Client);
+                string hash_pass = HashPassword.HashHandle(password).hash;
+                string SALT = HashPassword.HashHandle(password).salt;
+                
+                USER user = new USER(username, hash_pass, phone,USER.Role.Client, SALT);
                 AllUsers.Add(user);
                 
                 iloggerMessage = "User " + username + " is registered successfully";
@@ -146,4 +169,121 @@ public abstract class HandleRequest : Wrapper
 
         return false;
     }
+
+
+    /// <sumary>
+    /// hash-uirea parolelor
+    ///
+    ///     functia HashHandle -> primeste parola si un salt
+    ///                        -> returneaza parola hash-uita si saltul (ei in hexa) sub forma de sting
+    /// 
+    /// <sumary/>
+
+
+    public class HashPassword
+    {
+        public static (string hash, string salt) HashHandle(string password)
+        {
+            byte[] saltBytes = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(saltBytes);    // genereaza un salt random
+            }
+            
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                
+                // adauga saltul la parola
+                byte[] passwordWithSaltBytes = Combine(passwordBytes, saltBytes);
+                
+                // parola + saltul hash-uit
+                byte[] hashBytes = sha256.ComputeHash(passwordWithSaltBytes);
+
+                //                         hash-ul                      salt-ul             string (in format hex)
+                return (ConvertToHex(hashBytes), ConvertToHex(saltBytes));
+            }
+        }
+        
+        
+        private static string ConvertToHex(byte[] bytes)
+        {
+            StringBuilder hex = new StringBuilder(bytes.Length * 2); // alocare memorie
+            foreach (byte b in bytes)
+            {
+                hex.Append(b.ToString("X2")); // 1 byte = 2 caractere hex
+            }
+            return hex.ToString();
+        }
+        
+        // fct combina doua byte array-uri
+        private static byte[] Combine(byte[] first, byte[] second)
+        {
+            byte[] combined = new byte[first.Length + second.Length];
+            Buffer.BlockCopy(first, 0, combined, 0, first.Length);
+            Buffer.BlockCopy(second, 0, combined, first.Length, second.Length);
+            return combined;
+        }
+    }
+
+
+    public class VerifyHashedPassword
+    {
+        public static string HashVerifyHandle(string enteredPassword, string storedSalt)
+        {
+            byte[] saltBytes = ConvertFromHex(storedSalt);
+            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
+            byte[] passwordWithSaltBytes = Combine(enteredPasswordBytes, saltBytes);
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashBytes = sha256.ComputeHash(passwordWithSaltBytes);
+                string enteredHash = ConvertToHex(hashBytes);
+
+                return enteredHash;
+            }
+        }
+
+        private static byte[] Combine(byte[] first, byte[] second)
+        {
+            byte[] combined = new byte[first.Length + second.Length];
+            Buffer.BlockCopy(first, 0, combined, 0, first.Length);
+            Buffer.BlockCopy(second, 0, combined, first.Length, second.Length);
+            return combined;
+        }
+
+        private static string ConvertToHex(byte[] bytes)
+        {
+            StringBuilder hex = new StringBuilder(bytes.Length * 2);
+            foreach (byte b in bytes)
+                hex.Append(b.ToString("X2"));
+            return hex.ToString();
+        }
+
+        private static byte[] ConvertFromHex(string hex)
+        {
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+            }
+            return bytes;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

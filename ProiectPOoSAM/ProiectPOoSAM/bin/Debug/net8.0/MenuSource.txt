@@ -1,15 +1,1 @@
-ORDER,1,USER,9,Restaurant,365
-ORDER,3,USER,2,Home,95
-ORDER,4,USER,1,Home,55
-ORDER,5,USER,2,Home,90
-ORDER,2,USER,9,Restaurant,365
-INGREDIENT,1Mozzarella,100,10
-INGREDIENT,2Sunca,100,10
-INGREDIENT,3Ciuperci,100,10
-PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,2,Patrocle,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,3,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,4,Dominic,medium,45,False,Mozzarella,Sunca,Ciuperci
-PIZZA,5,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci
-USER,USER,1234,Admin,6
-USER,USER2,12345,Client,0
+ 

@@ -18,7 +18,7 @@ public partial class Program : ProjectWrap
 
 
 
-
+/*
         Console.WriteLine("Daca vezi asta ruleaza programul");
         USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
         USER u2 = new USER("USER2", "12345", "+407222222232", USER.Role.Client);
@@ -123,35 +123,35 @@ public partial class Program : ProjectWrap
 
         //file.deleteFile();
 
+*/
 
+        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
 
-        //Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
+        DateTime today = DateTime.Today;
+        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
 
-        //DateTime today = DateTime.Today;
-        //TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+        string initStamp = today.ToString() + " " + now.ToString();
+        WriteIntoLogger(initStamp);
 
-        //string initStamp = today.ToString() + " " + now.ToString();
-        //WriteIntoLogger(initStamp);
+        var initResult = Project.INIT();
 
-        //var initResult = Project.INIT();
+        if (initResult.user != null)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
+            Console.ResetColor();
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Request failed.");
+        }
+        Console.ResetColor();
 
-        //if (initResult.user != null)
-        //{
-        //    Console.ForegroundColor = ConsoleColor.Green;
-        //    Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
-        //    Console.ResetColor();
-        //}
-        //else
-        //{
-        //    Console.ForegroundColor = ConsoleColor.Red;
-        //    Console.WriteLine("Request failed.");
-        //}
-        //Console.ResetColor();
+        WriteIntoLogger(initResult.Message);
 
-        //WriteIntoLogger(initResult.Message);
-
-        //var unloadResult = Project.UNLOAD();
-        //WriteIntoLogger(unloadResult.Message);
+        var unloadResult = Project.UNLOAD();
+        WriteIntoLogger(unloadResult.Message);
     }
 }
 
