@@ -8,6 +8,7 @@ namespace ProiectPOoSAM.Alex
 {
     public class Ingredients
     {
+        private int ingredientID;
         private string name;
         private int quantity;
         private decimal price;
@@ -17,6 +18,8 @@ namespace ProiectPOoSAM.Alex
             this.name = name;
             this.quantity = quantity;
             this.price = price;
+            Constants.ingredientCount += 1;
+            ingredientID = Constants.ingredientCount;
         }
 
         public decimal getPrice()
@@ -31,14 +34,14 @@ namespace ProiectPOoSAM.Alex
         {
             return quantity;
         }
+        public int getIngredientID()
+        {
+            return ingredientID;
+        }
 
 
         // GESTIONARE INGREDIENTE
 
-        public void ViewIngredient()
-        {
-            Console.WriteLine($"Ingredient: {name} with quantity {quantity} and price {price}");
-        }
         public void modifyQuantity(int quantity)
         {
             this.quantity = quantity;
@@ -55,6 +58,11 @@ namespace ProiectPOoSAM.Alex
         }
 
         // ========================
+
+        public override string ToString()
+        {
+            return $"Ingredient: {name} with quantity {quantity} and price {price}";
+        }
 
     }
 }

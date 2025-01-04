@@ -1,10 +1,13 @@
 using ProiectPOOSAM;
 using ProiectPOoSAM.Alex;
+using Microsoft.VisualBasic;
+using ProiectPOoSAM;
 
 namespace ProiectPOOSAM
 {
     public class USER : Wrapper
     {
+        private int userID;
         protected string username;
         protected string password;
         private string phoneNumber;
@@ -30,6 +33,8 @@ namespace ProiectPOOSAM
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
             this.fidelityCard = false;
+            ProiectPOoSAM.Constants.userCount += 1;
+            this.userID = ProiectPOoSAM.Constants.userCount;
         }
         public USER(string username, string password, string phone, Role role, bool fidelityCard)
         {
@@ -40,6 +45,8 @@ namespace ProiectPOOSAM
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
             this.fidelityCard = fidelityCard;
+            ProiectPOoSAM.Constants.userCount += 1;
+            this.userID = ProiectPOoSAM.Constants.userCount;
         }
 
 
@@ -49,7 +56,9 @@ namespace ProiectPOOSAM
         public string GetRole() => role.ToString();
         public bool AccessVerification() => accesToken;
 
-        
+        public int GetUserID() => userID;
+
+
         public int GetOrdersCount() => listOrders==null ? 0 : listOrders.Count;
         
         // vf valabilitatea unui username (pt functia register)
@@ -68,7 +77,14 @@ namespace ProiectPOOSAM
             this.fidelityCard = FidelityCard;
             return FidelityCard;
         }
-
+        public void addOrder(Orders order)
+        {
+            if (listOrders == null)
+            {
+                listOrders = new List<Orders>();
+            }
+            listOrders.Add(order);
+        }
 
 
 
@@ -86,7 +102,19 @@ namespace ProiectPOOSAM
         {
             return GetUsername() + "," + GetPassword() + "," + GetPhoneNumber() + "," + GetRole().ToString();
         }
+
+        public void showUserDetails()
+        {
+            Console.WriteLine("Username: " + GetUsername());
+            Console.WriteLine("Phone Number: " + GetPhoneNumber());
+            Console.WriteLine("Role: " + GetRole());
+            Console.WriteLine("Fidelity Card: " + GetFidelityCard());
+            Console.WriteLine("Orders: " + GetOrdersCount() + " orders");
+            Console.WriteLine(Environment.NewLine);
+        }
     }
+
+
 }
 
 
@@ -199,4 +227,5 @@ public abstract class Wrapper
             Console.WriteLine(X.SaveFormat());
         }
     }
+
 }

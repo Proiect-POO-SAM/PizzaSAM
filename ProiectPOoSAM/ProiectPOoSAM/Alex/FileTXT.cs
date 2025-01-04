@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProiectPOOSAM;
-using static ProiectPOoSAM.Alex.Pizza;
+﻿using ProiectPOOSAM;
 
 namespace ProiectPOoSAM.Alex
 {
-    public class FileTXT : Constants
+    public class FileTXT
     {
         public PizzaSite SITE;
         // Scriere fisier
         // sintaxa File.addCommandToFile("breakToPieces--obiect--");
         public void addCommandToFile(string content)
         {
-            string PathFile = filePath;
+            string PathFile = Constants.filePath;
             if (!File.Exists(PathFile))
             {
                 File.WriteAllText(PathFile, content + Environment.NewLine);
@@ -28,6 +22,25 @@ namespace ProiectPOoSAM.Alex
             }
 
         }
+        public string[] readCommandsFromFile()
+        {
+            string[] lines = File.ReadAllLines(Constants.filePath);
+            return lines;
+        }
+        
+        public void removeCommandFromFile(string command)
+        {
+            string[] lines = File.ReadAllLines(Constants.filePath);
+            File.WriteAllText(Constants.filePath, string.Empty);
+            foreach (string line in lines)
+            {
+                if (line != command)
+                {
+                    File.AppendAllText(Constants.filePath, line + Environment.NewLine);
+                }
+            }
+        }
+
         // Metode pentru a descompune obiectele in stringuri
         public string breakToPiecesOrders(Orders order)
         {
@@ -37,13 +50,13 @@ namespace ProiectPOoSAM.Alex
             {
                 pizzasString += pizza.getName() + ",";
             }
-            return $"ORDER,{order.getUsername()},{listPizzas.Count},{order.getDeliveryMethod()},{order.getTotalPrice()}";
+            return $"ORDER,{order.getOrderID()},{order.getUsername()},{listPizzas.Count},{order.getDeliveryMethod()},{order.getTotalPrice()}";
         }
 
 
         public string breakToPiecesIngredients(Ingredients ingredient)
         {
-            return $"INGREDIENT,{ingredient.getName()},{ingredient.getQuantity()},{ingredient.getPrice()}";
+            return $"INGREDIENT,{ingredient.getIngredientID()}{ingredient.getName()},{ingredient.getQuantity()},{ingredient.getPrice()}";
         }
 
 
@@ -61,7 +74,7 @@ namespace ProiectPOoSAM.Alex
                 ingredientsString += ingredient.getName() + ",";
 
             }
-            return $"PIZZA,{pizza.getName()},{pizza.dimensiuneCurenta},{pizza.getPrice()},{pizza.getPersonalized()},{ingredientsString}";
+            return $"PIZZA,{pizza.getPizzaID()},{pizza.getName()},{pizza.dimensiuneCurenta},{pizza.getPrice()},{pizza.getPersonalized()},{ingredientsString}";
         }
 
 
@@ -95,7 +108,7 @@ namespace ProiectPOoSAM.Alex
 
         public void gettingInformation(string OPTIUNE)
         {
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(Constants.filePath);
             bool hasCommands = false;
 
             foreach (string line in lines)
@@ -108,30 +121,30 @@ namespace ProiectPOoSAM.Alex
                     {
                         case "ORDER":
                             Console.WriteLine("Order Details:");
-                            Console.WriteLine($"Username: {elements[1]}");
-                            Console.WriteLine($"Delivered Pizza: {elements[2]}");
-                            Console.WriteLine($"Delivery Method: {elements[3]}");
-                            Console.WriteLine($"Total Price: {elements[4]}");
+                            Console.WriteLine($"Username: {elements[2]}");
+                            Console.WriteLine($"Delivered Pizza: {elements[3]}");
+                            Console.WriteLine($"Delivery Method: {elements[4]}");
+                            Console.WriteLine($"Total Price: {elements[5]}");
                             break;
                         case "INGREDIENT":
                             Console.WriteLine("Ingredient Details:");
-                            Console.WriteLine($"Name: {elements[1]}");
-                            Console.WriteLine($"Quantity: {elements[2]}");
-                            Console.WriteLine($"Price: {elements[3]}");
+                            Console.WriteLine($"Name: {elements[2]}");
+                            Console.WriteLine($"Quantity: {elements[3]}");
+                            Console.WriteLine($"Price: {elements[4]}");
                             break;
                         case "USER":
                             Console.WriteLine("User Details:");
-                            Console.WriteLine($"Username: {elements[1]}");
-                            Console.WriteLine($"Password: {elements[2]}");
-                            Console.WriteLine($"Role: {elements[3]}");
-                            Console.WriteLine($"Numar comenzi: {elements[4]}");
+                            Console.WriteLine($"Username: {elements[2]}");
+                            Console.WriteLine($"Password: {elements[3]}");
+                            Console.WriteLine($"Role: {elements[4]}");
+                            Console.WriteLine($"Numar comenzi: {elements[5]}");
                             break;
                         case "PIZZA":
                             Console.WriteLine("Pizza Details:");
-                            Console.WriteLine($"Name: {elements[1]}");
-                            Console.WriteLine($"Size: {elements[2]}");
-                            Console.WriteLine($"Price: {elements[3]}");
-                            Console.WriteLine($"Personalized: {elements[4]}");
+                            Console.WriteLine($"Name: {elements[2]}");
+                            Console.WriteLine($"Size: {elements[3]}");
+                            Console.WriteLine($"Price: {elements[4]}");
+                            Console.WriteLine($"Personalized: {elements[5]}");
                             Console.WriteLine("Ingredients:");
                             var ingredients = elements.Skip(5);
                             foreach (var ingredient in ingredients)
@@ -159,7 +172,7 @@ namespace ProiectPOoSAM.Alex
 
         public void ReadingInformation()
         {
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(Constants.filePath);
             bool hasCommands = false;
 
             foreach (string line in lines)
@@ -204,7 +217,7 @@ namespace ProiectPOoSAM.Alex
         // Stergere fisier
         public void deleteFile()
         {
-            File.Delete(filePath);
+            File.Delete(Constants.filePath);
             Console.WriteLine("Fisierul a fost sters!");
         }
 

@@ -1,9 +1,8 @@
-using Microsoft.VisualBasic;
 using ProiectPOOSAM;
 
 namespace ProiectPOoSAM;
 
-public partial class Project : Constants
+public partial class Project 
 {
     protected List<string> oldLogs = new List<string>();
     
@@ -164,7 +163,7 @@ public partial class Project : Constants
         // salvare in fisier
         try
         {
-            using (StreamWriter saver = new StreamWriter(filePath))
+            using (StreamWriter saver = new StreamWriter(Constants.filePath))
             {
                 saver.WriteLine(" ");                         // <- Menu not implemented 
             }

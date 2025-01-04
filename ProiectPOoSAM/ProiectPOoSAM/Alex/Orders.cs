@@ -1,10 +1,5 @@
 ﻿using ProiectPOOSAM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ProiectPOoSAM.Alex;
 using Twilio.Exceptions;
 using Twilio.Rest.Api.V2010.Account;
 
@@ -15,6 +10,7 @@ namespace ProiectPOoSAM.Alex
 {
     public class Orders : FileTXT
     {
+        private int orderID;
         protected USER user;
         USER.Role role;
         protected List<Pizza> pizzas { get; set; }
@@ -33,12 +29,16 @@ namespace ProiectPOoSAM.Alex
         public Orders(List<Pizza> pizzas, DateTime dateTime, delivery deliveryMethod, USER user)//Mihai
         {
             this.pizzas = pizzas;
-            DateTime date = DateTime.Now;
+            date = dateTime;
             this.deliveryMethod = deliveryMethod;
             this.user = user;
+            Constants.orderCount += 1;
+            this.orderID = Constants.orderCount;
             this.totalPrice = calculateTotalPrice();
-            
-            
+            user.addOrder(this);
+            user.SetFidelityCard(FidelityCard());
+
+
         }
 
         public Orders(List<Pizza> pizzas, delivery deliveryMethod, USER user)
@@ -46,6 +46,15 @@ namespace ProiectPOoSAM.Alex
             this.pizzas = pizzas;
             this.deliveryMethod = deliveryMethod;
             this.user = user;
+            Constants.orderCount += 1;
+            this.orderID = Constants.orderCount;
+            this.totalPrice = calculateTotalPrice();
+            user.addOrder(this);
+            user.SetFidelityCard(FidelityCard());
+
+
+
+
         }
 
         public string getUsername() => user.GetUsername();
@@ -55,6 +64,8 @@ namespace ProiectPOoSAM.Alex
         public delivery getDeliveryMethod() => deliveryMethod;
 
         public decimal getTotalPrice() => totalPrice;
+
+        public int getOrderID() => orderID;
 
 
         // Calculare pret comanda
@@ -80,39 +91,7 @@ namespace ProiectPOoSAM.Alex
             }
             return pricing;
         }
-        //public void ViewMyCommands(string USERNAME)
-        //{
-        //    string PathFile = filePath;
-
-        //    if (!File.Exists(PathFile))
-        //    {
-        //        Console.WriteLine("There are no orders!");
-        //        return;
-        //    }
-
-        //    string[] lines = File.ReadAllLines(PathFile);
-        //    bool hasCommands = false;
-
-        //    foreach (string line in lines)
-        //    {
-        //        var elements = line.Split(',');
-        //        if (elements.Length > 1 && elements[1] == USERNAME && elements[0] == "ORDER")
-        //        {
-        //            hasCommands = true;
-        //            Console.WriteLine($"Order for {USERNAME}:");
-        //            Console.WriteLine($" - Pizza: {elements[2]}");
-        //            Console.WriteLine($" - Delivery: {elements[3]}");
-        //            Console.WriteLine($" - Price: {elements[4]} RON");
-        //            Console.WriteLine("------------------------");
-        //        }
-        //    }
-
-        //    if (!hasCommands)
-        //    {
-        //        Console.WriteLine($"The user {USERNAME} does not have any orders.");
-        //    }
-        //}
-
+       
         public void feedbackOrder()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -139,7 +118,7 @@ namespace ProiectPOoSAM.Alex
         {
             if (user.GetOrdersCount() > 5)
             {
-                user.SetFidelityCard(true);
+                return true;
             }
             return false;
         }

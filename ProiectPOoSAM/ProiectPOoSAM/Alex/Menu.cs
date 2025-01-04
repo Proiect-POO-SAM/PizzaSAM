@@ -24,14 +24,6 @@ namespace ProiectPOoSAM.Alex
         {
             menu.Remove(pizza);
         }
-
-        public void ViewMenu()
-        {
-            foreach (Pizza pizza in menu)
-            {
-                pizza.ViewPizza();
-            }
-        }
         // Function of reading from the file the menu
         // Function of writing in the file the menu
 

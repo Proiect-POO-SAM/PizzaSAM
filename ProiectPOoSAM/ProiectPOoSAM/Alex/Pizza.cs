@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProiectPOoSAM.Alex
 {
-    public class Pizza : Constants
+    public class Pizza
     {
+        public int pizzaID;
         private string name;
         public enum Dimensiune { small, medium, large };
         public Dimensiune dimensiuneCurenta;
@@ -24,6 +25,8 @@ namespace ProiectPOoSAM.Alex
             this.personalized = personalized;
             dimensiuneCurenta = Dimensiune.medium;
             price = calculatePrice();
+            Constants.pizzaCount += 1;
+            pizzaID = Constants.pizzaCount;
         }
         public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized)
         {
@@ -32,15 +35,19 @@ namespace ProiectPOoSAM.Alex
             this.ingredients = ingredients;
             this.personalized = personalized;
             price = calculatePrice();
+            Constants.pizzaCount += 1;
+            pizzaID = Constants.pizzaCount;
         }
 
-        public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized ,decimal price)
+        public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized, decimal price)
         {
             this.name = name;
             this.dimensiuneCurenta = dimensiuneCurenta;
             this.price = price;
             this.ingredients = ingredients;
             this.personalized = personalized;
+            Constants.pizzaCount += 1;
+            pizzaID = Constants.pizzaCount;
         }
 
         public string getName()
@@ -58,6 +65,10 @@ namespace ProiectPOoSAM.Alex
         public bool getPersonalized()
         {
             return personalized;
+        }
+        public int getPizzaID()
+        {
+            return pizzaID;
         }
 
 
@@ -84,18 +95,9 @@ namespace ProiectPOoSAM.Alex
             {
                 price += ingredient.getPrice();
             }
-            return price + price * TVA;
+            return price + price * Constants.TVA;
         }
 
-        // View the specific pizza
-        public void ViewPizza()
-        {
-            Console.WriteLine($"Pizza: {name} with price {price}");
-            foreach (var ingredient in ingredients)
-            {
-                ingredient.ViewIngredient();
-            }
-        }
 
         // Modify the pizza
 
@@ -112,6 +114,18 @@ namespace ProiectPOoSAM.Alex
             this.personalized = personalized;
         }
         // ========================
+
+        public override string ToString()
+        {
+            return $@"
+    Pizza Details:
+    Name: {name}
+    Size: {dimensiuneCurenta}
+    Price: {price}
+    Personalized: {personalized}
+    Ingredients:
+    {string.Join(Environment.NewLine, ingredients.Select(ingredient => $"- {ingredient}"))}";
+        }
 
     }
 }
