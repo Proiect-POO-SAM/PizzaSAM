@@ -269,21 +269,5 @@ public abstract class HandleRequest : Wrapper
             }
             return bytes;
         }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }   
 }

@@ -203,9 +203,7 @@ public abstract class Wrapper
                         continue;
                     }
                     
-                    if (IsPhoneNumber(lines[2]) == true)
-                        continue;
-                    else
+                    if (!IsPhoneNumber(lines[2]))
                     {
                         additionalMessage += $" Skipped Line '{line}' for unvalid phone number //";
                     }
@@ -277,5 +275,4 @@ public abstract class Wrapper
             Console.WriteLine(X.SaveFormat());
         }
     }
-
 }
