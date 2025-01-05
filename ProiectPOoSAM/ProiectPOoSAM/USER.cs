@@ -75,6 +75,19 @@ namespace ProiectPOOSAM
             this.salt = salt;
         }
 
+        public USER(int userID, string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt, List<Orders> orders)
+        {
+            this.userID = userID;
+            this.username = username;
+            this.password = password;
+            this.phoneNumber = phoneNumber;
+            this.role = role;
+            this.accesToken = accesToken;
+            this.fidelityCard = fidelityCard;
+            this.salt = salt;
+            this.listOrders = orders;
+        }
+
         public string GetUsername() => username;
         public string GetPassword() => password;
         public string GetPhoneNumber() => phoneNumber;

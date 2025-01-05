@@ -49,7 +49,7 @@ namespace ProiectPOoSAM.Alex
             var pizzaList = order.getPizzas();
             var pizzaString = string.Join(";", pizzaList.Select(pizza => pizza.getName()));
 
-            return $"ORDER,{order.getOrderID()},{order.getUsername() ?? "N/A"},{order.getRole()},{order.getPizzasCount()},{pizzaString},{order.getDeliveryMethod()},{order.getTotalPrice()},{order.getDiscount()}" +
+            return $"ORDER,{order.getOrderID()},{order.getUsername() ?? "N/A"},{order.getRole()},{pizzaString},{order.getDeliveryMethod()},{order.getTotalPrice()},{order.getDiscount()}" +
                 $",{order.getIsFeedback()},{order.getFeedback() ?? "N/A"},{order.getRating()},{order.getDate():yyyy-MM-dd}";
 
         }
@@ -93,14 +93,24 @@ namespace ProiectPOoSAM.Alex
 
         public string breakToPiecesUser(USER user)
         {
-            var orders = user.GetOrders();
-            var ordersString = "";
-            foreach (var order in orders)
+            var orders = user.GetOrders(); // Obținem comenzile
+            string ordersString;
+
+            if (orders == null || orders.Count == 0)
             {
-                ordersString += order.getOrderID() + ",";
+                // Dacă nu există comenzi, setăm "N/A"
+                ordersString = "N/A";
             }
-            return $"USER,{user.GetUserID}.{user.GetUsername()},{user.GetPassword()},{user.GetPhoneNumber()},{user.GetRole()},{user.AccessVerification()},{user.GetFidelityCard()},{user.GetSalt()},{ordersString}";
+            else
+            {
+                // Dacă există comenzi, concatenăm ID-urile lor
+                ordersString = string.Join(";", orders.Select(order => order.getOrderID()));
+            }
+
+            // Returnăm linia formatată
+            return $"USER,{user.GetUserID()},{user.GetUsername()},{user.GetPassword()},{user.GetPhoneNumber()},{user.GetRole()},{user.AccessVerification()},{user.GetFidelityCard()},{user.GetSalt()},{ordersString}";
         }
+
 
         public string breakToPiecesPizzaSite(PizzaSite SITE)
         {
@@ -237,15 +247,33 @@ namespace ProiectPOoSAM.Alex
             }
 
             // Conversia List<Pizza>
-            var pizzaNames = elements[4].Split(';').ToList();
-            var pizzas = allPizzas
-                .Where(pizza => pizzaNames.Contains(pizza.getName()))
+            var pizzaNames = elements[4]
+                .Split(';')
+                .Select(name => name.Trim())
                 .ToList();
 
+            // Construim lista de pizze ținând cont de repetări
+            var pizzas = new List<Pizza>();
+
+            foreach (var pizzaName in pizzaNames)
+            {
+                var matchingPizza = allPizzas.FirstOrDefault(pizza =>
+                    pizza.getName().Equals(pizzaName, StringComparison.OrdinalIgnoreCase));
+
+                if (matchingPizza == null)
+                {
+                    throw new ArgumentException($"Pizza '{pizzaName}' nu a fost găsită în lista de pizze disponibile.");
+                }
+
+                pizzas.Add(matchingPizza);
+            }
+
+            // Verificăm că am procesat toate numele
             if (pizzas.Count != pizzaNames.Count)
             {
-                throw new ArgumentException("Unele nume de pizza nu au fost găsite în lista de pizze.");
+                throw new ArgumentException("Unele pizze nu au fost procesate corect.");
             }
+
 
             // Conversia deliveryMethod
             if (!Enum.TryParse(elements[5], out Orders.delivery deliveryMethod))
@@ -273,10 +301,9 @@ namespace ProiectPOoSAM.Alex
         {
             var elements = line.Split(',');
 
-            // Conversia Role
-            if (!Enum.TryParse(elements[3], out USER.Role role))
+            if (!Enum.TryParse(elements[5], out USER.Role role))
             {
-                throw new ArgumentException($"Rolul '{elements[3]}' nu este valid.");
+                throw new ArgumentException($"Rolul '{elements[5]}' nu este valid.");
             }
 
             // Crearea obiectului USER
@@ -287,8 +314,9 @@ namespace ProiectPOoSAM.Alex
                 elements[4],              // PhoneNumber
                 role,                     // Role
                 bool.Parse(elements[6]),  // AccesToken
-                bool.Parse(elements[7]),   // FidelityCard
-                elements[8]               // Salt
+                bool.Parse(elements[7]),  // FidelityCard
+                elements[8]              // Salt
+                //orders                    // Orders
             );
         }
 
@@ -296,21 +324,32 @@ namespace ProiectPOoSAM.Alex
 
 
 
-        public void initializeObjects()
+
+        public void initializeObjects(List<Pizza> pizzaList, List<USER> userList)
         {
+            if(!File.Exists(Constants.filePath))
+            {
+                Console.WriteLine("Fisierul nu exista!");
+                return;
+            }
             var lines = File.ReadAllLines(Constants.filePath);
+            if(lines.Length == 0)
+            {
+                Console.WriteLine("Fisierul este gol!");
+                return;
+            }
             foreach (var line in lines)
             {
-                if(line.StartsWith("USER"))
+                if (line.StartsWith("USER"))
                 {
                     var user = CreateUser(line);
-                    Constants.USERSLIST.Add(user);
+                    userList.Add(user);
                 }
             }
-            foreach(var line in lines)
+            foreach (var line in lines)
             {
                 string[] elements = line.Split(',');
-                if (elements[0]== "INGREDIENT")
+                if (elements[0] == "INGREDIENT")
                 {
                     var ingredient = CreateIngredients(line);
                     Constants.INGREDIENTSLIST.Add(ingredient);
@@ -322,7 +361,7 @@ namespace ProiectPOoSAM.Alex
                 if (elements[0] == "PIZZA")
                 {
                     var pizza = CreatePizza(line, Constants.INGREDIENTSLIST);
-                    Constants.PIZZALIST.Add(pizza);
+                    pizzaList.Add(pizza);
                 }
             }
             foreach (var line in lines)
@@ -330,7 +369,7 @@ namespace ProiectPOoSAM.Alex
                 string[] elements = line.Split(',');
                 if (elements[0] == "ORDER")
                 {
-                    var order = CreateOrder(line, Constants.USERSLIST, Constants.PIZZALIST);
+                    var order = CreateOrder(line, userList, pizzaList);
                     Constants.ORDERSLIST.Add(order);
                 }
             }

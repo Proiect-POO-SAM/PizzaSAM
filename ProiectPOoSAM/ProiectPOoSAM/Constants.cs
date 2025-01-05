@@ -1,4 +1,5 @@
 using ProiectPOoSAM.Alex;
+using ProiectPOOSAM;
 
 namespace ProiectPOoSAM;
 
@@ -14,5 +15,6 @@ public static class Constants
     public static List<Ingredients> INGREDIENTSLIST = new List<Ingredients>();
     public static List<Pizza> PIZZASLIST = new List<Pizza>();
     public static List<Orders> ORDERSLIST = new List<Orders>();
+    public static List<USER> USERLIST = new List<USER>();
     public static FileTXT file = new FileTXT();
 }

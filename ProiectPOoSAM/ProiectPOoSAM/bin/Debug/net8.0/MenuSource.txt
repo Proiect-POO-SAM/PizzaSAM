@@ -1,37 +1,15 @@
-ORDER,1,USER,9,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
-ORDER,3,USER,2,Quattro Stagioni;Dominic,Home,95,0,False,,,2025-01-05
-ORDER,4,USER,1,Diavola,Home,55,0,False,,,2025-01-05
-ORDER,5,USER,2,Quattro Stagioni;Patrocle,Home,90,0,False,,,2025-01-05
-ORDER,2,USER,9,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
+ORDER,1,USER,Client,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
+ORDER,3,USER,Client,Quattro Stagioni;Dominic,Home,95,0,False,,,2025-01-05
+ORDER,4,USER,Client,Diavola,Home,55,0,False,,,2025-01-05
+ORDER,5,USER,Client,Quattro Stagioni;Patrocle,Home,90,0,False,,,2025-01-05
+ORDER,2,USER,Client,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
+INGREDIENT,1,Mozzarella,100,10
 INGREDIENT,1,Mozzarella,100,10
 INGREDIENT,2,Sunca,100,10
 INGREDIENT,3,Ciuperci,100,10
 PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
 PIZZA,2,Patrocle,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,3,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,4,Dominic,medium,45,False,Mozzarella,Sunca,Ciuperci
-PIZZA,5,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci
-USER,USER,1234,+40711111111,Admin,True,True,,
-USER,USER2,12345,+407222222232,Client,False,False,,
-ORDER,1,USER,9,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
-ORDER,3,USER,2,Quattro Stagioni;Dominic,Home,95,0,False,,,2025-01-05
-ORDER,4,USER,1,Diavola,Home,55,0,False,,,2025-01-05
-ORDER,5,USER,2,Quattro Stagioni;Patrocle,Home,90,0,False,,,2025-01-05
-INGREDIENT,1,Mozzarella,100,10
-INGREDIENT,2,Sunca,100,10
-INGREDIENT,3,Ciuperci,100,10
-PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,2,Patrocle,small,40,False,Mozzarella,Sunca,Ciuperci
-MENU,
-USER,USER,1234,+40711111111,Admin,True,True,,
-        public USER(int userID, string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt, List<Orders> listOrders)
-        {
-            this.userID = userID;
-            this.username = username;
-            this.password = password;
-            this.phoneNumber = phoneNumber;
-            this.role = role;
-            this.accesToken = accesToken;
-            this.fidelityCard = fidelityCard;
-            this.salt = salt;
-        }
+PIZZA,3,Dominic,medium,45,False,Mozzarella,Sunca,Ciuperci
+PIZZA,4,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci
+USER,1,USER,1234,+40711111111,Admin,True,True,,1;2;3;4;5;6
+USER,2,USER2,12345,+407222222232,Client,False,False,,N/A
