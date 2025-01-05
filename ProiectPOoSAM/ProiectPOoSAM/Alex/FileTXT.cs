@@ -188,11 +188,19 @@ namespace ProiectPOoSAM.Alex
         }
 
         // CITIRE FISIER SI CREARE OBIECT + ADAUGARE IN LISTA DE OBIECTE 
-
         public static Ingredients CreateIngredients(string line)
         {
             var elements = line.Split(',');
 
+            var existingIngredient = Constants.INGREDIENTSLIST.FirstOrDefault(ingredient => ingredient.getName() == elements[2]);
+
+
+            if(existingIngredient != null)
+            {
+                
+                existingIngredient.AddQuantity(int.Parse(elements[3]));
+                return null;
+            }
             // Crearea obiectului Ingredients
             return new Ingredients(
                 int.Parse(elements[1]),   // ID
@@ -201,6 +209,8 @@ namespace ProiectPOoSAM.Alex
                 decimal.Parse(elements[4])// Price
             );
         }
+
+
 
         public static Pizza CreatePizza(string line, List<Ingredients> allIngredients)
         {
@@ -352,6 +362,7 @@ namespace ProiectPOoSAM.Alex
                 if (elements[0] == "INGREDIENT")
                 {
                     var ingredient = CreateIngredients(line);
+                    if (ingredient != null)
                     Constants.INGREDIENTSLIST.Add(ingredient);
                 }
             }

@@ -35,6 +35,8 @@ public partial class Program /*: ProjectWrap*/
         {
             Console.WriteLine(o);
         }
+
+        ;
         //Console.WriteLine("Daca vezi asta ruleaza programul");
         //USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
         //USER u2 = new USER("USER2", "12345", "+407222222232", USER.Role.Client);

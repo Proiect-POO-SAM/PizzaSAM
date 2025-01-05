@@ -6,6 +6,7 @@ ORDER,2,USER,Client,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro
 INGREDIENT,1,Mozzarella,100,10
 INGREDIENT,1,Mozzarella,100,10
 INGREDIENT,2,Sunca,100,10
+INGREDIENT,2,Sunca,100,10
 INGREDIENT,3,Ciuperci,100,10
 PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
 PIZZA,2,Patrocle,small,40,False,Mozzarella,Sunca,Ciuperci

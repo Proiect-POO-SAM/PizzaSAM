@@ -46,7 +46,15 @@ namespace ProiectPOoSAM.Alex
             return ingredientID;
         }
 
+        public void setPrice(decimal price)
+        {
+            this.price = price;
+        }
 
+        public void AddQuantity(int quantity)
+        {
+            this.quantity += quantity;
+        }
         // GESTIONARE INGREDIENTE
 
         public void modifyQuantity(int quantity)
