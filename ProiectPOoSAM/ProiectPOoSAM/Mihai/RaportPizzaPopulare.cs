@@ -5,54 +5,54 @@ using ProiectPOoSAM.Alex;
 
 namespace ProiectPOoSAM.Mihai;
 
-public class RaportPizzaPopulare : Orders
-{
-    private USER user;
-    USER.Role role;
-    private Dictionary<string, int> PizzaPopularity;
+//public class RaportPizzaPopulare : Orders
+//{
+//    private USER user;
+//    USER.Role role;
+//    private Dictionary<string, int> PizzaPopularity;
 
-    public RaportPizzaPopulare(List<Pizza> pizzas, delivery deliveryMethod, USER user) : base(pizzas, deliveryMethod, user)
-    {
-        this.user = user ?? throw new ArgumentNullException(nameof(user));
-        PizzaPopularity = new Dictionary<string, int>();
-    }
+//    public RaportPizzaPopulare(List<Pizza> pizzas, delivery deliveryMethod, USER user) : base(pizzas, deliveryMethod, user)
+//    {
+//        this.user = user ?? throw new ArgumentNullException(nameof(user));
+//        PizzaPopularity = new Dictionary<string, int>();
+//    }
 
-    public string getPizzaPopularity()
-    {
-        if (user.GetRole() is "Client")
-        {
-            Console.WriteLine("You do not have permission to view the orders.");
+//    public string getPizzaPopularity()
+//    {
+//        if (user.GetRole() is "Client")
+//        {
+//            Console.WriteLine("You do not have permission to view the orders.");
             
-        }
+//        }
 
-        PizzaPopularity = new Dictionary<string, int>();
+//        PizzaPopularity = new Dictionary<string, int>();
 
-        try
-        {
-            foreach (var pizza in pizzas)
-            {
-                if (PizzaPopularity.ContainsKey(pizza.getName()))
-                {
-                    PizzaPopularity[pizza.getName()]++;
-                }
-                else
-                {
-                    PizzaPopularity[pizza.getName()] = 1;
-                }
-            }
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return "Error: " + ex.Message;
-        }
-        var sortedPizzaPopularity = PizzaPopularity.OrderByDescending(p => p.Value);
-        Console.WriteLine("Raportul celor mai populare pizza:");
-        foreach (var entry in sortedPizzaPopularity)
-        {
-            Console.WriteLine($"Pizza: {entry.Key}, Comenzi: {entry.Value}");
-        }
+//        try
+//        {
+//            foreach (var pizza in pizzas)
+//            {
+//                if (PizzaPopularity.ContainsKey(pizza.getName()))
+//                {
+//                    PizzaPopularity[pizza.getName()]++;
+//                }
+//                else
+//                {
+//                    PizzaPopularity[pizza.getName()] = 1;
+//                }
+//            }
+//        }
+//        catch(Exception ex)
+//        {
+//            Console.WriteLine(ex.Message);
+//            return "Error: " + ex.Message;
+//        }
+//        var sortedPizzaPopularity = PizzaPopularity.OrderByDescending(p => p.Value);
+//        Console.WriteLine("Raportul celor mai populare pizza:");
+//        foreach (var entry in sortedPizzaPopularity)
+//        {
+//            Console.WriteLine($"Pizza: {entry.Key}, Comenzi: {entry.Value}");
+//        }
 
-        return "The raport was succesfully created.";
-    }
-}
+//        return "The raport was succesfully created.";
+//    }
+//}

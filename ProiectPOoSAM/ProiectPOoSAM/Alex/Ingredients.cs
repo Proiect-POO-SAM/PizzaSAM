@@ -21,6 +21,13 @@ namespace ProiectPOoSAM.Alex
             Constants.ingredientCount += 1;
             ingredientID = Constants.ingredientCount;
         }
+        public Ingredients(int ingredientID, string name, int quantity, decimal price)
+        {
+            this.ingredientID = ingredientID;
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;
+        }
 
         public decimal getPrice()
         {

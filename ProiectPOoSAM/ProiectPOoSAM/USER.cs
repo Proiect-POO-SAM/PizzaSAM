@@ -63,6 +63,17 @@ namespace ProiectPOOSAM
             this.userID = ProiectPOoSAM.Constants.userCount;
         }
 
+        public USER(int userID, string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt)
+        {
+            this.userID = userID;
+            this.username = username;
+            this.password = password;
+            this.phoneNumber = phoneNumber;
+            this.role = role;
+            this.accesToken = accesToken;
+            this.fidelityCard = fidelityCard;
+            this.salt = salt;
+        }
 
         public string GetUsername() => username;
         public string GetPassword() => password;
@@ -85,12 +96,24 @@ namespace ProiectPOOSAM
         {
             return fidelityCard;
         }
+        public string GetSalt() => salt;
+
+
+        public List<Orders> GetOrders()
+        {
+            return listOrders;
+        }
+
+
+
 
         public bool SetFidelityCard(bool FidelityCard)
         {
             this.fidelityCard = FidelityCard;
             return FidelityCard;
         }
+
+
         public void addOrder(Orders order)
         {
             if (listOrders == null)
@@ -100,7 +123,6 @@ namespace ProiectPOOSAM
             listOrders.Add(order);
         }
 
-        public string GetSalt() => salt;
 
 
         // schimbarea parolei unui utilizator de catre admin

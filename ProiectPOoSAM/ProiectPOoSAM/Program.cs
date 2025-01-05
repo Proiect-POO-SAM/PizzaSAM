@@ -2,12 +2,12 @@
 using ProiectPOoSAM.Alex;
 using ProiectPOOSAM;
 namespace ProiectPOoSAM;
-public partial class Program : ProjectWrap
+public partial class Program /*: ProjectWrap*/
 {
     public static void Main(string[] args)
     {
         // ASTEA 5 RAMAN ACI ! ♥
-        
+
         ARC AddRemoveChange = new ARC();
         FileTXT file = new FileTXT();
         file.deleteFile();
@@ -18,7 +18,7 @@ public partial class Program : ProjectWrap
 
 
 
-/*
+
         Console.WriteLine("Daca vezi asta ruleaza programul");
         USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
         USER u2 = new USER("USER2", "12345", "+407222222232", USER.Role.Client);
@@ -90,80 +90,63 @@ public partial class Program : ProjectWrap
         AddRemoveChange.addUser(u2, USERLIST, file);
         AddRemoveChange.viewUsers(USERLIST);
 
-        //o1.feedbackOrder("Buna", "5");
-        //RaportPizzaPopulare pop = new RaportPizzaPopulare(pizzas, 0, u1);
-        //RaportPizzaPopulare pop1 = new RaportPizzaPopulare(pizzas1, 0, u1);
-        //RaportPizzaPopulare pop2 = new RaportPizzaPopulare(pizzas2, 0, u1);
-        //Console.WriteLine("\n");
-        //pop.getPizzaPopularity();
-        //Console.WriteLine("\n");
-        //pop1.getPizzaPopularity();
-        //Console.WriteLine("\n");
-        //pop2.getPizzaPopularity();
-        //ViewOrders ord = new ViewOrders(u1, USER.Role.Admin, new List<Orders> { o1, o2, o3, o4 }, DateTime.Now);
-
-        //o1.GetTotalIncome(u1,DateTime.Now,DateTime.Now);
-        //file.addCommandToFile(file.breakToPiecesOrders(o1));
-        //file.addCommandToFile(file.breakToPiecesOrders(o2));
-        //file.addCommandToFile(file.breakToPiecesOrders(o3));
-        //file.addCommandToFile(file.breakToPiecesOrders(o4));
-        //file.addCommandToFile(file.breakToPiecesIngredients(ingredients));
-        //file.addCommandToFile(file.breakToPiecesIngredients(ingredients1));
-        //file.addCommandToFile(file.breakToPiecesIngredients(ingredients2));
-        //file.addCommandToFile(file.breakToPiecesPizza(p1));
-        //file.addCommandToFile(file.breakToPiecesPizza(p2));
-        //file.addCommandToFile(file.breakToPiecesMenu(menu));
-        //file.addCommandToFile(file.breakToPiecesUser(u1));
-
-        //file.gettingInformation("ORDER");
-        //file.gettingInformation("PIZZA");
-        //file.gettingInformation("INGREDIENT");
-        //file.gettingInformation("MENU");
-        //file.gettingInformation("USER");
+        file.addCommandToFile(file.breakToPiecesOrders(o1));
+        file.addCommandToFile(file.breakToPiecesOrders(o2));
+        file.addCommandToFile(file.breakToPiecesOrders(o3));
+        file.addCommandToFile(file.breakToPiecesOrders(o4));
+        file.addCommandToFile(file.breakToPiecesIngredients(ingredients));
+        file.addCommandToFile(file.breakToPiecesIngredients(ingredients1));
+        file.addCommandToFile(file.breakToPiecesIngredients(ingredients2));
+        file.addCommandToFile(file.breakToPiecesPizza(p1));
+        file.addCommandToFile(file.breakToPiecesPizza(p2));
+        file.addCommandToFile(file.breakToPiecesMenu(menu));
+        file.addCommandToFile(file.breakToPiecesUser(u1));
+    }
+}
 
         //file.deleteFile();
 
-*/
 
-        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
 
-        DateTime today = DateTime.Today;
-        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+//        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
 
-        string initStamp = today.ToString() + " " + now.ToString();
-        WriteIntoLogger(initStamp);
+//        DateTime today = DateTime.Today;
+//        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
 
-        var initResult = Project.INIT();
+//        string initStamp = today.ToString() + " " + now.ToString();
+//        WriteIntoLogger(initStamp);
 
-        if (initResult.user != null)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
-            Console.ResetColor();
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Request failed.");
-        }
-        Console.ResetColor();
+//        var initResult = Project.INIT();
 
-        WriteIntoLogger(initResult.Message);
+//        if (initResult.user != null)
+//        {
+//            Console.ForegroundColor = ConsoleColor.Green;
+//            Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
+//            Console.ResetColor();
+//        }
+//        else
+//        {
+//            Console.ForegroundColor = ConsoleColor.Red;
+//            Console.WriteLine("Request failed.");
+//        }
+//        Console.ResetColor();
 
-        var unloadResult = Project.UNLOAD();
-        WriteIntoLogger(unloadResult.Message);
-    }
-}
+//        WriteIntoLogger(initResult.Message);
 
-public class ProjectWrap
-{
-    public static void WriteIntoLogger(string message)
-    {
-        const string path = "Logger.txt";
+//        var unloadResult = Project.UNLOAD();
+//        WriteIntoLogger(unloadResult.Message);
+//    }
+//}
 
-        using (var Writer = File.AppendText(path))
-        {
-            Writer.WriteLine(message);
-        }
-    }
-}
+//public class ProjectWrap
+//{
+//    public static void WriteIntoLogger(string message)
+//    {
+//        const string path = "Logger.txt";
+
+//        using (var Writer = File.AppendText(path))
+//        {
+//            Writer.WriteLine(message);
+//        }
+//    }
+//}

@@ -35,25 +35,29 @@ namespace ProiectPOoSAM.Alex
             Constants.orderCount += 1;
             this.orderID = Constants.orderCount;
             this.totalPrice = calculateTotalPrice();
+            this.discount = 0;
+            this.isFeedback = false;
+            this.feedback = "";
+            this.rating = "";
             user.addOrder(this);
             user.SetFidelityCard(FidelityCard());
 
 
         }
 
-        public Orders(List<Pizza> pizzas, delivery deliveryMethod, USER user)
+        public Orders(int orderID, USER user, USER.Role role, List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, decimal discount, bool isFeedback, string feedback, string rating, DateTime date)
         {
+            this.orderID = orderID;
+            this.user = user;
+            this.role = role;
             this.pizzas = pizzas;
             this.deliveryMethod = deliveryMethod;
-            this.user = user;
-            Constants.orderCount += 1;
-            this.orderID = Constants.orderCount;
-            this.totalPrice = calculateTotalPrice();
-            user.addOrder(this);
-            user.SetFidelityCard(FidelityCard());
-
-
-
+            this.totalPrice = totalPrice;
+            this.discount = discount;
+            this.isFeedback = isFeedback;
+            this.feedback = feedback;
+            this.rating = rating;
+            this.date = date;
 
         }
 
@@ -66,6 +70,24 @@ namespace ProiectPOoSAM.Alex
         public decimal getTotalPrice() => totalPrice;
 
         public int getOrderID() => orderID;
+
+        public List<Pizza> getPizzasList() => pizzas;
+
+        public int getPizzasCount() => pizzas.Count;
+
+        public decimal getDiscount() => discount;
+
+        public bool getIsFeedback() => isFeedback;
+
+        public string getFeedback() => feedback;
+
+        public string getRating() => rating;
+
+        public DateTime getDate() => date;
+
+        public USER.Role getRole() => role;
+
+
 
 
         // Calculare pret comanda

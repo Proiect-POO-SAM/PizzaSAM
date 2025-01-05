@@ -1,4 +1,6 @@
 ﻿using ProiectPOOSAM;
+using System.Reflection.Metadata.Ecma335;
+using static ProiectPOoSAM.Alex.Pizza;
 
 namespace ProiectPOoSAM.Alex
 {
@@ -44,19 +46,18 @@ namespace ProiectPOoSAM.Alex
         // Metode pentru a descompune obiectele in stringuri
         public string breakToPiecesOrders(Orders order)
         {
-            var listPizzas = order.getPizzas();
-            var pizzasString = "";
-            foreach (Pizza pizza in listPizzas)
-            {
-                pizzasString += pizza.getName() + ",";
-            }
-            return $"ORDER,{order.getOrderID()},{order.getUsername()},{listPizzas.Count},{order.getDeliveryMethod()},{order.getTotalPrice()}";
+            var pizzaList = order.getPizzas();
+            var pizzaString = string.Join(";", pizzaList.Select(pizza => pizza.getName()));
+
+            return $"ORDER,{order.getOrderID()},{order.getUsername() ?? "N/A"},{order.getRole()},{order.getPizzasCount()},{pizzaString},{order.getDeliveryMethod()},{order.getTotalPrice()},{order.getDiscount()}" +
+                $",{order.getIsFeedback()},{order.getFeedback() ?? "N/A"},{order.getRating()},{order.getDate():yyyy-MM-dd}";
+
         }
 
 
         public string breakToPiecesIngredients(Ingredients ingredient)
         {
-            return $"INGREDIENT,{ingredient.getIngredientID()}{ingredient.getName()},{ingredient.getQuantity()},{ingredient.getPrice()}";
+            return $"INGREDIENT,{ingredient.getIngredientID()},{ingredient.getName()},{ingredient.getQuantity()},{ingredient.getPrice()}";
         }
 
 
@@ -92,7 +93,13 @@ namespace ProiectPOoSAM.Alex
 
         public string breakToPiecesUser(USER user)
         {
-            return $"USER,{user.GetUsername()},{user.GetPassword()},{user.GetRole()},{user.GetOrdersCount()}";
+            var orders = user.GetOrders();
+            var ordersString = "";
+            foreach (var order in orders)
+            {
+                ordersString += order.getOrderID() + ",";
+            }
+            return $"USER,{user.GetUserID}.{user.GetUsername()},{user.GetPassword()},{user.GetPhoneNumber()},{user.GetRole()},{user.AccessVerification()},{user.GetFidelityCard()},{user.GetSalt()},{ordersString}";
         }
 
         public string breakToPiecesPizzaSite(PizzaSite SITE)
@@ -170,49 +177,166 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
-        public void ReadingInformation()
-        {
-            string[] lines = File.ReadAllLines(Constants.filePath);
-            bool hasCommands = false;
+        // CITIRE FISIER SI CREARE OBIECT + ADAUGARE IN LISTA DE OBIECTE 
 
-            foreach (string line in lines)
+        public static Ingredients CreateIngredients(string line)
+        {
+            var elements = line.Split(',');
+
+            // Crearea obiectului Ingredients
+            return new Ingredients(
+                int.Parse(elements[1]),   // ID
+                elements[2],              // Name
+                int.Parse(elements[3]),   // Quantity
+                decimal.Parse(elements[4])// Price
+            );
+        }
+
+        public static Pizza CreatePizza(string line, List<Ingredients> allIngredients)
+        {
+            var elements = line.Split(',');
+
+            // Conversia dimensiunii curente
+            if (!Enum.TryParse(elements[3], out Dimensiune dimensiuneCurenta))
             {
-                var elements = line.Split(',');
-                if (elements.Length > 1) // Verificăm dacă linia conține comanda dorită
-                {
-                    hasCommands = true;
-                    switch (elements[0])
-                    {
-                        case "ORDER":
-                            
-                            break;
-                        case "INGREDIENT":
-                            
-                            break;
-                        case "USER":
-                            
-                            break;
-                        case "PIZZA":
-                           
-                            var ingredients = elements.Skip(5);
-                            foreach (var ingredient in ingredients)
-                            {
-                                Console.WriteLine($"- {ingredient}");
-                            }
-                            break;
-                        case "SITE":
-                            Console.WriteLine("Pizza Site Details:");
-                            Console.WriteLine($"Name: {elements[1]}");
-                            Console.WriteLine($"Location: {elements[2]}");
-                            break;
-                        default:
-                            break;
-                    }
-                    Console.WriteLine(Environment.NewLine);
-                }
+                throw new ArgumentException($"Dimensiunea '{elements[3]}' nu este validă.");
             }
 
+            // Conversia listei de ingrediente
+            var ingredientNames = elements.Skip(5).ToList();
+            var pizzaIngredients = allIngredients
+                .Where(ingredient => ingredientNames.Contains(ingredient.getName()))
+                .ToList();
+
+            // Crearea obiectului Pizza
+            return new Pizza(
+                int.Parse(elements[1]),        // pizzaID
+                elements[2],                   // name
+                dimensiuneCurenta,             // dimensiuneCurenta
+                pizzaIngredients,              // ingredients
+                bool.Parse(elements[5]),       // personalized
+                decimal.Parse(elements[4])     // price
+            );
         }
+
+        public static Orders CreateOrder(string line, List<USER> allUsers, List<Pizza> allPizzas)
+        {
+            var elements = line.Split(',');
+
+            // Conversia USER
+            var user = allUsers.FirstOrDefault(u => u.GetUsername() == elements[2]);
+            if (user == null)
+            {
+                throw new ArgumentException($"User-ul cu username '{elements[2]}' nu a fost găsit.");
+            }
+
+            // Conversia Role
+            if (!Enum.TryParse(elements[3], out USER.Role role))
+            {
+                throw new ArgumentException($"Rolul '{elements[3]}' nu este valid.");
+            }
+
+            // Conversia List<Pizza>
+            var pizzaNames = elements[4].Split(';').ToList();
+            var pizzas = allPizzas
+                .Where(pizza => pizzaNames.Contains(pizza.getName()))
+                .ToList();
+
+            if (pizzas.Count != pizzaNames.Count)
+            {
+                throw new ArgumentException("Unele nume de pizza nu au fost găsite în lista de pizze.");
+            }
+
+            // Conversia deliveryMethod
+            if (!Enum.TryParse(elements[5], out Orders.delivery deliveryMethod))
+            {
+                throw new ArgumentException($"Metoda de livrare '{elements[5]}' nu este validă.");
+            }
+
+            // Crearea obiectului Orders
+            return new Orders(
+                int.Parse(elements[1]),          // orderID
+                user,                            // user
+                role,                            // role
+                pizzas,                          // pizzas
+                deliveryMethod,                  // deliveryMethod
+                decimal.Parse(elements[6]),      // totalPrice
+                decimal.Parse(elements[7]),      // discount
+                bool.Parse(elements[8]),         // isFeedback
+                elements[9],                     // feedback
+                elements[10],                    // rating
+                DateTime.Parse(elements[11])     // date
+            );
+        }
+
+        public static USER CreateUser(string line)
+        {
+            var elements = line.Split(',');
+
+            // Conversia Role
+            if (!Enum.TryParse(elements[3], out USER.Role role))
+            {
+                throw new ArgumentException($"Rolul '{elements[3]}' nu este valid.");
+            }
+
+            // Crearea obiectului USER
+            return new USER(
+                int.Parse(elements[1]),   // ID
+                elements[2],              // Username
+                elements[3],              // Password
+                elements[4],              // PhoneNumber
+                role,                     // Role
+                bool.Parse(elements[6]),  // AccesToken
+                bool.Parse(elements[7]),   // FidelityCard
+                elements[8]               // Salt
+            );
+        }
+
+
+
+
+
+        public void initializeObjects()
+        {
+            var lines = File.ReadAllLines(Constants.filePath);
+            foreach (var line in lines)
+            {
+                if(line.StartsWith("USER"))
+                {
+                    var user = CreateUser(line);
+                    Constants.USERSLIST.Add(user);
+                }
+            }
+            foreach(var line in lines)
+            {
+                string[] elements = line.Split(',');
+                if (elements[0]== "INGREDIENT")
+                {
+                    var ingredient = CreateIngredients(line);
+                    Constants.INGREDIENTSLIST.Add(ingredient);
+                }
+            }
+            foreach (var line in lines)
+            {
+                string[] elements = line.Split(',');
+                if (elements[0] == "PIZZA")
+                {
+                    var pizza = CreatePizza(line, Constants.INGREDIENTSLIST);
+                    Constants.PIZZALIST.Add(pizza);
+                }
+            }
+            foreach (var line in lines)
+            {
+                string[] elements = line.Split(',');
+                if (elements[0] == "ORDER")
+                {
+                    var order = CreateOrder(line, Constants.USERSLIST, Constants.PIZZALIST);
+                    Constants.ORDERSLIST.Add(order);
+                }
+            }
+        }
+
+
 
         // Stergere fisier
         public void deleteFile()

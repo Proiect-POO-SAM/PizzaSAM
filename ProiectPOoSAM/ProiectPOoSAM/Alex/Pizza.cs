@@ -50,6 +50,16 @@ namespace ProiectPOoSAM.Alex
             pizzaID = Constants.pizzaCount;
         }
 
+        public Pizza(int pizzaID, string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized, decimal price)
+        {
+            this.pizzaID = pizzaID;
+            this.name = name;
+            this.dimensiuneCurenta = dimensiuneCurenta;
+            this.price = price;
+            this.ingredients = ingredients;
+            this.personalized = personalized;
+        }
+
         public string getName()
         {
             return name;
@@ -70,6 +80,12 @@ namespace ProiectPOoSAM.Alex
         {
             return pizzaID;
         }
+
+        public Dimensiune getDimensiune()
+        {
+            return dimensiuneCurenta;
+        }
+
 
 
         // Calculate price pizza
