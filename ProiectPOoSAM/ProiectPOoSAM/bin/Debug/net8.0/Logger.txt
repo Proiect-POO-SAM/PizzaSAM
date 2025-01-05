@@ -53,3 +53,20 @@ Unload succesful.
 Invalid username or password. Login failed
 Unload succesful.
 1/5/2025 12:00:00 AM 9:09 PM
+1/6/2025 12:00:00 AM 12:43 AM
+1/6/2025 12:00:00 AM 12:43 AM
+User mihai is registered successfully
+Unload succesful.
+1/6/2025 12:00:00 AM 12:48 AM
+1/6/2025 12:00:00 AM 12:49 AM
+User alex is registered successfully
+Unload succesful.
+1/6/2025 12:00:00 AM 12:49 AM
+User alex is logged in
+Unload succesful.
+1/6/2025 12:00:00 AM 12:57 AM
+1/6/2025 12:00:00 AM 12:57 AM
+Invalid Phone Number Format
+Unload succesful.
+1/6/2025 12:00:00 AM 12:58 AM
+Unload succesful.

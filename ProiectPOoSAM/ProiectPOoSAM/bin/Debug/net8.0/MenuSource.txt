@@ -1,17 +1,1 @@
-INGREDIENT,1,Mozzarella,100,8
-INGREDIENT,2,Sunca,100,7
-INGREDIENT,3,Ciuperci,100,6
-INGREDIENT,4,Ardei,100,5
-INGREDIENT,5,Masline,100,4
-INGREDIENT,6,Salami,100,9
-INGREDIENT,7,Ananas,100,5
-INGREDIENT,8,Ardei Iute,100,6
-INGREDIENT,9,Rosii,100,4
-PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci,Ardei,Masline
-PIZZA,2,Anei,small,40,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei
-PIZZA,3,Italiano,medium,50,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei,Masline
-PIZZA,4,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei,Ardei Iute
-PIZZA,5,Margherita,small,35,False,Mozzarella,Rosii
-PIZZA,6,Capriciosa,large,55,False,Mozzarella,Sunca,Masline,Ardei,Ciuperci
-PIZZA,7,Hawaiana,medium,48,False,Mozzarella,Sunca,Ananas,Salami
-PIZZA,8,Vegetariana,small,40,False,Mozzarella,Ardei,Masline,Ciuperci,Rosii
+ 
