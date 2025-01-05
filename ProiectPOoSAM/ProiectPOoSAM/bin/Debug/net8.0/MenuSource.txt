@@ -1,16 +1,17 @@
-ORDER,1,USER,Client,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
-ORDER,3,USER,Client,Quattro Stagioni;Dominic,Home,95,0,False,,,2025-01-05
-ORDER,4,USER,Client,Diavola,Home,55,0,False,,,2025-01-05
-ORDER,5,USER,Client,Quattro Stagioni;Patrocle,Home,90,0,False,,,2025-01-05
-ORDER,2,USER,Client,Quattro Stagioni;Patrocle;Patrocle;Patrocle;Patrocle;Quattro Stagioni;Quattro Stagioni;Quattro Stagioni;Dominic,Restaurant,365,0,False,,,2025-01-15
-INGREDIENT,1,Mozzarella,100,10
-INGREDIENT,1,Mozzarella,100,10
-INGREDIENT,2,Sunca,100,10
-INGREDIENT,2,Sunca,100,10
-INGREDIENT,3,Ciuperci,100,10
-PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,2,Patrocle,small,40,False,Mozzarella,Sunca,Ciuperci
-PIZZA,3,Dominic,medium,45,False,Mozzarella,Sunca,Ciuperci
-PIZZA,4,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci
-USER,1,USER,1234,+40711111111,Admin,True,True,,1;2;3;4;5;6
-USER,2,USER2,12345,+407222222232,Client,False,False,,N/A
+INGREDIENT,1,Mozzarella,100,8
+INGREDIENT,2,Sunca,100,7
+INGREDIENT,3,Ciuperci,100,6
+INGREDIENT,4,Ardei,100,5
+INGREDIENT,5,Masline,100,4
+INGREDIENT,6,Salami,100,9
+INGREDIENT,7,Ananas,100,5
+INGREDIENT,8,Ardei Iute,100,6
+INGREDIENT,9,Rosii,100,4
+PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci,Ardei,Masline
+PIZZA,2,Anei,small,40,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei
+PIZZA,3,Italiano,medium,50,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei,Masline
+PIZZA,4,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci,Salami,Ardei,Ardei Iute
+PIZZA,5,Margherita,small,35,False,Mozzarella,Rosii
+PIZZA,6,Capriciosa,large,55,False,Mozzarella,Sunca,Masline,Ardei,Ciuperci
+PIZZA,7,Hawaiana,medium,48,False,Mozzarella,Sunca,Ananas,Salami
+PIZZA,8,Vegetariana,small,40,False,Mozzarella,Ardei,Masline,Ciuperci,Rosii

@@ -134,11 +134,10 @@ namespace ProiectPOoSAM.Alex
         public override string ToString()
         {
             return $@"
-    Pizza Details:
+    {pizzaID}.Pizza Details:
     Name: {name}
     Size: {dimensiuneCurenta}
     Price: {price}
-    Personalized: {personalized}
     Ingredients:
     {string.Join(Environment.NewLine, ingredients.Select(ingredient => $"- {ingredient}"))}";
         }

@@ -74,9 +74,15 @@ namespace ProiectPOoSAM.Alex
 
         // ========================
 
+        public void showIngredient()
+        {
+            Console.WriteLine($"Ingredient ID: {ingredientID}");
+            Console.WriteLine($"Ingredient name: {name}");
+            Console.WriteLine($"Price: {price}");
+        }
         public override string ToString()
         {
-            return $"Ingredient: {name} with quantity {quantity} and price {price}";
+            return $"{name}";
         }
 
     }

@@ -1,8 +1,9 @@
 ﻿/* Participanti: Covaciu Sebastian-Adelin, Crisan Alex-Florin , Ignat Mihai-Alexandru */
 using ProiectPOoSAM.Alex;
 using ProiectPOOSAM;
+using Twilio.Rest.Insights.V1;
 namespace ProiectPOoSAM;
-public partial class Program /*: ProjectWrap*/
+public partial class Program : ProjectWrap
 {
     public static void Main(string[] args)
     {
@@ -14,146 +15,110 @@ public partial class Program /*: ProjectWrap*/
 
 
         file.initializeObjects(Constants.PIZZASLIST, Constants.USERLIST);
-        foreach (Pizza p in Constants.PIZZASLIST)
-        {
-            Console.WriteLine(p);
-        }
-        Console.WriteLine("=================");
-        foreach (USER u in Constants.USERLIST)
-        {
-            u.showUserDetails();
-        }
-        Console.WriteLine("=================");
 
-        foreach (Ingredients i in Constants.INGREDIENTSLIST)
+
+
+
+        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
+
+        DateTime today = DateTime.Today;
+        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+
+        //string initStamp = today.ToString() + " " + now.ToString();
+        //WriteIntoLogger(initStamp);
+
+        //var initResult = Project.INIT();
+
+        //if (initResult.user != null)
+        //{
+        //    Console.ForegroundColor = ConsoleColor.Green;
+        //    Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
+        //    Console.ResetColor();
+        //    if (initResult.user.GetRole() == "Admin")
+        //    {
+        //        Console.WriteLine("Ai acces la toate comenzile.");
+        //    }
+        //    else 
+        //    {
+        bool ok = true;
+        while (ok)
         {
-            Console.WriteLine(i);
-        }
-        Console.WriteLine("=================");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("--Welcome to PIZZERIA SAM !--");
+            Console.WriteLine("Please choose one of the following");
+            Console.WriteLine("1.MENU");
+            Console.WriteLine("2.ORDER PIZZA");
+            Console.WriteLine("3.EDIT ACCOUNT");
+            Console.WriteLine("4.EXIT");
+            Console.WriteLine(Environment.NewLine);
+            int optiune = int.Parse(Console.ReadLine());
+            switch (optiune)
+            {
+                case 1:
+                    foreach (var pizza in Constants.PIZZASLIST)
+                    {
+                        Console.WriteLine(pizza.ToString());
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Please choose a pizza from the menu");
+                    foreach (var pizza in Constants.PIZZASLIST)
+                    {
+                        Console.WriteLine(pizza.ToString());
+                    }
+                    int pizzaChoice = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Please choose the size of the pizza");
+                    Console.WriteLine("1.Small");
+                    Console.WriteLine("2.Medium");
+                    Console.WriteLine("3.Large");
+                    int sizeChoice = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Do you want to modify your pizza?"); // BIG WORK
+                    Console.WriteLine("1.Yes");
+                    Console.WriteLine("2.No");
+                    int personalChoice = int.Parse(Console.ReadLine());
+                    if (personalChoice == 0)
+                    {
+                    }
 
-        foreach (Orders o in Constants.ORDERSLIST)
+
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    Console.WriteLine("Please choose a valid option");
+                    break;
+            }
+        }
+    }
+
+    //}
+    //else
+    //{
+    //    Console.ForegroundColor = ConsoleColor.Red;
+    //    Console.WriteLine("Request failed.");
+    //}
+    //Console.ResetColor();
+
+    //WriteIntoLogger(initResult.Message);
+
+    //var unloadResult = Project.UNLOAD();
+    //WriteIntoLogger(unloadResult.Message);
+}
+//}
+
+public class ProjectWrap
+{
+    public static void WriteIntoLogger(string message)
+    {
+        const string path = "Logger.txt";
+
+        using (var Writer = File.AppendText(path))
         {
-            Console.WriteLine(o);
+            Writer.WriteLine(message);
         }
-
-        ;
-        //Console.WriteLine("Daca vezi asta ruleaza programul");
-        //USER u1 = new USER("USER", "1234", "+40711111111", USER.Role.Admin);
-        //USER u2 = new USER("USER2", "12345", "+407222222232", USER.Role.Client);
-        //Ingredients ingredients = new Ingredients("Mozzarella", 100, 10);
-        //Ingredients ingredients1 = new Ingredients("Sunca", 100, 10);
-        //Ingredients ingredients2 = new Ingredients("Ciuperci", 100, 10);
-        //List<Ingredients> ingredientsl = new List<Ingredients>();
-        //ingredientsl.Add(ingredients);
-        //ingredientsl.Add(ingredients1);
-        //ingredientsl.Add(ingredients2);
-        //Pizza p1 = new Pizza("Quattro Stagioni", 0, ingredientsl, false);
-        //Pizza p2 = new Pizza("Patrocle", 0, ingredientsl, false);
-        //Pizza p3 = new Pizza("Quattro Stagioni", 0, ingredientsl, false);
-        //Pizza p4 = new Pizza("Dominic", ingredientsl, false);
-        //Pizza p5 = new Pizza("Diavola", ingredientsl, false);
-        //List<Pizza> pizzas22 = new List<Pizza>();
-        //pizzas22.Add(p1);
-        //pizzas22.Add(p2);
-        //pizzas22.Add(p3);
-        //pizzas22.Add(p4);
-        //pizzas22.Add(p5);
-        //List<Pizza> pizzas1 = new List<Pizza>();
-        //pizzas1.Add(p1);
-        //pizzas1.Add(p1);
-        //pizzas1.Add(p1);
-        //pizzas1.Add(p1);
-        //pizzas1.Add(p1);
-        //pizzas1.Add(p2);
-        //pizzas1.Add(p2);
-        //pizzas1.Add(p3);
-        //pizzas1.Add(p3);
-        //pizzas1.Add(p4);
-        //pizzas1.Add(p5);
-        //List<Pizza> pizzas2 = new List<Pizza>();
-        //pizzas2.Add(p1);
-        //pizzas2.Add(p1);
-        //pizzas2.Add(p1);
-        //pizzas2.Add(p2);
-        //pizzas2.Add(p2);
-        //pizzas2.Add(p2);
-        //Menu menu = new Menu();
-        //Orders o1 = new Orders(new List<Pizza> { p1, p2, p2, p2, p2, p1, p3, p3, p4 }, new DateTime(2025, 1, 15), Orders.delivery.Restaurant, u1);
-        //Orders o6 = new Orders(new List<Pizza> { p1, p2, p2, p2, p2, p1, p3, p3, p4 }, new DateTime(2025, 1, 15), Orders.delivery.Restaurant, u1);
-        //o1.GetTotalIncome(u1, DateTime.Now, DateTime.Now.AddDays(1), Constants.ORDERSLIST);
-        //Orders o2 = new Orders(new List<Pizza> { p3, p4 }, DateTime.Now, 0, u1);
-        //Orders o3 = new Orders(new List<Pizza> { p5 }, DateTime.Now, 0, u1);
-        //Orders o4 = new Orders(new List<Pizza> { p1, p2 }, DateTime.Now, 0, u1);
-        //Orders o5 = new Orders(new List<Pizza> { p1, p2 }, DateTime.Now, 0, u1);
-        //AddRemoveChange.addOrder(o1, Constants.ORDERSLIST, file);
-        //AddRemoveChange.addOrder(o2, Constants.ORDERSLIST, file);
-        //AddRemoveChange.addOrder(o3, Constants.ORDERSLIST, file);
-        //AddRemoveChange.addOrder(o4, Constants.ORDERSLIST, file);
-        //AddRemoveChange.addOrder(o6, Constants.ORDERSLIST, file);
-        //AddRemoveChange.viewOrders(Constants.ORDERSLIST);
-        //Console.WriteLine("===================");
-        //AddRemoveChange.addIngredient(ingredients, Constants.INGREDIENTSLIST, file);
-        //AddRemoveChange.addIngredient(ingredients1, Constants.INGREDIENTSLIST, file);
-        //AddRemoveChange.addIngredient(ingredients2, Constants.INGREDIENTSLIST, file);
-        //AddRemoveChange.viewIngredients(Constants.INGREDIENTSLIST);
-        //Console.WriteLine("===================");
-        //AddRemoveChange.addPizza(p1, Constants.PIZZASLIST, file);
-        //AddRemoveChange.addPizza(p2, Constants.PIZZASLIST, file);
-        //AddRemoveChange.addPizza(p3, Constants.PIZZASLIST, file);
-        //AddRemoveChange.addPizza(p4, Constants.PIZZASLIST, file);
-        //AddRemoveChange.addPizza(p5, Constants.PIZZASLIST, file);
-        //AddRemoveChange.viewPizza(Constants.PIZZASLIST);
-        //Console.WriteLine("===================");
-        //AddRemoveChange.addUser(u1, Constants.USERLIST, file);
-        //AddRemoveChange.addUser(u2, Constants.USERLIST, file);
-        //AddRemoveChange.viewUsers(Constants.USERLIST);
-
     }
 }
 
-        //file.deleteFile();
 
-
-
-//        Console.WriteLine("Introdu date de test\n username: opel\n password: astra");
-
-//        DateTime today = DateTime.Today;
-//        TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
-
-//        string initStamp = today.ToString() + " " + now.ToString();
-//        WriteIntoLogger(initStamp);
-
-//        var initResult = Project.INIT();
-
-//        if (initResult.user != null)
-//        {
-//            Console.ForegroundColor = ConsoleColor.Green;
-//            Console.WriteLine($"\nBun venit, {initResult.user.GetUsername()}!");
-//            Console.ResetColor();
-//        }
-//        else
-//        {
-//            Console.ForegroundColor = ConsoleColor.Red;
-//            Console.WriteLine("Request failed.");
-//        }
-//        Console.ResetColor();
-
-//        WriteIntoLogger(initResult.Message);
-
-//        var unloadResult = Project.UNLOAD();
-//        WriteIntoLogger(unloadResult.Message);
-//    }
-//}
-
-//public class ProjectWrap
-//{
-//    public static void WriteIntoLogger(string message)
-//    {
-//        const string path = "Logger.txt";
-
-//        using (var Writer = File.AppendText(path))
-//        {
-//            Writer.WriteLine(message);
-//        }
-//    }
-//}
