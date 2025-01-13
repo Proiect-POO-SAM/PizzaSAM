@@ -14,7 +14,7 @@ namespace ProiectPOoSAM.Alex
         protected USER user;
         USER.Role role;
         protected List<Pizza> pizzas { get; set; }
-        public enum delivery { Home, Restaurant };
+        public enum delivery { home, restaurant };
         public delivery deliveryMethod;
         private decimal totalPrice;
         private decimal discount;
@@ -45,6 +45,7 @@ namespace ProiectPOoSAM.Alex
 
         }
 
+        // ala pentru fisier
         public Orders(int orderID, USER user, USER.Role role, List<Pizza> pizzas, delivery deliveryMethod, decimal totalPrice, decimal discount, bool isFeedback, string feedback, string rating, DateTime date)
         {
             this.orderID = orderID;
@@ -99,7 +100,7 @@ namespace ProiectPOoSAM.Alex
             {
                 pricing += pizza.getPrice();
             }
-            if (deliveryMethod == delivery.Home)
+            if (deliveryMethod == delivery.home)
             {
                 pricing += 10;
             }
@@ -121,10 +122,16 @@ namespace ProiectPOoSAM.Alex
             Console.WriteLine("Your rating (1-5):");
             var ratingNumber = Convert.ToInt32(Console.ReadLine());
             rating = new string('★', ratingNumber);
-            Console.WriteLine("Your feedback:");
+            while (ratingNumber < 1 || ratingNumber > 5)
+            {
+                Console.WriteLine("Rating must be between 1 and 5. Please enter again:");
+                ratingNumber = Convert.ToInt32(Console.ReadLine());
+            }
+            rating = new string('★', ratingNumber);
+            Console.WriteLine("Your feedback message:");
             feedback = Console.ReadLine();
             isFeedback = true;
-            Console.WriteLine(rating + " " + feedback);
+            Console.WriteLine(rating + Environment.NewLine + feedback);
         }
 
         public void feedbackOrder(string message, string rating)
@@ -168,16 +175,15 @@ namespace ProiectPOoSAM.Alex
 
         public decimal AllOrdersPrice(List<Orders> ORDERSLIST)
         {
-
             if (ORDERSLIST == null)
                 throw new InvalidOperationException("The order list is not initialized.");
 
             decimal totalPrice = 0;
+            DateTime today = DateTime.Today;
 
             foreach (Orders order in ORDERSLIST)
             {
-
-                if (order.date >= StartDate && order.date <= EndDate)
+                if (order.date.Date == today)
                 {
                     totalPrice += order.totalPrice;
                 }
@@ -246,7 +252,9 @@ namespace ProiectPOoSAM.Alex
 
         public override string ToString()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Order ID: {orderID}");
             sb.AppendLine("Order Details:");
             sb.AppendLine($"User: {user.GetUsername()}");
             sb.AppendLine("Pizzas:");

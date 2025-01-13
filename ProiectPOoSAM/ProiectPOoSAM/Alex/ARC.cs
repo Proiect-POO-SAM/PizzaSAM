@@ -1,4 +1,5 @@
 ﻿using ProiectPOOSAM;
+using static ProiectPOoSAM.Alex.Pizza;
 namespace ProiectPOoSAM.Alex
 {
     // ADD  / REMOVE  / CHANGE
@@ -164,8 +165,36 @@ namespace ProiectPOoSAM.Alex
             }
         }
 
-        
+        // ================== CREATE OBJECTS ==================
 
+
+        public static Ingredients CreateIngredients(string name, int quantity, decimal price)
+        {
+            Ingredients IAdd = new Ingredients(name, quantity, price);
+            Constants.INGREDIENTSLIST.Add(IAdd);
+            return IAdd;
+        }
+
+
+
+        public static Pizza CreatePizza(string name, string size, List<Ingredients> ingredients, bool personalized)
+        {
+            if (!Enum.TryParse(size, out Dimensiune dimensiuneCurenta))
+            {
+                throw new ArgumentException($"Dimensiunea '{size}' nu este validă.");
+            }
+
+            Pizza pTest = new Pizza(name, ingredients, dimensiuneCurenta, personalized);
+            Constants.PIZZASLIST.Add(pTest);
+            
+            // Adăugăm pizza în meniu
+            if (!personalized) // Adăugăm în meniu doar pizzele nepersonalizate
+            {
+                Constants.MENU.AddPizza(pTest);
+            }
+            
+            return pTest;
+        }
 
     }
 }

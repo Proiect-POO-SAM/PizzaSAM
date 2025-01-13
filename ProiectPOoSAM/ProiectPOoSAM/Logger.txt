@@ -1,0 +1,275 @@
+1/10/2025 12:00:00 AM 2:06 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 2:07 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 2:08 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 2:08 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 2:14 AM
+1/10/2025 12:00:00 AM 2:15 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 2:16 AM
+1/10/2025 12:00:00 AM 2:31 AM
+[2025-01-10 02:31:45] Login failed: Invalid username 'alex'
+Login failed: Invalid username 'alex'
+Unload succesful.
+1/10/2025 12:00:00 AM 2:32 AM
+1/10/2025 12:00:00 AM 2:32 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 2:33 AM
+[2025-01-10 02:33:16] Login failed: Invalid password for user 'alex'
+Login failed: Invalid password for user 'alex'
+Unload succesful.
+1/10/2025 12:00:00 AM 2:33 AM
+[2025-01-10 02:33:22] Login failed: Invalid password for user 'alex'
+Login failed: Invalid password for user 'alex'
+Unload succesful.
+1/10/2025 12:00:00 AM 2:34 AM
+[2025-01-10 02:34:32] Login failed: Invalid username 'alex'
+Login failed: Invalid username 'alex'
+Unload succesful.
+1/10/2025 12:00:00 AM 2:34 AM
+1/10/2025 12:00:00 AM 2:35 AM
+[2025-01-10 02:35:13] Login failed: Invalid username 'alex'
+Login failed: Invalid username 'alex'
+Unload succesful.
+1/10/2025 12:00:00 AM 2:38 AM
+1/10/2025 12:00:00 AM 2:39 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 2:39 AM
+[2025-01-10 02:39:35] Invalid username or password. Login failed
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 2:39 AM
+[2025-01-10 02:39:48] Invalid username or password. Login failed
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 2:41 AM
+[2025-01-10 02:41:24] Invalid username or password. Login failed
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 2:41 AM
+1/10/2025 12:00:00 AM 2:44 AM
+[2025-01-10 02:44:27] Invalid username or password. Login failed
+Invalid username or password
+Unload succesful.
+1/10/2025 12:00:00 AM 2:44 AM
+[2025-01-10 02:44:47] Invalid username or password. Login failed
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 2:51 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:00 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:01 AM
+Invalid username
+Unload succesful.
+1/10/2025 12:00:00 AM 3:03 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:05 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:05 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:06 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:11 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 3:13 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:13 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 3:13 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:14 AM
+Invalid username or password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 3:16 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:16 AM
+Invalid password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 3:17 AM
+Invalid password. Login failed
+Unload succesful.
+1/10/2025 12:00:00 AM 3:17 AM
+[2025-01-10 03:18:03] Login attempt for user 'ale'
+Stored password hash: D7B2BCA383EFAC92EC46C5CCCB5FD433AC708CBC3300999FF42B11656A736F31
+Stored salt: 961F3898EBD7E99EBE92C81CD5E660F8
+Computed hash for input: 8C616E06CD8A5D5B02090A5EEBA8CDEA9631365FBEF4AB014218C285C5131F91
+[2025-01-10 03:18:03] Login failed: Invalid password for user 'ale'
+[2025-01-10 03:18:03] Login failed: Invalid password for user 'ale'
+Unload succesful.
+1/10/2025 12:00:00 AM 3:20 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:20 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:20 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:20 AM
+1/10/2025 12:00:00 AM 3:21 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:21 AM
+Registration is disabled
+Unload succesful.
+1/10/2025 12:00:00 AM 3:24 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:24 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:24 AM
+Invalid username
+Unload succesful.
+1/10/2025 12:00:00 AM 3:24 AM
+Invalid username
+Unload succesful.
+1/10/2025 12:00:00 AM 3:25 AM
+1/10/2025 12:00:00 AM 3:25 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:25 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:27 AM
+1/10/2025 12:00:00 AM 3:27 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:27 AM
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:29 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 3:29 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Parolă incorectă pentru utilizatorul alex
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:29 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: client
+[LOGIN] Parolă incorectă pentru utilizatorul client
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:30 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: client
+[LOGIN] Autentificare reușită pentru client
+Unload succesful.
+1/10/2025 12:00:00 AM 3:31 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: client
+[LOGIN] Parolă incorectă pentru utilizatorul client
+Invalid password
+Unload succesful.
+1/10/2025 12:00:00 AM 3:31 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+Unload succesful.
+1/10/2025 12:00:00 AM 3:31 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 3:33 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+Unload succesful.
+1/10/2025 12:00:00 AM 3:33 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:33 AM
+1/10/2025 12:00:00 AM 3:38 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 3:38 AM
+1/10/2025 12:00:00 AM 3:47 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+Unload succesful.
+1/10/2025 12:00:00 AM 3:48 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:50 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 3:51 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: yo
+[LOGIN] Autentificare reușită pentru yo
+1/10/2025 12:00:00 AM 3:51 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: yo
+[LOGIN] Autentificare reușită pentru yo
+Unload succesful.
+1/10/2025 12:00:00 AM 3:53 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: yo
+[LOGIN] Autentificare reușită pentru yo
+1/10/2025 12:00:00 AM 3:57 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 3:58 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 4:07 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 4:07 AM
+Unload succesful.
+1/10/2025 12:00:00 AM 4:09 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/10/2025 12:00:00 AM 4:09 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: oy
+[LOGIN] Autentificare reușită pentru oy
+1/11/2025 12:00:00 AM 4:58 PM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+Unload succesful.
+1/11/2025 12:00:00 AM 4:59 PM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+Unload succesful.
+1/11/2025 12:00:00 AM 5:00 PM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/11/2025 12:00:00 AM 5:06 PM
+[LOGIN] Încercare de autentificare pentru utilizatorul: admin
+[LOGIN] Autentificare reușită pentru admin
+Unload succesful.
+1/13/2025 12:00:00 AM 9:46 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+1/13/2025 12:00:00 AM 9:47 AM
+[LOGIN] Încercare de autentificare pentru utilizatorul: alex
+[LOGIN] Autentificare reușită pentru alex
+1/13/2025 12:00:00 AM 10:25 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 10:44 PM
+1/13/2025 12:00:00 AM 10:48 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 10:48 PM
+1/13/2025 12:00:00 AM 10:53 PM
+1/13/2025 12:00:00 AM 10:54 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 10:55 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 10:57 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 10:59 PM
+1/13/2025 12:00:00 AM 11:01 PM
+Unload succesful.
+1/13/2025 12:00:00 AM 11:02 PM
+1/13/2025 12:00:00 AM 11:03 PM
+Unload succesful.

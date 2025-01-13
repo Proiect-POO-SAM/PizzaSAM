@@ -27,28 +27,28 @@ public abstract class HandleRequest : Wrapper
     /// 
     /// </summary>
     /// name= SEBASTIAN.ADELIN
-    
-    
+
+
     // nu cred ca ii critic ca astea sa fie private
     public class RequestResult
     {
         public USER user { get; set; }
         public string Message { get; set; }
     }
-    
-    
+
+
 
     public static RequestResult Handle_Login(string username, string password)
     {
         try
         {
-            if (AllUsers == null)
+            if (Constants.USERLIST == null)
             {
                 return new RequestResult { user = null, Message = "User list is not initialized." };
             }
-            
+
             // cautare dupa username
-            USER user = AllUsers.FirstOrDefault(u => u.GetUsername() == username);
+            USER user = Constants.USERLIST.FirstOrDefault(u => u.GetUsername() == username);
             if (user == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -56,16 +56,9 @@ public abstract class HandleRequest : Wrapper
                 Console.ResetColor();
                 return new RequestResult { user = null, Message = "Invalid username or password. Login failed" };
             }
-            
-            
-            // ia saltul specific utilizatorului
-            string storedSALT = user.GetSalt();
-            
-            // construieste o parola hashuita cu el
-            string hasedINPUT = VerifyHashedPassword.HashVerifyHandle(password,storedSALT);
-            
+
             // vf parola construita cu cea stocata
-            if (user.GetPassword() != hasedINPUT)
+            if (VerifyHashedPassword.VerifyPassword(password, user.GetSalt(), user.GetPassword()))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("V-ati loggat cu numele de utilizator ");
@@ -76,10 +69,11 @@ public abstract class HandleRequest : Wrapper
                 {
                     Console.Write(" cu drepturi de administrator.");
                 }
-                
+
                 Console.ResetColor();
                 return new RequestResult { user = user, Message = $"User {username} is logged in" };
             }
+
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Loggare esuata. Username/Parola incorecta!");
             Console.ResetColor();
@@ -93,58 +87,59 @@ public abstract class HandleRequest : Wrapper
             return new RequestResult { user = null, Message = $"Error: {ex.Message}" };
         }
     }
-    
+
 
     public static RequestResult Handle_Register(string username, string password, string phone)
     {
         // Verificăm dacă username-ul există deja
-        if (AllUsers.Any(u => u.GetUsername() == username))
+        if (Constants.USERLIST.Any(u => u.GetUsername() == username))
         {
             Console.WriteLine("Username deja existent!");
             return new RequestResult { user = null, Message = "Registration failed: Username already exists." };
         }
-        
+
         string iloggerMessage = "";
         try
-        {    
+        {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(phone))
             {
                 //af msg consola
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("Campurile username si numar de telefon sunt obligatorii!");
                 Console.ResetColor();
-                
+
                 // ilogger
                 return new RequestResult { user = null, Message = "Username or phone cannot be empty." };
             }
 
-            if(PhoneFORMAT(phone))
+            if (PhoneFORMAT(phone))
             {
-                string hash_pass = HashPassword.HashHandle(password).hash;
-                string SALT = HashPassword.HashHandle(password).salt;
-                
-                USER user = new USER(username, hash_pass, phone,USER.Role.Client, SALT);
-                AllUsers.Add(user);
-                
+                var hashHandle = HashPassword.HashHandle(password);
+                string hash_pass = hashHandle.hash;
+                string SALT = hashHandle.salt;
+
+                USER user = new USER(username, hash_pass, phone, USER.Role.Client, SALT);
+                Constants.USERLIST.Add(user);
+
                 iloggerMessage = "User " + username + " is registered successfully";
-                
+
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Clientul {username} este intregistrat.");
                 Console.ResetColor();
                 return new RequestResult { user = user, Message = iloggerMessage };
             }
-            
+
             iloggerMessage = "Invalid Phone Number Format";
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Formatul numarului de telefon este invalid");
             return new RequestResult { user = null, Message = iloggerMessage };
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Eroare in cadrul inregistrarii in aplicatie: " + ex.Message);
             Console.ResetColor();
-            return new RequestResult { user = null, Message = iloggerMessage + "\nERROR: " +ex.Message };
+            return new RequestResult { user = null, Message = iloggerMessage + "\nERROR: " + ex.Message };
         }
     }
 
@@ -162,7 +157,7 @@ public abstract class HandleRequest : Wrapper
                 }
             }
         }
-        else if(phone.Length == 10 && phone.StartsWith("07") && phone.All(char.IsDigit))
+        else if (phone.Length == 10 && phone.StartsWith("07") && phone.All(char.IsDigit))
         {
             return true;
         }
@@ -170,14 +165,6 @@ public abstract class HandleRequest : Wrapper
         return false;
     }
 
-
-    /// <sumary>
-    /// hash-uirea parolelor
-    ///
-    ///     functia HashHandle -> primeste parola si un salt
-    ///                        -> returneaza parola hash-uita si saltul (ei in hexa) sub forma de sting
-    /// 
-    /// <sumary/>
 
 
     public class HashPassword
@@ -187,36 +174,31 @@ public abstract class HandleRequest : Wrapper
             byte[] saltBytes = new byte[16];
             using (var rng = new RNGCryptoServiceProvider())
             {
-                rng.GetBytes(saltBytes);    // genereaza un salt random
+                rng.GetBytes(saltBytes); // genereaza salt aleator
             }
-            
+
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                
-                // adauga saltul la parola
-                byte[] passwordWithSaltBytes = Combine(passwordBytes, saltBytes);
-                
-                // parola + saltul hash-uit
-                byte[] hashBytes = sha256.ComputeHash(passwordWithSaltBytes);
+                byte[] passwordWithSaltBytes = Combine(passwordBytes, saltBytes); // combina parola si saltul
+                byte[] hashBytes = sha256.ComputeHash(passwordWithSaltBytes); // calculeaz hash-ul
 
-                //                         hash-ul                      salt-ul             string (in format hex)
                 return (ConvertToHex(hashBytes), ConvertToHex(saltBytes));
             }
         }
-        
-        
+
         private static string ConvertToHex(byte[] bytes)
         {
-            StringBuilder hex = new StringBuilder(bytes.Length * 2); // alocare memorie
+            StringBuilder hex = new StringBuilder(bytes.Length * 2);
             foreach (byte b in bytes)
             {
-                hex.Append(b.ToString("X2")); // 1 byte = 2 caractere hex
+                hex.Append(b.ToString("X2"));
             }
+
             return hex.ToString();
         }
-        
-        // fct combina doua byte array-uri
+
+        // combinarea a doua array-uri de byte
         private static byte[] Combine(byte[] first, byte[] second)
         {
             byte[] combined = new byte[first.Length + second.Length];
@@ -226,22 +208,34 @@ public abstract class HandleRequest : Wrapper
         }
     }
 
-
     public class VerifyHashedPassword
     {
-        public static string HashVerifyHandle(string enteredPassword, string storedSalt)
+        public static bool VerifyPassword(string password, string storedSalt, string storedHash)
         {
             byte[] saltBytes = ConvertFromHex(storedSalt);
-            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
-            byte[] passwordWithSaltBytes = Combine(enteredPasswordBytes, saltBytes);
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            byte[] passwordWithSaltBytes = Combine(passwordBytes, saltBytes); // combin parola si saltul
 
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] hashBytes = sha256.ComputeHash(passwordWithSaltBytes);
+                byte[] hashBytes =
+                    sha256.ComputeHash(passwordWithSaltBytes); // calculeaza hash-ul din parola + salt
                 string enteredHash = ConvertToHex(hashBytes);
 
-                return enteredHash;
+                return enteredHash == storedHash;
             }
+        }
+
+        // string hex in array de byte
+        private static byte[] ConvertFromHex(string hex)
+        {
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+            }
+
+            return bytes;
         }
 
         private static byte[] Combine(byte[] first, byte[] second)
@@ -256,18 +250,11 @@ public abstract class HandleRequest : Wrapper
         {
             StringBuilder hex = new StringBuilder(bytes.Length * 2);
             foreach (byte b in bytes)
+            {
                 hex.Append(b.ToString("X2"));
+            }
+
             return hex.ToString();
         }
-
-        private static byte[] ConvertFromHex(string hex)
-        {
-            byte[] bytes = new byte[hex.Length / 2];
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
-            }
-            return bytes;
-        }
-    }   
+    }
 }

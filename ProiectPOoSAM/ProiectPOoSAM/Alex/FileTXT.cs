@@ -20,7 +20,6 @@ namespace ProiectPOoSAM.Alex
             else
             {
                 File.AppendAllText(PathFile, content + Environment.NewLine);
-                Console.WriteLine("Comanda a fost adaugata!");
             }
 
         }
@@ -29,7 +28,7 @@ namespace ProiectPOoSAM.Alex
             string[] lines = File.ReadAllLines(Constants.filePath);
             return lines;
         }
-        
+
         public void removeCommandFromFile(string command)
         {
             string[] lines = File.ReadAllLines(Constants.filePath);
@@ -108,7 +107,7 @@ namespace ProiectPOoSAM.Alex
             }
 
             // Returnăm linia formatată
-            return $"USER,{user.GetUserID()},{user.GetUsername()},{user.GetPassword()},{user.GetPhoneNumber()},{user.GetRole()},{user.AccessVerification()},{user.GetFidelityCard()},{user.GetSalt()},{ordersString}";
+            return $"USER,{user.GetUsername()},{user.GetPassword()},{user.GetPhoneNumber()},{user.GetRole()},{user.AccessVerification()},{user.GetFidelityCard()},{user.GetSalt()},{ordersString}";
         }
 
 
@@ -195,9 +194,9 @@ namespace ProiectPOoSAM.Alex
             var existingIngredient = Constants.INGREDIENTSLIST.FirstOrDefault(ingredient => ingredient.getName() == elements[2]);
 
 
-            if(existingIngredient != null)
+            if (existingIngredient != null)
             {
-                
+
                 existingIngredient.AddQuantity(int.Parse(elements[3]));
                 return null;
             }
@@ -214,6 +213,10 @@ namespace ProiectPOoSAM.Alex
 
         public static Pizza CreatePizza(string line, List<Ingredients> allIngredients)
         {
+            if (line == null)
+            {
+                throw new ArgumentNullException(nameof(line));
+            }
             var elements = line.Split(',');
 
             // Conversia dimensiunii curente
@@ -310,23 +313,19 @@ namespace ProiectPOoSAM.Alex
         public static USER CreateUser(string line)
         {
             var elements = line.Split(',');
+            if (elements[0] != "USER" || elements.Length < 8)
+                return null;
 
-            if (!Enum.TryParse(elements[5], out USER.Role role))
-            {
-                throw new ArgumentException($"Rolul '{elements[5]}' nu este valid.");
-            }
+            USER.Role role = (USER.Role)Enum.Parse(typeof(USER.Role), elements[4]);
 
-            // Crearea obiectului USER
             return new USER(
-                int.Parse(elements[1]),   // ID
-                elements[2],              // Username
-                elements[3],              // Password
-                elements[4],              // PhoneNumber
+                elements[1],              // Username
+                elements[2],              // Password
+                elements[3],              // PhoneNumber
                 role,                     // Role
-                bool.Parse(elements[6]),  // AccesToken
-                bool.Parse(elements[7]),  // FidelityCard
-                elements[8]              // Salt
-                //orders                    // Orders
+                bool.Parse(elements[5]),  // AccesToken
+                bool.Parse(elements[6]),  // FidelityCard
+                elements[7]               // Salt
             );
         }
 
@@ -337,13 +336,13 @@ namespace ProiectPOoSAM.Alex
 
         public void initializeObjects(List<Pizza> pizzaList, List<USER> userList)
         {
-            if(!File.Exists(Constants.filePath))
+            if (!File.Exists(Constants.filePath))
             {
                 Console.WriteLine("Fisierul nu exista!");
                 return;
             }
             var lines = File.ReadAllLines(Constants.filePath);
-            if(lines.Length == 0)
+            if (lines.Length == 0)
             {
                 Console.WriteLine("Fisierul este gol!");
                 return;
@@ -363,7 +362,8 @@ namespace ProiectPOoSAM.Alex
                 {
                     var ingredient = CreateIngredients(line);
                     if (ingredient != null)
-                    Constants.INGREDIENTSLIST.Add(ingredient);
+                        Constants.INGREDIENTSLIST.Add(ingredient);
+                    Constants.ingredientCount++;
                 }
             }
             foreach (var line in lines)
@@ -373,6 +373,7 @@ namespace ProiectPOoSAM.Alex
                 {
                     var pizza = CreatePizza(line, Constants.INGREDIENTSLIST);
                     pizzaList.Add(pizza);
+                    Constants.pizzaCount++;
                 }
             }
             foreach (var line in lines)
@@ -382,8 +383,20 @@ namespace ProiectPOoSAM.Alex
                 {
                     var order = CreateOrder(line, userList, pizzaList);
                     Constants.ORDERSLIST.Add(order);
+                    Constants.orderCount++;
                 }
             }
+            foreach (var user in Constants.USERLIST)
+            {
+                foreach (var order in Constants.ORDERSLIST)
+                {
+                    if (user.GetUsername() == order.getUsername())
+                    {
+                        user.addOrder(order);
+                    }
+                }
+            }
+
         }
 
 
@@ -391,77 +404,8 @@ namespace ProiectPOoSAM.Alex
         // Stergere fisier
         public void deleteFile()
         {
-            File.Delete(Constants.filePath);
-            Console.WriteLine("Fisierul a fost sters!");
+            // Ștergem doar conținutul MenuSource.txt
+            File.WriteAllText(Constants.filePath, string.Empty);
         }
-
-        // WORK IN PROGRESSS
-
-        //public Pizza CreatePizza(string pizzaString)
-        //{
-        //    // Împarte string-ul primit în elemente pe baza separatorului ','
-        //    var elements = pizzaString.Split(',');
-
-        //    // Verifică dacă string-ul conține suficiente elemente
-        //    if (elements.Length < 5)
-        //    {
-        //        throw new ArgumentException("String-ul pizzaString nu conține suficiente elemente pentru a crea o Pizza.");
-        //    }
-
-        //    // Extrage numele pizzei
-        //    var name = elements[1];
-
-        //    // Determină dimensiunea pizzei pe baza valorii string-ului
-        //    Dimensiune size;
-        //    if (elements[2].ToLower() == "small")
-        //    {
-        //        size = Dimensiune.small;
-        //    }
-        //    else if (elements[2].ToLower() == "medium")
-        //    {
-        //        size = Dimensiune.medium;
-        //    }
-        //    else if (elements[2].ToLower() == "large")
-        //    {
-        //        size = Dimensiune.large;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException($"Dimensiunea specificată '{elements[2]}' nu este validă.");
-        //    }
-
-        //    // Conversie sigură pentru preț
-        //    if (!decimal.TryParse(elements[3], out var price))
-        //    {
-        //        throw new FormatException($"Valoarea '{elements[3]}' nu este un preț valid.");
-        //    }
-
-        //    // Conversie sigură pentru flag-ul personalized
-        //    if (!bool.TryParse(elements[4], out var personalized))
-        //    {
-        //        throw new FormatException($"Valoarea '{elements[4]}' nu este un boolean valid.");
-        //    }
-
-        //    // Obține lista de ingrediente (dacă există)
-        //    var ingredients = elements.Length > 5 ? elements.Skip(5).ToList() : new List<string> { "DefaultIngredient" };
-
-        //    // Creează obiectul Pizza
-        //    var pizza = new Pizza(name, size, ingredients, personalized, price);
-
-        //    return pizza;
-        //}
-
-        ////public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized)
-
-
-        //public Ingredients CreateIngredient(string ingredientString)
-        //{
-        //    var elements = ingredientString.Split(',');
-        //    var name = elements[1];
-        //    var quantity = int.Parse(elements[2]);
-        //    var price = decimal.Parse(elements[3]);
-
-        //    return new Ingredients(name, quantity, price);
-        //}
     }
 }

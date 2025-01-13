@@ -18,27 +18,28 @@ namespace ProiectPOoSAM.Alex
 
         // 2 constructori pentru pizza personalizat | nepersonalizat
 
-        public Pizza(string name, List<Ingredients> ingredients, bool personalized)
-        {
-            this.name = name;
-            this.ingredients = ingredients;
-            this.personalized = personalized;
-            dimensiuneCurenta = Dimensiune.medium;
-            price = calculatePrice();
-            Constants.pizzaCount += 1;
-            pizzaID = Constants.pizzaCount;
-        }
+public Pizza(string name, List<Ingredients> ingredients, Dimensiune dimensiuneCurenta, bool personalized)
+{
+    this.name = name;
+    this.ingredients = ingredients;
+    this.personalized = personalized;
+    this.dimensiuneCurenta = dimensiuneCurenta;
+    price = calculatePrice();
+    Constants.pizzaCount += 1;
+    pizzaID = Constants.pizzaCount;
+}
         public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized)
         {
-            this.name = name;
-            this.dimensiuneCurenta = dimensiuneCurenta;
-            this.ingredients = ingredients;
-            this.personalized = personalized;
-            price = calculatePrice();
-            Constants.pizzaCount += 1;
-            pizzaID = Constants.pizzaCount;
+           this.name = name;
+           this.dimensiuneCurenta = dimensiuneCurenta;
+           this.ingredients = ingredients;
+           this.personalized = personalized;
+           price = calculatePrice();
+           Constants.pizzaCount += 1;
+           pizzaID = Constants.pizzaCount;
         }
 
+        // Pentru citire fisier
         public Pizza(string name, Dimensiune dimensiuneCurenta, List<Ingredients> ingredients, bool personalized, decimal price)
         {
             this.name = name;
@@ -140,6 +141,26 @@ namespace ProiectPOoSAM.Alex
     Price: {price}
     Ingredients:
     {string.Join(Environment.NewLine, ingredients.Select(ingredient => $"- {ingredient}"))}";
+        }
+
+        public bool CanBeMade()
+        {
+            foreach (var ingredient in ingredients)
+            {
+                if (ingredient.getQuantity() <= 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void DecreaseIngredients()
+        {
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.modifyQuantity(ingredient.getQuantity() - 1);
+            }
         }
 
     }

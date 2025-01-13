@@ -1,1 +1,24 @@
- 
+USER,tu,7F82AECF4897EBE3F377AEFB8E5E8C17F1AE664CD0ABB57961B185370EBA40B7,0771277906,Client,False,False,8A5320AA1294E90A21324E6DBC4AABA7,1
+USER,admin,F371E9AD9228493E0C9C38247296476033CAA3CEE4C5F4876D64BC0BF5001A80,0771277906,Admin,True,False,9DDBA04ABE79B4C700DD3A4659BA2A9A,2;3;4;5
+INGREDIENT,1,Mozzarella,94,8
+INGREDIENT,2,Sunca,94,7
+INGREDIENT,3,Ciuperci,95,6
+INGREDIENT,4,Ardei,95,5
+INGREDIENT,5,Masline,100,4
+INGREDIENT,6,Salami,94,9
+INGREDIENT,7,Ananas,99,5
+INGREDIENT,8,Ardei Iute,96,6
+INGREDIENT,9,Rosii,100,4
+INGREDIENT,10,Chorizo,100,4
+PIZZA,1,Quattro Stagioni,small,40,False,Mozzarella,Sunca,Ciuperci,Ardei,Masline
+PIZZA,2,Anei,small,40,False,Mozzarella,Sunca,Ciuperci,Ardei,Salami
+PIZZA,3,Italiano,medium,50,False,Mozzarella,Sunca,Ciuperci,Ardei,Masline,Salami
+PIZZA,4,Diavola,medium,45,False,Mozzarella,Sunca,Ciuperci,Ardei,Salami,Ardei Iute
+PIZZA,5,Margherita,small,35,False,Mozzarella,Rosii
+PIZZA,6,Capriciosa,large,55,False,Mozzarella,Sunca,Ciuperci,Ardei,Masline
+PIZZA,7,Hawaiana,medium,48,False,Mozzarella,Sunca,Salami,Ananas
+PIZZA,8,Vegetariana,small,40,False,Mozzarella,Ciuperci,Ardei,Masline,Rosii
+PIZZA,9,IoTu,large,50,False,Mozzarella,Sunca,Ciuperci,Ardei,Chorizo
+ORDER,1,tu,Client,IoTu;Quattro Stagioni,home,207,0,True,sabadaladindong,★★★★★,2025-01-13
+ORDER,3,admin,Client,IoTu,home,80,0,False,,,2025-01-13
+ORDER,4,admin,Client,IoTu,restaurant,70,0,False,,,2025-01-13

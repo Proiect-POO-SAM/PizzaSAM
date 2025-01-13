@@ -1,13 +1,12 @@
-using ProiectPOOSAM;
+﻿using ProiectPOOSAM;
 using ProiectPOoSAM.Alex;
 using Microsoft.VisualBasic;
 using ProiectPOoSAM;
-
+using Constants = ProiectPOoSAM.Constants;
 namespace ProiectPOOSAM
 {
-    public class USER : Wrapper
+    public class USER
     {
-        private int userID;
         protected string username;
         protected string password;
         private string phoneNumber;
@@ -16,9 +15,7 @@ namespace ProiectPOOSAM
         private bool fidelityCard;
         private string salt;
 
-        Dictionary<string, string> AllUsers = new Dictionary<string, string>();
-        List<Orders> listOrders;
-
+        private List<Orders> listOrders = new List<Orders>();
         public enum Role  // <-- mai mult pt a eticheta 
         {
             Client,   // (prima e default pt Enum)
@@ -34,8 +31,6 @@ namespace ProiectPOOSAM
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
             this.fidelityCard = false;
-            ProiectPOoSAM.Constants.userCount += 1;
-            this.userID = ProiectPOoSAM.Constants.userCount;
         }
         public USER(string username, string password, string phone, Role role, string salt)
         {
@@ -46,8 +41,6 @@ namespace ProiectPOOSAM
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
             this.fidelityCard = false;
-            ProiectPOoSAM.Constants.userCount += 1;
-            this.userID = ProiectPOoSAM.Constants.userCount;
             this.salt = salt;
         }
         public USER(string username, string password, string phone, Role role, bool fidelityCard)
@@ -59,13 +52,10 @@ namespace ProiectPOOSAM
             this.accesToken = role == Role.Admin ? true : false;
             this.listOrders = null;
             this.fidelityCard = fidelityCard;
-            ProiectPOoSAM.Constants.userCount += 1;
-            this.userID = ProiectPOoSAM.Constants.userCount;
         }
 
-        public USER(int userID, string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt)
+        public USER(string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt)
         {
-            this.userID = userID;
             this.username = username;
             this.password = password;
             this.phoneNumber = phoneNumber;
@@ -75,9 +65,8 @@ namespace ProiectPOOSAM
             this.salt = salt;
         }
 
-        public USER(int userID, string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt, List<Orders> orders)
+        public USER(string username, string password, string phoneNumber, Role role, bool accesToken, bool fidelityCard, string salt, List<Orders> orders)
         {
-            this.userID = userID;
             this.username = username;
             this.password = password;
             this.phoneNumber = phoneNumber;
@@ -94,17 +83,11 @@ namespace ProiectPOOSAM
         public string GetRole() => role.ToString();
         public bool AccessVerification() => accesToken;
 
-        public int GetUserID() => userID;
 
 
         public int GetOrdersCount() => listOrders==null ? 0 : listOrders.Count;
         
         // vf valabilitatea unui username (pt functia register)
-        public bool Exists(string username)
-        {
-            return AllUsers.ContainsKey(username);
-        }
-
         public bool GetFidelityCard()
         {
             return fidelityCard;
@@ -133,20 +116,40 @@ namespace ProiectPOOSAM
             {
                 listOrders = new List<Orders>();
             }
-            listOrders.Add(order);
+            else
+            {
+                listOrders.Add(order);
+            }
+
         }
 
+public void viewOrders()
+{
+    if (Constants.ORDERSLIST == null || Constants.ORDERSLIST.Count == 0)
+    {
+        Console.WriteLine("No orders found.");
+        return;
+    }
+
+    var userOrders = Constants.ORDERSLIST
+        .Where(o => o.getUsername() == this.GetUsername())
+        .OrderByDescending(o => o.getDate())
+        .ToList();
+
+    if (!userOrders.Any())
+    {
+        Console.WriteLine("You have no orders.");
+        return;
+    }
+
+    Console.WriteLine("\n=== Your Orders ===");
+    foreach (var order in userOrders)
+    {
+        Console.WriteLine(order.ToString());
+    }
+}
 
 
-        // schimbarea parolei unui utilizator de catre admin
-
-        public void DeleteAccount(string username, string parola)
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            AllUsers.Remove(username);
-            Console.WriteLine("Process Finalized.");
-            Console.ResetColor();
-        }
 
         public string SaveFormat()
         {
@@ -176,6 +179,11 @@ public abstract class Wrapper
     public static bool IsPhoneNumber(string input)
     {
         return input.StartsWith("+40") && input.Length == 12 && input.Substring(3).All(char.IsDigit);
+    }
+
+    public List<USER> GetAllUsers()
+    {
+        return AllUsers;
     }
     
     public static string LoadUsers()
@@ -215,8 +223,23 @@ public abstract class Wrapper
                     }
                     try
                     {
-                        USER user = new USER(lines[0], lines[1], lines[2], role, lines[4]);
-                        AllUsers.Add(user);
+                        // Găsește utilizatorul în Constants.USERLIST după username
+                        var existingUser = Constants.USERLIST.FirstOrDefault(user => user.GetUsername() == lines[0]);
+
+                        if (existingUser != null)
+                        {
+                            // Dacă utilizatorul există, doar adăugăm mesajul de skip
+                            additionalMessage += $" Skipped Line '{line}' for duplicate username //";
+                            continue; // Trecem la următoarea linie
+                        }
+                        else
+                        {
+                            // Dacă utilizatorul nu există, creează unul nou și îl adaugă
+                            USER userAdd = new USER(lines[0], lines[1], lines[2], role, lines[4]);
+                            Constants.USERLIST.Add(userAdd);
+                        }
+
+
                     }
                     catch (Exception ex)
                     {
@@ -244,6 +267,7 @@ public abstract class Wrapper
     }
     public static string SaveUsers()
     {
+        FileTXT file = new FileTXT();
         try
         {
             using (StreamWriter Write = new StreamWriter(SourceFile))
@@ -252,8 +276,9 @@ public abstract class Wrapper
                 {
                     Write.WriteLine(X.SaveFormat());
                 }
-
                 Console.WriteLine("Data Saved");
+                foreach (USER user in AllUsers)
+                    file.addCommandToFile(file.breakToPiecesUser(user));
                 return "Users Saved to file";
             }
         }

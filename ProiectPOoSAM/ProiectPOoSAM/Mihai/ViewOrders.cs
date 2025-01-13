@@ -18,10 +18,11 @@ public class ViewOrders
         List<Orders> filteredOrders = new List<Orders>();
         foreach (var order in orders)
         {
-            if (order.date.Date == date.Date)
+            if (order.getDate().Date == date.Date)
             {
                 filteredOrders.Add(order);
             }
+
         }
         return filteredOrders;
     }

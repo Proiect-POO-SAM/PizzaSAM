@@ -8,7 +8,6 @@ namespace ProiectPOoSAM.Mihai;
 public class RaportPizzaPopulare : Orders
 {
     private USER user;
-    USER.Role role;
     private Dictionary<string, int> PizzaPopularity;
     private DateTime DateTime;
     public RaportPizzaPopulare(List<Pizza> pizzas,DateTime dateTime, delivery deliveryMethod, USER user) : base(pizzas,dateTime,deliveryMethod,user)
@@ -22,37 +21,41 @@ public class RaportPizzaPopulare : Orders
         if (user.GetRole() is "Client")
         {
             Console.WriteLine("You do not have permission to view the orders.");
-            
+            return "Access denied";
         }
 
         PizzaPopularity = new Dictionary<string, int>();
 
         try
         {
-            foreach (var pizza in pizzas)
+            foreach (var order in Constants.ORDERSLIST)
             {
-                if (PizzaPopularity.ContainsKey(pizza.getName()))
+                foreach (var pizza in order.getPizzas())
                 {
-                    PizzaPopularity[pizza.getName()]++;
-                }
-                else
-                {
-                    PizzaPopularity[pizza.getName()] = 1;
+                    if (PizzaPopularity.ContainsKey(pizza.getName()))
+                    {
+                        PizzaPopularity[pizza.getName()]++;
+                    }
+                    else
+                    {
+                        PizzaPopularity[pizza.getName()] = 1;
+                    }
                 }
             }
+
+            var sortedPizzaPopularity = PizzaPopularity.OrderByDescending(p => p.Value);
+            Console.WriteLine("\nRaportul celor mai comandate pizza:");
+            foreach (var entry in sortedPizzaPopularity)
+            {
+                Console.WriteLine($"Pizza: {entry.Key}, Număr comenzi: {entry.Value}");
+            }
+
+            return "Raportul a fost creat cu succes.";
         }
         catch(Exception ex)
         {
             Console.WriteLine(ex.Message);
             return "Error: " + ex.Message;
         }
-        var sortedPizzaPopularity = PizzaPopularity.OrderByDescending(p => p.Value);
-        Console.WriteLine("Raportul celor mai populare pizza:");
-        foreach (var entry in sortedPizzaPopularity)
-        {
-            Console.WriteLine($"Pizza: {entry.Key}, Comenzi: {entry.Value}");
-        }
-
-        return "The raport was succesfully created.";
     }
 }
