@@ -51,6 +51,10 @@ namespace ProiectPOoSAM.Alex
             this.price = price;
         }
 
+        public void decreaseQuantity()
+        {
+            this.quantity--;
+        }
         public void AddQuantity(int quantity)
         {
             this.quantity += quantity;

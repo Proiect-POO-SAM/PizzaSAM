@@ -1,6 +1,10 @@
+using System.Globalization;
 using ProiectPOoSAM.Alex;
 using ProiectPOoSAM.Mihai;
 using ProiectPOOSAM;
+using Twilio.Rest.Api.V2010.Account.Usage.Record;
+using Twilio.TwiML.Voice;
+
 namespace ProiectPOoSAM;
 
 public partial class Project 
@@ -23,8 +27,6 @@ public partial class Project
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Se initializeaza programul ...");
         Console.ResetColor();
-        
-        //asta trebe schimbat cumva ca sa mearga la logger
         string message_ilogger = Wrapper.LoadUsers();
         
         
@@ -116,10 +118,10 @@ public partial class Project
                     string password2 = Console.ReadLine();
                     
                     // login
-                    HandleRequest.RequestResult retrunResultLogin2 = HandleRequest.Handle_Login(username2, password2);
-                    this_user = retrunResultLogin2.user;
+                    HandleRequest.RequestResult returnResultLogIn = HandleRequest.Handle_Login(username2, password2);
+                    this_user = returnResultLogIn.user;
                     blockPurposeCompleted = true;
-                    return retrunResultLogin2;
+                    return returnResultLogIn;
                     
                 
                 case "MENIU":
@@ -236,11 +238,17 @@ public partial class Project
                     break;
 
                 case "2":
+                    string dimensiune = null;
                     Console.Write("Pizza name: ");
                     string numePizza = Console.ReadLine();
                     Console.Write("Size (small/medium/large): ");
-                    string dimensiune = Console.ReadLine();
-                    
+                    do
+                    {
+                        dimensiune = Console.ReadLine()?.ToLower();
+                        if(dimensiune == "small" || dimensiune == "medium" || dimensiune == "large")
+                            Console.WriteLine("Invalid pizza size.");
+                    }while(dimensiune == "small" || dimensiune == "medium" || dimensiune == "large");
+
                     List<Ingredients> ingredientePizza = new List<Ingredients>();
                     bool adaugareIngrediente = true;
                     
@@ -537,120 +545,171 @@ public partial class Project
     {
         List<Pizza> orderPizzas = new List<Pizza>();
         bool ordering = true;
-
-        while (ordering)
+        bool ok = false;
+        bool ok2= false;
+        foreach (var pizza in Constants.PIZZASLIST)
         {
-            Console.WriteLine($"\nSelect a pizza [1-{Constants.PIZZASLIST.Count}]");
-            if (int.TryParse(Console.ReadLine(), out int pizzaChoice) && 
-                pizzaChoice >= 1 && pizzaChoice <= Constants.PIZZASLIST.Count)
+            if (pizza.isAvailable())
             {
-                var selectedPizza = Constants.PIZZASLIST[pizzaChoice - 1];
-                if (selectedPizza.CanBeMade())
+                Console.WriteLine(pizza);
+                ok2 = true;
+            }
+            else ok2 = false;
+        }
+        if(ok2==true)
+        {
+            while (ordering)
+            {
+                Console.WriteLine($"\nSelect a pizza [1-{Constants.PIZZASLIST.Count}]");
+                if (int.TryParse(Console.ReadLine(), out int pizzaChoice) &&
+                    pizzaChoice >= 1 && pizzaChoice <= Constants.PIZZASLIST.Count)
                 {
-                    // Dimensiune handling
-                    Pizza.Dimensiune dimensiune = Pizza.Dimensiune.medium;
-                    bool validSize = false;
-                    do
+                    var selectedPizza = Constants.PIZZASLIST[pizzaChoice - 1];
+                    if (selectedPizza.CanBeMade())
                     {
-                        Console.WriteLine("Select size [small/medium/large]: ");
-                        string sizeInput = Console.ReadLine().ToLower();
-                        
-                        switch (sizeInput)
+                        // Dimensiune handling
+                        Pizza.Dimensiune dimensiune = Pizza.Dimensiune.medium;
+                        bool validSize = false;
+                        do
                         {
-                            case "small":
-                                dimensiune = Pizza.Dimensiune.small;
-                                validSize = true;
-                                break;
-                            case "medium":
-                                dimensiune = Pizza.Dimensiune.medium;
-                                validSize = true;
-                                break;
-                            case "large":
-                                dimensiune = Pizza.Dimensiune.large;
-                                validSize = true;
-                                break;
-                            default:
-                                Console.WriteLine("Invalid size! Please choose small, medium, or large.");
-                                break;
-                        }
-                    } while (!validSize);
+                            Console.WriteLine("Select size [small/medium/large]: ");
+                            string sizeInput = Console.ReadLine().ToLower();
 
-                    Console.WriteLine("Personalize? [yes/no]: ");
-                    bool personalize = Console.ReadLine().ToLower() == "yes";
-                    
-                    List<Ingredients> customIngredients = new List<Ingredients>(selectedPizza.getIngredients());
-                    
-                    if (personalize)
-                    {
-                        bool addingIngredients = true;
-                        while (addingIngredients)
+                            switch (sizeInput)
+                            {
+                                case "small":
+                                    dimensiune = Pizza.Dimensiune.small;
+                                    validSize = true;
+                                    break;
+                                case "medium":
+                                    dimensiune = Pizza.Dimensiune.medium;
+                                    validSize = true;
+                                    break;
+                                case "large":
+                                    dimensiune = Pizza.Dimensiune.large;
+                                    validSize = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("Invalid size! Please choose small, medium, or large.");
+                                    break;
+                            }
+                        } while (!validSize);
+
+                        Console.WriteLine("Personalize? [yes/no]: ");
+                        bool personalize = Console.ReadLine().ToLower() == "yes";
+
+                        List<Ingredients> customIngredients = new List<Ingredients>(selectedPizza.getIngredients());
+
+                        if (personalize)
                         {
-                            Console.WriteLine("\nCurrent ingredients:");
-                            foreach (var ing in customIngredients)
+                            bool addingIngredients = true;
+                            while (addingIngredients)
                             {
-                                Console.WriteLine($"- {ing.getName()}");
-                            }
-                            
-                            Console.WriteLine("\nAvailable extra ingredients:");
-                            foreach (var ing in Constants.INGREDIENTSLIST)
-                            {
-                                if (ing.getQuantity() > 0)
+                                Console.WriteLine("\nCurrent ingredients:");
+                                foreach (var ing in customIngredients)
                                 {
-                                    Console.WriteLine($"{ing.getIngredientID()}. {ing.getName()} - {ing.getPrice()} lei");
+                                    Console.WriteLine($"- {ing.getName()}");
                                 }
-                            }
 
-                            Console.Write("\nEnter ingredient ID (0 to finish): ");
-                            if (int.TryParse(Console.ReadLine(), out int ingredientId))
-                            {
-                                if (ingredientId == 0)
+                                Console.WriteLine("\nAvailable extra ingredients:");
+                                foreach (var ing in Constants.INGREDIENTSLIST)
                                 {
-                                    addingIngredients = false;
-                                }
-                                else
-                                {
-                                    var ingredient = Constants.INGREDIENTSLIST.FirstOrDefault(i => i.getIngredientID() == ingredientId);
-                                    if (ingredient != null && ingredient.getQuantity() > 0)
+                                    if (ing.getQuantity() > 0)
                                     {
-                                        customIngredients.Add(ingredient);
-                                        Console.WriteLine($"{ingredient.getName()} added successfully!");
+                                        Console.WriteLine(
+                                            $"{ing.getIngredientID()}. {ing.getName()} - {ing.getPrice()} lei");
+                                    }
+                                }
+
+                                Console.Write("\nEnter ingredient ID (0 to finish): ");
+                                if (int.TryParse(Console.ReadLine(), out int ingredientId))
+                                {
+                                    if (ingredientId == 0)
+                                    {
+                                        addingIngredients = false;
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Invalid ingredient selection or ingredient out of stock.");
+                                        var ingredient =
+                                            Constants.INGREDIENTSLIST.FirstOrDefault(i =>
+                                                i.getIngredientID() == ingredientId);
+                                        if (ingredient != null && ingredient.getQuantity() > 0)
+                                        {
+                                            customIngredients.Add(ingredient);
+                                            Console.WriteLine($"{ingredient.getName()} added successfully!");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine(
+                                                "Invalid ingredient selection or ingredient out of stock.");
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    // Create new pizza with selected options
-                    var newPizza = new Pizza(selectedPizza.getName(), customIngredients, dimensiune, true);
-                    orderPizzas.Add(newPizza);
-                    
-                    Console.WriteLine("Add another pizza? [yes/no]: ");
-                    ordering = Console.ReadLine().ToLower() == "yes";
+                        // Create new pizza with selected options
+                        var newPizza = new Pizza(selectedPizza.getName(), customIngredients, dimensiune, true);
+                        foreach (Ingredients ingredient in customIngredients)
+                        {
+                            ingredient.decreaseQuantity();
+                        }
+
+                        orderPizzas.Add(newPizza);
+
+                        Console.WriteLine("Add another pizza? [yes/no]: ");
+                        ordering = Console.ReadLine().ToLower() == "yes";
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("This pizza cannot be made due to missing ingredients.");
+                        Console.WriteLine("Do you want to proceed with the order? [yes/no]: ");
+                        ordering = Console.ReadLine().ToLower() == "yes";
+                        if (orderPizzas.Any())
+                        {
+                            Console.WriteLine("Delivery method [home/restaurant]: ");
+                            Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod);
+                            var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
+                            Constants.ORDERSLIST.Add(newOrder);
+                            Console.WriteLine(
+                                $"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Order is empty.Try again.");
+                        }
+
+                        ok = true;
+                        break;
+
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("This pizza cannot be made due to missing ingredients.");
+                    Console.WriteLine("Invalid selection.");
                 }
             }
-            else
+
+            if (orderPizzas.Any())
             {
-                Console.WriteLine("Invalid selection.");
+                if (ok = false)
+                {
+                    Console.WriteLine("Delivery method [home/restaurant]: ");
+                    if (Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod))
+                    {
+                        var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
+                        Constants.ORDERSLIST.Add(newOrder);
+                        Console.WriteLine($"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
+                    }
+                }
             }
         }
-
-        if (orderPizzas.Any())
+        else
         {
-            Console.WriteLine("Delivery method [home/restaurant]: ");
-            if (Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod))
-            {
-                var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
-                Constants.ORDERSLIST.Add(newOrder);
-                Console.WriteLine($"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
-            }
+            Console.WriteLine("No pizza available.");
         }
     }
 }
+

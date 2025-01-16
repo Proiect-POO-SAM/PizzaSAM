@@ -163,5 +163,17 @@ public Pizza(string name, List<Ingredients> ingredients, Dimensiune dimensiuneCu
             }
         }
 
+        public bool isAvailable()
+        {
+            foreach (Ingredients ing in ingredients)
+            {
+                if (ing.getQuantity() <= 0)
+                return false;
+                
+            }
+
+            return true;
+        }
+
     }
 }
