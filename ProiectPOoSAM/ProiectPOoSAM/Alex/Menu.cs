@@ -20,55 +20,44 @@ namespace ProiectPOoSAM.Alex
             menu.Add(pizza);
         }
 
-        public void RemovePizza(Pizza pizza)
+        public void ShowMenu()
         {
-            menu.Remove(pizza);
-        }
-        // Function of reading from the file the menu
-        // Function of writing in the file the menu
-
-        public string UnloadMenu(string filePath)
-        {
-            using (StreamReader reader = new StreamReader(filePath))
+            Console.WriteLine("\nAvailable Menu:");
+            foreach (var pizza in Constants.PIZZASLIST)
             {
-                string line;
-                try
+                bool canBeMade = true;
+                Console.WriteLine($"\nPizza: {pizza.getName()}");
+                Console.WriteLine("Available ingredients:");
+                        
+                foreach (var ingredient in pizza.getIngredients())
                 {
-                    while ((line = reader.ReadLine()) != null)
+                    if (ingredient.getQuantity() <= 0)
                     {
-                        var elements = line.Split(',');
-                        // incompleta pana se creaza meniul
+                        canBeMade = false;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"- {ingredient.getName()} (Out of stock!)");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"- {ingredient.getName()}");
+                        Console.ResetColor();
                     }
                 }
-                catch (Exception ex)
+                        
+                if (!canBeMade)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Programul se inchide ...");
-                    return ex.Message;
+                    Console.WriteLine("This pizza is currently unavailable!");
                     Console.ResetColor();
                 }
-            }
-            return "Menu unloaded";
-        }
-        public string UpdateMenu(Menu menu, string filePath)
-        {
-            using (StreamWriter saver = new StreamWriter(filePath))
-            {
-                try
+                else
                 {
-
-                }
-                catch (Exception ex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Programul se inchide ...");
-                    return ex.Message;
-                    Console.ResetColor();
+                    Console.WriteLine($"Price: {pizza.getPrice()} lei");
                 }
             }
-            return "Menu updated";
         }
+        
     }
 }

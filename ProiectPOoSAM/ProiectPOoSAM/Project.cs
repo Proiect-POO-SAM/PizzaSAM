@@ -18,11 +18,6 @@ public partial class Project
     /// </summary>
     /// name: SEBASTIAN.ADELIN
     
-    
-    
-    
-    
-    
     public static HandleRequest.RequestResult INIT()
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -470,6 +465,7 @@ public partial class Project
 
     public static void ShowClientMenu(USER user)
     {
+        Menu menu = new Menu();
         if (user.GetRole() != "Client")
         {
             Console.WriteLine("Access denied! This menu is for clients only.");
@@ -492,41 +488,9 @@ public partial class Project
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("\nAvailable Menu:");
-                    foreach (var pizza in Constants.PIZZASLIST)
-                    {
-                        bool canBeMade = true;
-                        Console.WriteLine($"\nPizza: {pizza.getName()}");
-                        Console.WriteLine("Available ingredients:");
-                        
-                        foreach (var ingredient in pizza.getIngredients())
-                        {
-                            if (ingredient.getQuantity() <= 0)
-                            {
-                                canBeMade = false;
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"- {ingredient.getName()} (Out of stock!)");
-                                Console.ResetColor();
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"- {ingredient.getName()}");
-                                Console.ResetColor();
-                            }
-                        }
-                        
-                        if (!canBeMade)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("This pizza is currently unavailable!");
-                            Console.ResetColor();
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Price: {pizza.getPrice()} lei");
-                        }
-                    }
+                    
+                    menu.ShowMenu();
+                    
                     break;
 
                 case "2":
