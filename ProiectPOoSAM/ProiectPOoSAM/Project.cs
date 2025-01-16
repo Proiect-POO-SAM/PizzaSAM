@@ -659,6 +659,7 @@ public partial class Project
 
                         Console.WriteLine("Add another pizza? [yes/no]: ");
                         ordering = Console.ReadLine().ToLower() == "yes";
+                        OrderAdded(orderPizzas, user);
 
                     }
                     else
@@ -666,21 +667,7 @@ public partial class Project
                         Console.WriteLine("This pizza cannot be made due to missing ingredients.");
                         Console.WriteLine("Do you want to proceed with the order? [yes/no]: ");
                         ordering = Console.ReadLine().ToLower() == "yes";
-                        if (orderPizzas.Any())
-                        {
-                            Console.WriteLine("Delivery method [home/restaurant]: ");
-                            Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod);
-                            var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
-                            Constants.ORDERSLIST.Add(newOrder);
-                            Console.WriteLine(
-                                $"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Order is empty.Try again.");
-                        }
-
+                       OrderAdded(orderPizzas, user);
                         ok = true;
                         break;
 
@@ -692,24 +679,36 @@ public partial class Project
                 }
             }
 
-            if (orderPizzas.Any())
-            {
+            
                 if (ok = false)
                 {
-                    Console.WriteLine("Delivery method [home/restaurant]: ");
-                    if (Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod))
-                    {
-                        var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
-                        Constants.ORDERSLIST.Add(newOrder);
-                        Console.WriteLine($"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
-                    }
+                    OrderAdded(orderPizzas,user);
                 }
-            }
+            
         }
         else
         {
             Console.WriteLine("No pizza available.");
         }
     }
+
+    public static void OrderAdded(List<Pizza> orderPizzas, USER user)
+    {
+        if (orderPizzas.Any())
+        {
+            Console.WriteLine("Delivery method [home/restaurant]: ");
+            Enum.TryParse(Console.ReadLine().ToLower(), out Orders.delivery deliveryMethod);
+            var newOrder = new Orders(orderPizzas, DateTime.Now, deliveryMethod, user);
+            Constants.ORDERSLIST.Add(newOrder);
+            Console.WriteLine(
+                $"Order placed successfully! Total price: {newOrder.getTotalPrice()} lei");
+
+        }
+        else
+        {
+            Console.WriteLine("Order is empty.Try again.");
+        }
+    }
 }
+
 
